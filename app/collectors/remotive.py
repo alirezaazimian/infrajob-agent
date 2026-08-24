@@ -4,10 +4,15 @@ import requests
 API_URL = "https://remotive.com/api/remote-jobs"
 
 
-def fetch_jobs(limit=5):
+def fetch_jobs(search=None):
+    params = {}
+
+    if search:
+        params["search"] = search
+
     response = requests.get(
         API_URL,
-        params={"limit": limit},
+        params=params,
         timeout=10,
     )
 
@@ -15,4 +20,4 @@ def fetch_jobs(limit=5):
 
     data = response.json()
 
-    return data["jobs"]
+    return data.get("jobs", [])

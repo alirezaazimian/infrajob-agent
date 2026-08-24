@@ -1,17 +1,38 @@
 from app.collectors.remotive import fetch_jobs
 from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
+from app.job_utils import remove_duplicates
+
+
+SEARCH_TERMS = [
+    "linux",
+    "system administrator",
+    "infrastructure",
+    "systems engineer",
+    "devops",
+]
 
 
 def main():
     print("InfraJob Agent")
     print("=" * 50)
 
-    jobs = fetch_jobs()
+    all_jobs = []
 
-    relevant_jobs = filter_jobs(jobs)
+    for term in SEARCH_TERMS:
+        print(f"Searching: {term}")
 
-    print(f"Jobs received: {len(jobs)}")
+        jobs = fetch_jobs(term)
+
+        all_jobs.extend(jobs)
+
+    unique_jobs = remove_duplicates(all_jobs)
+
+    relevant_jobs = filter_jobs(unique_jobs)
+
+    print()
+    print(f"Jobs collected: {len(all_jobs)}")
+    print(f"Unique jobs: {len(unique_jobs)}")
     print(f"Relevant jobs: {len(relevant_jobs)}")
     print()
 
