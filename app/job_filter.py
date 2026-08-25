@@ -12,14 +12,18 @@ KEYWORDS = [
     "service desk engineer",
     "devops engineer",
     "site reliability engineer",
+    "it operations engineer",
 ]
 
 
 def is_relevant_job(job):
     title = job.get("title", "").lower()
+    description = job.get("description", "").lower()
+
+    text = f"{title} {description}"
 
     for keyword in KEYWORDS:
-        if keyword in title:
+        if keyword in text:
             return True
 
     return False

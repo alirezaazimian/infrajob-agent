@@ -2,9 +2,9 @@ def remove_duplicates(jobs):
     unique_jobs = {}
 
     for job in jobs:
-        job_id = job.get("id")
+        external_id = job.get("external_id")
 
-        if job_id is not None:
-            unique_jobs[job_id] = job
+        if external_id:
+            unique_jobs[external_id] = job
 
     return list(unique_jobs.values())
