@@ -7,29 +7,16 @@ from app.normalizers import (
 from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
 from app.job_utils import remove_duplicates
+from app.config_loader import load_sources
 
 
-REMOTIVE_SEARCH_TERMS = [
-    "linux",
-    "system administrator",
-    "infrastructure",
-    "systems engineer",
-    "devops",
-]
+MINIMUM_SCORE = 30
 
 
-GREENHOUSE_BOARDS = [
-    {
-        "board_name": "quantiq",
-        "company": "Quantiq",
-    },
-]
-
-
-def collect_remotive_jobs():
+def collect_remotive_jobs(search_terms):
     normalized_jobs = []
 
-    for term in REMOTIVE_SEARCH_TERMS:
+    for term in search_terms:
         print(f"Searching Remotive: {term}")
 
         jobs = fetch_jobs(term)
@@ -42,10 +29,10 @@ def collect_remotive_jobs():
     return normalized_jobs
 
 
-def collect_greenhouse_jobs():
+def collect_greenhouse_jobs(boards):
     normalized_jobs = []
 
-    for board in GREENHOUSE_BOARDS:
+    for board in boards:
         board_name = board["board_name"]
         company = board["company"]
 
@@ -68,13 +55,18 @@ def main():
     print("InfraJob Agent")
     print("=" * 60)
 
-    remotive_jobs = collect_remotive_jobs()
-    greenhouse_jobs = collect_greenhouse_jobs()
+    sources = load_sources()
+
+    remotive_jobs = collect_remotive_jobs(
+        sources["remotive"]["search_terms"]
+    )
+
+    greenhouse_jobs = collect_greenhouse_jobs(
+        sources["greenhouse"]["boards"]
+    )
 
     all_jobs = remotive_jobs + greenhouse_jobs
-
     unique_jobs = remove_duplicates(all_jobs)
-
     relevant_jobs = filter_jobs(unique_jobs)
 
     print()
@@ -92,34 +84,36 @@ def main():
     for job in relevant_jobs:
         score, matched_skills = calculate_job_score(job)
 
-        scored_jobs.append(
-            {
-                "job": job,
-                "score": score,
-                "matched_skills": matched_skills,
-            }
-        )
+        if score >= MINIMUM_SCORE:
+            scored_jobs.append(
+                {
+                    "job": job,
+                    "score": score,
+                    "matched_skills": matched_skills,
+                }
+            )
 
     scored_jobs.sort(
         key=lambda item: item["score"],
         reverse=True,
     )
 
+    print(f"Qualified jobs: {len(scored_jobs)}")
+    print()
+
     for index, item in enumerate(scored_jobs, start=1):
         job = item["job"]
-        score = item["score"]
-        matched_skills = item["matched_skills"]
 
         print(f"{index}. {job['title']}")
         print(f"   Company: {job['company']}")
         print(f"   Location: {job['location']}")
         print(f"   Source: {job['source']}")
-        print(f"   Score: {score}/100")
+        print(f"   Score: {item['score']}/100")
 
-        if matched_skills:
+        if item["matched_skills"]:
             print(
                 "   Matched skills: "
-                + ", ".join(matched_skills)
+                + ", ".join(item["matched_skills"])
             )
 
         print()

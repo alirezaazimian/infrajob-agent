@@ -1,0 +1,19 @@
+{
+  "remotive": {
+    "search_terms": [
+      "linux",
+      "system administrator",
+      "infrastructure",
+      "systems engineer",
+      "devops"
+    ]
+  },
+  "greenhouse": {
+    "boards": [
+      {
+        "board_name": "quantiq",
+        "company": "Quantiq"
+      }
+    ]
+  }
+}
