@@ -34,6 +34,7 @@ def create_jobs_table():
                     url TEXT,
                     source VARCHAR(50),
                     score INTEGER,
+                    status VARCHAR(30) NOT NULL DEFAULT 'new',
                     first_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                     last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                 );
@@ -85,6 +86,46 @@ def save_job(job, score):
                     job["url"],
                     job["source"],
                     score,
+                ),
+            )
+
+        connection.commit()
+
+    finally:
+        connection.close()
+
+
+VALID_STATUSES = {
+    "new",
+    "reviewing",
+    "approved",
+    "applied",
+    "interview",
+    "rejected",
+    "archived",
+}
+
+
+def update_job_status(external_id, status):
+    if status not in VALID_STATUSES:
+        raise ValueError(
+            f"Invalid status: {status}. "
+            f"Allowed statuses: {', '.join(sorted(VALID_STATUSES))}"
+        )
+
+    connection = get_connection()
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                UPDATE jobs
+                SET status = %s
+                WHERE external_id = %s;
+                """,
+                (
+                    status,
+                    external_id,
                 ),
             )
 
