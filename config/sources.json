@@ -13,8 +13,11 @@
       {
         "board_name": "quantiq",
         "company": "Quantiq"
+      },
+      {
+        "board_name": "this-company-does-not-exist-12345",
+        "company": "Broken Test Company"
       }
     ]
   }
 }
-

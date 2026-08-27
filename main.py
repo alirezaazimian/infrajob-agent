@@ -8,6 +8,7 @@ from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
 from app.job_utils import remove_duplicates
 from app.config_loader import load_sources
+import requests
 
 
 MINIMUM_SCORE = 30
@@ -38,7 +39,29 @@ def collect_greenhouse_jobs(boards):
 
         print(f"Collecting Greenhouse: {company}")
 
-        jobs = fetch_greenhouse_jobs(board_name)
+        try:
+            jobs = fetch_greenhouse_jobs(board_name)
+
+        except requests.exceptions.HTTPError as error:
+            print(
+                f"[ERROR] {company}: "
+                f"HTTP error - {error}"
+            )
+            continue
+
+        except requests.exceptions.Timeout:
+            print(
+                f"[ERROR] {company}: "
+                "Request timed out"
+            )
+            continue
+
+        except requests.exceptions.ConnectionError:
+            print(
+                f"[ERROR] {company}: "
+                "Connection failed"
+            )
+            continue
 
         for job in jobs:
             normalized_jobs.append(
