@@ -1,3 +1,5 @@
+import requests
+
 from app.collectors.remotive import fetch_jobs
 from app.collectors.greenhouse import fetch_greenhouse_jobs
 from app.normalizers import (
@@ -8,10 +10,12 @@ from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
 from app.job_utils import remove_duplicates
 from app.config_loader import load_sources
-import requests
+from app.logger import setup_logger
 
 
 MINIMUM_SCORE = 30
+
+logger = setup_logger()
 
 
 def collect_remotive_jobs(search_terms):
@@ -20,7 +24,41 @@ def collect_remotive_jobs(search_terms):
     for term in search_terms:
         print(f"Searching Remotive: {term}")
 
-        jobs = fetch_jobs(term)
+        logger.info(
+            "Collecting Remotive jobs for search term: %s",
+            term,
+        )
+
+        try:
+            jobs = fetch_jobs(term)
+
+            logger.info(
+                "Remotive search '%s' returned %d jobs",
+                term,
+                len(jobs),
+            )
+
+        except requests.exceptions.HTTPError as error:
+            logger.error(
+                "Remotive search '%s' HTTP error: %s",
+                term,
+                error,
+            )
+            continue
+
+        except requests.exceptions.Timeout:
+            logger.error(
+                "Remotive search '%s' timed out",
+                term,
+            )
+            continue
+
+        except requests.exceptions.ConnectionError:
+            logger.error(
+                "Remotive search '%s' connection failed",
+                term,
+            )
+            continue
 
         for job in jobs:
             normalized_jobs.append(
@@ -39,27 +77,39 @@ def collect_greenhouse_jobs(boards):
 
         print(f"Collecting Greenhouse: {company}")
 
+        logger.info(
+            "Collecting Greenhouse jobs for %s",
+            company,
+        )
+
         try:
             jobs = fetch_greenhouse_jobs(board_name)
 
+            logger.info(
+                "Greenhouse %s returned %d jobs",
+                company,
+                len(jobs),
+            )
+
         except requests.exceptions.HTTPError as error:
-            print(
-                f"[ERROR] {company}: "
-                f"HTTP error - {error}"
+            logger.error(
+                "Greenhouse %s HTTP error: %s",
+                company,
+                error,
             )
             continue
 
         except requests.exceptions.Timeout:
-            print(
-                f"[ERROR] {company}: "
-                "Request timed out"
+            logger.error(
+                "Greenhouse %s request timed out",
+                company,
             )
             continue
 
         except requests.exceptions.ConnectionError:
-            print(
-                f"[ERROR] {company}: "
-                "Connection failed"
+            logger.error(
+                "Greenhouse %s connection failed",
+                company,
             )
             continue
 
@@ -78,6 +128,8 @@ def main():
     print("InfraJob Agent")
     print("=" * 60)
 
+    logger.info("InfraJob Agent started")
+
     sources = load_sources()
 
     remotive_jobs = collect_remotive_jobs(
@@ -89,18 +141,10 @@ def main():
     )
 
     all_jobs = remotive_jobs + greenhouse_jobs
-    unique_jobs = remove_duplicates(all_jobs)
-    relevant_jobs = filter_jobs(unique_jobs)
 
-    print()
-    print("=" * 60)
-    print(f"Remotive jobs: {len(remotive_jobs)}")
-    print(f"Greenhouse jobs: {len(greenhouse_jobs)}")
-    print(f"Total jobs: {len(all_jobs)}")
-    print(f"Unique jobs: {len(unique_jobs)}")
-    print(f"Relevant jobs: {len(relevant_jobs)}")
-    print("=" * 60)
-    print()
+    unique_jobs = remove_duplicates(all_jobs)
+
+    relevant_jobs = filter_jobs(unique_jobs)
 
     scored_jobs = []
 
@@ -121,25 +165,43 @@ def main():
         reverse=True,
     )
 
+    print()
+    print("=" * 60)
+    print(f"Remotive jobs: {len(remotive_jobs)}")
+    print(f"Greenhouse jobs: {len(greenhouse_jobs)}")
+    print(f"Total jobs: {len(all_jobs)}")
+    print(f"Unique jobs: {len(unique_jobs)}")
+    print(f"Relevant jobs: {len(relevant_jobs)}")
     print(f"Qualified jobs: {len(scored_jobs)}")
+    print("=" * 60)
     print()
 
     for index, item in enumerate(scored_jobs, start=1):
         job = item["job"]
+        score = item["score"]
+        matched_skills = item["matched_skills"]
 
         print(f"{index}. {job['title']}")
         print(f"   Company: {job['company']}")
         print(f"   Location: {job['location']}")
         print(f"   Source: {job['source']}")
-        print(f"   Score: {item['score']}/100")
+        print(f"   Score: {score}/100")
 
-        if item["matched_skills"]:
+        if matched_skills:
             print(
                 "   Matched skills: "
-                + ", ".join(item["matched_skills"])
+                + ", ".join(matched_skills)
             )
 
         print()
+
+    logger.info(
+        "Pipeline completed: %d total, %d unique, %d relevant, %d qualified",
+        len(all_jobs),
+        len(unique_jobs),
+        len(relevant_jobs),
+        len(scored_jobs),
+    )
 
 
 if __name__ == "__main__":
