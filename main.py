@@ -11,6 +11,7 @@ from app.job_scorer import calculate_job_score
 from app.job_utils import remove_duplicates
 from app.config_loader import load_sources
 from app.logger import setup_logger
+from app.database import create_jobs_table, save_job
 
 
 MINIMUM_SCORE = 30
@@ -129,6 +130,7 @@ def main():
     print("=" * 60)
 
     logger.info("InfraJob Agent started")
+    create_jobs_table()
 
     sources = load_sources()
 
@@ -164,6 +166,19 @@ def main():
         key=lambda item: item["score"],
         reverse=True,
     )
+
+    for item in scored_jobs:
+        job = item["job"]
+        score = item["score"]
+
+        save_job(job, score)
+
+        logger.info(
+            "Saved job to database: %s | %s | score=%d",
+            job["company"],
+            job["title"],
+            score,
+        )
 
     print()
     print("=" * 60)
