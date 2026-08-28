@@ -7,6 +7,17 @@ from dotenv import load_dotenv
 load_dotenv(".env")
 
 
+VALID_STATUSES = {
+    "new",
+    "reviewing",
+    "approved",
+    "applied",
+    "interview",
+    "rejected",
+    "archived",
+}
+
+
 def get_connection():
     return psycopg2.connect(
         host=os.getenv("DB_HOST"),
@@ -30,14 +41,63 @@ def create_jobs_table():
                     title TEXT NOT NULL,
                     company TEXT,
                     location TEXT,
+
+                    country_code VARCHAR(10),
+                    country VARCHAR(100),
+                    country_confidence VARCHAR(20),
+
                     description TEXT,
                     url TEXT,
                     source VARCHAR(50),
                     score INTEGER,
-                    status VARCHAR(30) NOT NULL DEFAULT 'new',
-                    first_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                    last_seen TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+
+                    status VARCHAR(30)
+                        NOT NULL
+                        DEFAULT 'new',
+
+                    first_seen TIMESTAMP
+                        DEFAULT CURRENT_TIMESTAMP,
+
+                    last_seen TIMESTAMP
+                        DEFAULT CURRENT_TIMESTAMP
                 );
+                """
+            )
+
+            # Migration support for databases created
+            # before these columns were introduced.
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                country_code VARCHAR(10);
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                country VARCHAR(100);
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                country_confidence VARCHAR(20);
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                status VARCHAR(30)
+                NOT NULL
+                DEFAULT 'new';
                 """
             )
 
@@ -59,18 +119,37 @@ def save_job(job, score):
                     title,
                     company,
                     location,
+                    country_code,
+                    country,
+                    country_confidence,
                     description,
                     url,
                     source,
                     score
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                VALUES (
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s,
+                    %s
+                )
 
                 ON CONFLICT (external_id)
                 DO UPDATE SET
                     title = EXCLUDED.title,
                     company = EXCLUDED.company,
                     location = EXCLUDED.location,
+                    country_code = EXCLUDED.country_code,
+                    country = EXCLUDED.country,
+                    country_confidence =
+                        EXCLUDED.country_confidence,
                     description = EXCLUDED.description,
                     url = EXCLUDED.url,
                     source = EXCLUDED.source,
@@ -82,6 +161,9 @@ def save_job(job, score):
                     job["title"],
                     job["company"],
                     job["location"],
+                    job.get("country_code"),
+                    job.get("country"),
+                    job.get("country_confidence"),
                     job["description"],
                     job["url"],
                     job["source"],
@@ -95,22 +177,12 @@ def save_job(job, score):
         connection.close()
 
 
-VALID_STATUSES = {
-    "new",
-    "reviewing",
-    "approved",
-    "applied",
-    "interview",
-    "rejected",
-    "archived",
-}
-
-
 def update_job_status(external_id, status):
     if status not in VALID_STATUSES:
         raise ValueError(
             f"Invalid status: {status}. "
-            f"Allowed statuses: {', '.join(sorted(VALID_STATUSES))}"
+            f"Allowed statuses: "
+            f"{', '.join(sorted(VALID_STATUSES))}"
         )
 
     connection = get_connection()

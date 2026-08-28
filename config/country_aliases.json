@@ -1,0 +1,188 @@
+{
+  "countries": [
+    {
+      "code": "DE",
+      "name": "Germany",
+      "country_aliases": [
+        "Germany",
+        "Deutschland"
+      ],
+      "city_aliases": [
+        "Berlin",
+        "Munich",
+        "München",
+        "Hamburg",
+        "Frankfurt",
+        "Cologne",
+        "Köln",
+        "Düsseldorf",
+        "Dusseldorf",
+        "Stuttgart",
+        "Darmstadt",
+        "Leipzig"
+      ]
+    },
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "country_aliases": [
+        "Denmark"
+      ],
+      "city_aliases": [
+        "Copenhagen",
+        "Aarhus",
+        "Odense",
+        "Aalborg"
+      ]
+    },
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "country_aliases": [
+        "Ireland"
+      ],
+      "city_aliases": [
+        "Dublin",
+        "Cork",
+        "Galway",
+        "Limerick"
+      ]
+    },
+    {
+      "code": "AT",
+      "name": "Austria",
+      "country_aliases": [
+        "Austria",
+        "Österreich"
+      ],
+      "city_aliases": [
+        "Vienna",
+        "Wien",
+        "Graz",
+        "Linz",
+        "Salzburg"
+      ]
+    },
+    {
+      "code": "FI",
+      "name": "Finland",
+      "country_aliases": [
+        "Finland"
+      ],
+      "city_aliases": [
+        "Helsinki",
+        "Espoo",
+        "Tampere",
+        "Oulu"
+      ]
+    },
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "country_aliases": [
+        "Netherlands",
+        "The Netherlands",
+        "Holland"
+      ],
+      "city_aliases": [
+        "Amsterdam",
+        "Rotterdam",
+        "Utrecht",
+        "Eindhoven",
+        "The Hague"
+      ]
+    },
+    {
+      "code": "AU",
+      "name": "Australia",
+      "country_aliases": [
+        "Australia"
+      ],
+      "city_aliases": [
+        "Sydney",
+        "Melbourne",
+        "Brisbane",
+        "Perth",
+        "Adelaide"
+      ]
+    },
+    {
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "country_aliases": [
+        "United Arab Emirates",
+        "UAE"
+      ],
+      "city_aliases": [
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah"
+      ]
+    },
+    {
+      "code": "CA",
+      "name": "Canada",
+      "country_aliases": [
+        "Canada"
+      ],
+      "city_aliases": [
+        "Toronto",
+        "Vancouver",
+        "Ottawa",
+        "Calgary",
+        "Montreal",
+        "Montréal",
+        "British Columbia"
+      ]
+    },
+    {
+      "code": "US",
+      "name": "United States",
+      "country_aliases": [
+        "United States",
+        "USA",
+        "United States of America"
+      ],
+      "city_aliases": [
+        "Austin",
+        "Los Angeles",
+        "New York",
+        "San Francisco",
+        "Seattle",
+        "Raleigh"
+      ]
+    },
+    {
+      "code": "AZ",
+      "name": "Azerbaijan",
+      "country_aliases": [
+        "Azerbaijan"
+      ],
+      "city_aliases": [
+        "Baku"
+      ]
+    },
+    {
+      "code": "RS",
+      "name": "Serbia",
+      "country_aliases": [
+        "Serbia"
+      ],
+      "city_aliases": [
+        "Belgrade"
+      ]
+    },
+    {
+      "code": "RU",
+      "name": "Russia",
+      "country_aliases": [
+        "Russia",
+        "Russian Federation"
+      ],
+      "city_aliases": [
+        "Moscow",
+        "Perm"
+      ]
+    }
+  ]
+}
