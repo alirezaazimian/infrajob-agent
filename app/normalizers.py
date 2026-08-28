@@ -38,3 +38,38 @@ def normalize_personio_job(job, company, account):
         ),
         "source": "personio",
     }
+
+def normalize_lever_job(job, company, site):
+    job_id = str(job.get("id", ""))
+
+    description_parts = []
+
+    description = (
+        job.get("descriptionPlain")
+        or job.get("description")
+        or ""
+    )
+
+    if description:
+        description_parts.append(description)
+
+    for section in job.get("lists", []):
+        section_name = section.get("text", "")
+        section_content = section.get("content", "")
+
+        if section_content:
+            description_parts.append(
+                f"{section_name}\n{section_content}".strip()
+            )
+
+    categories = job.get("categories") or {}
+
+    return {
+        "external_id": f"lever:{site}:{job_id}",
+        "title": job.get("text", ""),
+        "company": company,
+        "location": categories.get("location", ""),
+        "description": "\n\n".join(description_parts),
+        "url": job.get("hostedUrl", ""),
+        "source": "lever",
+    }

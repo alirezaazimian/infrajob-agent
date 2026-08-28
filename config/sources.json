@@ -26,5 +26,15 @@
         "language": "en"
       }
     ]
+  },
+
+  "lever": {
+    "sites": [
+      {
+        "site": "xsolla",
+        "company": "Xsolla",
+        "region": "global"
+      }
+    ]
   }
 }

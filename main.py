@@ -6,6 +6,7 @@ from app.normalizers import (
     normalize_remotive_job,
     normalize_greenhouse_job,
     normalize_personio_job,
+    normalize_lever_job,
 )
 from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
@@ -14,6 +15,7 @@ from app.config_loader import load_sources
 from app.logger import setup_logger
 from app.database import create_jobs_table, save_job
 from app.collectors.personio import fetch_personio_jobs
+from app.collectors.lever import fetch_lever_jobs
 
 
 MINIMUM_SCORE = 30
@@ -191,6 +193,70 @@ def collect_personio_jobs(accounts):
     return normalized_jobs
 
 
+def collect_lever_jobs(sites):
+    normalized_jobs = []
+
+    for site_config in sites:
+        site = site_config["site"]
+        company = site_config["company"]
+        region = site_config.get(
+            "region",
+            "global",
+        )
+
+        print(f"Collecting Lever: {company}")
+
+        logger.info(
+            "Collecting Lever jobs for %s",
+            company,
+        )
+
+        try:
+            jobs = fetch_lever_jobs(
+                site,
+                region=region,
+            )
+
+            logger.info(
+                "Lever %s returned %d jobs",
+                company,
+                len(jobs),
+            )
+
+        except requests.exceptions.HTTPError as error:
+            logger.error(
+                "Lever %s HTTP error: %s",
+                company,
+                error,
+            )
+            continue
+
+        except requests.exceptions.Timeout:
+            logger.error(
+                "Lever %s request timed out",
+                company,
+            )
+            continue
+
+        except requests.exceptions.ConnectionError:
+            logger.error(
+                "Lever %s connection failed",
+                company,
+            )
+            continue
+
+        for job in jobs:
+            normalized_jobs.append(
+                normalize_lever_job(
+                    job,
+                    company,
+                    site,
+                )
+            )
+
+    return normalized_jobs
+
+
 def main():
     print("InfraJob Agent")
     print("=" * 60)
@@ -212,10 +278,15 @@ def main():
     sources["personio"]["accounts"]
     )
 
+    lever_jobs = collect_lever_jobs(
+    sources["lever"]["sites"]
+    )
+
     all_jobs = (
     remotive_jobs
     + greenhouse_jobs
     + personio_jobs
+    + lever_jobs
     )
 
     unique_jobs = remove_duplicates(all_jobs)
@@ -259,6 +330,7 @@ def main():
     print(f"Remotive jobs: {len(remotive_jobs)}")
     print(f"Greenhouse jobs: {len(greenhouse_jobs)}")
     print(f"Personio jobs: {len(personio_jobs)}")
+    print(f"Lever jobs: {len(lever_jobs)}")
     print(f"Total jobs: {len(all_jobs)}")
     print(f"Unique jobs: {len(unique_jobs)}")
     print(f"Relevant jobs: {len(relevant_jobs)}")
