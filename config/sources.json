@@ -36,5 +36,14 @@
         "region": "global"
       }
     ]
+  },
+
+  "ashby": {
+    "boards": [
+      {
+        "board_name": "focused",
+        "company": "Focused Energy"
+      }
+    ]
   }
 }

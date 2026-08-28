@@ -73,3 +73,27 @@ def normalize_lever_job(job, company, site):
         "url": job.get("hostedUrl", ""),
         "source": "lever",
     }
+
+
+def normalize_ashby_job(job, company, board_name):
+    job_id = str(job.get("id", ""))
+
+    description = (
+        job.get("descriptionPlain")
+        or job.get("descriptionHtml")
+        or ""
+    )
+
+    return {
+        "external_id": f"ashby:{board_name}:{job_id}",
+        "title": job.get("title", ""),
+        "company": company,
+        "location": job.get("location", ""),
+        "description": description,
+        "url": (
+            job.get("jobUrl")
+            or job.get("applyUrl")
+            or ""
+        ),
+        "source": "ashby",
+    }

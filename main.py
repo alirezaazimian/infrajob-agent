@@ -7,6 +7,7 @@ from app.normalizers import (
     normalize_greenhouse_job,
     normalize_personio_job,
     normalize_lever_job,
+    normalize_ashby_job,
 )
 from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
@@ -16,6 +17,7 @@ from app.logger import setup_logger
 from app.database import create_jobs_table, save_job
 from app.collectors.personio import fetch_personio_jobs
 from app.collectors.lever import fetch_lever_jobs
+from app.collectors.ashby import fetch_ashby_jobs
 
 
 MINIMUM_SCORE = 30
@@ -257,6 +259,63 @@ def collect_lever_jobs(sites):
     return normalized_jobs
 
 
+def collect_ashby_jobs(boards):
+    normalized_jobs = []
+
+    for board in boards:
+        board_name = board["board_name"]
+        company = board["company"]
+
+        print(f"Collecting Ashby: {company}")
+
+        logger.info(
+            "Collecting Ashby jobs for %s",
+            company,
+        )
+
+        try:
+            jobs = fetch_ashby_jobs(board_name)
+
+            logger.info(
+                "Ashby %s returned %d jobs",
+                company,
+                len(jobs),
+            )
+
+        except requests.exceptions.HTTPError as error:
+            logger.error(
+                "Ashby %s HTTP error: %s",
+                company,
+                error,
+            )
+            continue
+
+        except requests.exceptions.Timeout:
+            logger.error(
+                "Ashby %s request timed out",
+                company,
+            )
+            continue
+
+        except requests.exceptions.ConnectionError:
+            logger.error(
+                "Ashby %s connection failed",
+                company,
+            )
+            continue
+
+        for job in jobs:
+            normalized_jobs.append(
+                normalize_ashby_job(
+                    job,
+                    company,
+                    board_name,
+                )
+            )
+
+    return normalized_jobs
+
+
 def main():
     print("InfraJob Agent")
     print("=" * 60)
@@ -282,11 +341,16 @@ def main():
     sources["lever"]["sites"]
     )
 
+    ashby_jobs = collect_ashby_jobs(
+    sources["ashby"]["boards"]
+    )
+
     all_jobs = (
     remotive_jobs
     + greenhouse_jobs
     + personio_jobs
     + lever_jobs
+    + ashby_jobs
     )
 
     unique_jobs = remove_duplicates(all_jobs)
@@ -331,6 +395,7 @@ def main():
     print(f"Greenhouse jobs: {len(greenhouse_jobs)}")
     print(f"Personio jobs: {len(personio_jobs)}")
     print(f"Lever jobs: {len(lever_jobs)}")
+    print(f"Ashby jobs: {len(ashby_jobs)}")
     print(f"Total jobs: {len(all_jobs)}")
     print(f"Unique jobs: {len(unique_jobs)}")
     print(f"Relevant jobs: {len(relevant_jobs)}")
