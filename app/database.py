@@ -34,6 +34,11 @@ def create_jobs_table():
 
     try:
         with connection.cursor() as cursor:
+
+            # --------------------------------------------------
+            # Base table
+            # --------------------------------------------------
+
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS jobs (
@@ -75,6 +80,30 @@ def create_jobs_table():
                         NOT NULL
                         DEFAULT '[]'::jsonb,
 
+                    language_requirement VARCHAR(50)
+                        NOT NULL
+                        DEFAULT 'unknown',
+
+                    german_required BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    german_preferred BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    english_required BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    other_required_languages JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
+
+                    language_signals JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
+
                     description TEXT,
                     url TEXT,
                     source VARCHAR(50),
@@ -93,7 +122,9 @@ def create_jobs_table():
                 """
             )
 
-            # Migrations for existing databases.
+            # --------------------------------------------------
+            # Country migrations
+            # --------------------------------------------------
 
             cursor.execute(
                 """
@@ -119,6 +150,10 @@ def create_jobs_table():
                 """
             )
 
+            # --------------------------------------------------
+            # Work authorization migrations
+            # --------------------------------------------------
+
             cursor.execute(
                 """
                 ALTER TABLE jobs
@@ -138,6 +173,10 @@ def create_jobs_table():
                 DEFAULT '[]'::jsonb;
                 """
             )
+
+            # --------------------------------------------------
+            # Positive eligibility migrations
+            # --------------------------------------------------
 
             cursor.execute(
                 """
@@ -179,6 +218,74 @@ def create_jobs_table():
                 """
             )
 
+            # --------------------------------------------------
+            # Language migrations
+            # --------------------------------------------------
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                language_requirement VARCHAR(50)
+                NOT NULL
+                DEFAULT 'unknown';
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                german_required BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                german_preferred BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                english_required BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                other_required_languages JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                language_signals JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
+                """
+            )
+
+            # --------------------------------------------------
+            # Application state migration
+            # --------------------------------------------------
+
             cursor.execute(
                 """
                 ALTER TABLE jobs
@@ -200,6 +307,7 @@ def save_job(job, score):
 
     try:
         with connection.cursor() as cursor:
+
             cursor.execute(
                 """
                 INSERT INTO jobs (
@@ -220,11 +328,19 @@ def save_job(job, score):
                     international_hiring_evidence,
                     positive_eligibility_signals,
 
+                    language_requirement,
+                    german_required,
+                    german_preferred,
+                    english_required,
+                    other_required_languages,
+                    language_signals,
+
                     description,
                     url,
                     source,
                     score
                 )
+
                 VALUES (
                     %s,
                     %s,
@@ -246,11 +362,20 @@ def save_job(job, score):
                     %s,
                     %s,
                     %s,
+                    %s,
+                    %s,
+                    %s,
+
+                    %s,
+                    %s,
+                    %s,
                     %s
                 )
 
                 ON CONFLICT (external_id)
+
                 DO UPDATE SET
+
                     title =
                         EXCLUDED.title,
 
@@ -287,6 +412,24 @@ def save_job(job, score):
                     positive_eligibility_signals =
                         EXCLUDED.positive_eligibility_signals,
 
+                    language_requirement =
+                        EXCLUDED.language_requirement,
+
+                    german_required =
+                        EXCLUDED.german_required,
+
+                    german_preferred =
+                        EXCLUDED.german_preferred,
+
+                    english_required =
+                        EXCLUDED.english_required,
+
+                    other_required_languages =
+                        EXCLUDED.other_required_languages,
+
+                    language_signals =
+                        EXCLUDED.language_signals,
+
                     description =
                         EXCLUDED.description,
 
@@ -302,6 +445,7 @@ def save_job(job, score):
                     last_seen =
                         CURRENT_TIMESTAMP;
                 """,
+
                 (
                     job["external_id"],
                     job["title"],
@@ -350,6 +494,40 @@ def save_job(job, score):
                     Json(
                         job.get(
                             "positive_eligibility_signals",
+                            [],
+                        )
+                    ),
+
+                    job.get(
+                        "language_requirement",
+                        "unknown",
+                    ),
+
+                    job.get(
+                        "german_required",
+                        False,
+                    ),
+
+                    job.get(
+                        "german_preferred",
+                        False,
+                    ),
+
+                    job.get(
+                        "english_required",
+                        False,
+                    ),
+
+                    Json(
+                        job.get(
+                            "other_required_languages",
+                            [],
+                        )
+                    ),
+
+                    Json(
+                        job.get(
+                            "language_signals",
                             [],
                         )
                     ),
