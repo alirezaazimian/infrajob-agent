@@ -59,6 +59,22 @@ def create_jobs_table():
                         NOT NULL
                         DEFAULT '[]'::jsonb,
 
+                    sponsorship_evidence BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    relocation_evidence BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    international_hiring_evidence BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    positive_eligibility_signals JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
+
                     description TEXT,
                     url TEXT,
                     source VARCHAR(50),
@@ -77,8 +93,7 @@ def create_jobs_table():
                 """
             )
 
-            # Migrations for databases created
-            # before these fields existed.
+            # Migrations for existing databases.
 
             cursor.execute(
                 """
@@ -128,6 +143,46 @@ def create_jobs_table():
                 """
                 ALTER TABLE jobs
                 ADD COLUMN IF NOT EXISTS
+                sponsorship_evidence BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                relocation_evidence BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                international_hiring_evidence BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                positive_eligibility_signals JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
                 status VARCHAR(30)
                 NOT NULL
                 DEFAULT 'new';
@@ -152,11 +207,19 @@ def save_job(job, score):
                     title,
                     company,
                     location,
+
                     country_code,
                     country,
                     country_confidence,
+
                     work_authorization_blocked,
                     work_authorization_signals,
+
+                    sponsorship_evidence,
+                    relocation_evidence,
+                    international_hiring_evidence,
+                    positive_eligibility_signals,
+
                     description,
                     url,
                     source,
@@ -167,11 +230,19 @@ def save_job(job, score):
                     %s,
                     %s,
                     %s,
+
+                    %s,
+                    %s,
+                    %s,
+
+                    %s,
+                    %s,
+
                     %s,
                     %s,
                     %s,
                     %s,
-                    %s,
+
                     %s,
                     %s,
                     %s,
@@ -180,9 +251,14 @@ def save_job(job, score):
 
                 ON CONFLICT (external_id)
                 DO UPDATE SET
-                    title = EXCLUDED.title,
-                    company = EXCLUDED.company,
-                    location = EXCLUDED.location,
+                    title =
+                        EXCLUDED.title,
+
+                    company =
+                        EXCLUDED.company,
+
+                    location =
+                        EXCLUDED.location,
 
                     country_code =
                         EXCLUDED.country_code,
@@ -198,6 +274,18 @@ def save_job(job, score):
 
                     work_authorization_signals =
                         EXCLUDED.work_authorization_signals,
+
+                    sponsorship_evidence =
+                        EXCLUDED.sponsorship_evidence,
+
+                    relocation_evidence =
+                        EXCLUDED.relocation_evidence,
+
+                    international_hiring_evidence =
+                        EXCLUDED.international_hiring_evidence,
+
+                    positive_eligibility_signals =
+                        EXCLUDED.positive_eligibility_signals,
 
                     description =
                         EXCLUDED.description,
@@ -240,6 +328,28 @@ def save_job(job, score):
                     Json(
                         job.get(
                             "work_authorization_signals",
+                            [],
+                        )
+                    ),
+
+                    job.get(
+                        "sponsorship_evidence",
+                        False,
+                    ),
+
+                    job.get(
+                        "relocation_evidence",
+                        False,
+                    ),
+
+                    job.get(
+                        "international_hiring_evidence",
+                        False,
+                    ),
+
+                    Json(
+                        job.get(
+                            "positive_eligibility_signals",
                             [],
                         )
                     ),
