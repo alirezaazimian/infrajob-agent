@@ -18,7 +18,7 @@ from app.database import create_jobs_table, save_job
 from app.collectors.personio import fetch_personio_jobs
 from app.collectors.lever import fetch_lever_jobs
 from app.collectors.ashby import fetch_ashby_jobs
-from app.job_enricher import enrich_job_country
+from app.job_enricher import enrich_job
 
 
 MINIMUM_SCORE = 30
@@ -355,7 +355,7 @@ def main():
     )
 
     enriched_jobs = [
-    enrich_job_country(job)
+    enrich_job(job)
     for job in all_jobs
     ]
 

@@ -2,6 +2,7 @@ import os
 
 import psycopg2
 from dotenv import load_dotenv
+from psycopg2.extras import Json
 
 
 load_dotenv(".env")
@@ -37,7 +38,11 @@ def create_jobs_table():
                 """
                 CREATE TABLE IF NOT EXISTS jobs (
                     id SERIAL PRIMARY KEY,
-                    external_id VARCHAR(255) UNIQUE NOT NULL,
+
+                    external_id VARCHAR(255)
+                        UNIQUE
+                        NOT NULL,
+
                     title TEXT NOT NULL,
                     company TEXT,
                     location TEXT,
@@ -45,6 +50,14 @@ def create_jobs_table():
                     country_code VARCHAR(10),
                     country VARCHAR(100),
                     country_confidence VARCHAR(20),
+
+                    work_authorization_blocked BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    work_authorization_signals JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
 
                     description TEXT,
                     url TEXT,
@@ -64,8 +77,8 @@ def create_jobs_table():
                 """
             )
 
-            # Migration support for databases created
-            # before these columns were introduced.
+            # Migrations for databases created
+            # before these fields existed.
 
             cursor.execute(
                 """
@@ -88,6 +101,26 @@ def create_jobs_table():
                 ALTER TABLE jobs
                 ADD COLUMN IF NOT EXISTS
                 country_confidence VARCHAR(20);
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                work_authorization_blocked BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                work_authorization_signals JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
                 """
             )
 
@@ -122,12 +155,16 @@ def save_job(job, score):
                     country_code,
                     country,
                     country_confidence,
+                    work_authorization_blocked,
+                    work_authorization_signals,
                     description,
                     url,
                     source,
                     score
                 )
                 VALUES (
+                    %s,
+                    %s,
                     %s,
                     %s,
                     %s,
@@ -146,24 +183,67 @@ def save_job(job, score):
                     title = EXCLUDED.title,
                     company = EXCLUDED.company,
                     location = EXCLUDED.location,
-                    country_code = EXCLUDED.country_code,
-                    country = EXCLUDED.country,
+
+                    country_code =
+                        EXCLUDED.country_code,
+
+                    country =
+                        EXCLUDED.country,
+
                     country_confidence =
                         EXCLUDED.country_confidence,
-                    description = EXCLUDED.description,
-                    url = EXCLUDED.url,
-                    source = EXCLUDED.source,
-                    score = EXCLUDED.score,
-                    last_seen = CURRENT_TIMESTAMP;
+
+                    work_authorization_blocked =
+                        EXCLUDED.work_authorization_blocked,
+
+                    work_authorization_signals =
+                        EXCLUDED.work_authorization_signals,
+
+                    description =
+                        EXCLUDED.description,
+
+                    url =
+                        EXCLUDED.url,
+
+                    source =
+                        EXCLUDED.source,
+
+                    score =
+                        EXCLUDED.score,
+
+                    last_seen =
+                        CURRENT_TIMESTAMP;
                 """,
                 (
                     job["external_id"],
                     job["title"],
                     job["company"],
                     job["location"],
-                    job.get("country_code"),
-                    job.get("country"),
-                    job.get("country_confidence"),
+
+                    job.get(
+                        "country_code"
+                    ),
+
+                    job.get(
+                        "country"
+                    ),
+
+                    job.get(
+                        "country_confidence"
+                    ),
+
+                    job.get(
+                        "work_authorization_blocked",
+                        False,
+                    ),
+
+                    Json(
+                        job.get(
+                            "work_authorization_signals",
+                            [],
+                        )
+                    ),
+
                     job["description"],
                     job["url"],
                     job["source"],
@@ -177,7 +257,10 @@ def save_job(job, score):
         connection.close()
 
 
-def update_job_status(external_id, status):
+def update_job_status(
+    external_id,
+    status,
+):
     if status not in VALID_STATUSES:
         raise ValueError(
             f"Invalid status: {status}. "
