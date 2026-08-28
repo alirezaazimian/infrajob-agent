@@ -1,0 +1,56 @@
+{
+  "roles": [
+    {
+      "name": "Linux Administrator",
+      "priority": "high"
+    },
+    {
+      "name": "System Administrator",
+      "priority": "high"
+    },
+    {
+      "name": "Systems Administrator",
+      "priority": "high"
+    },
+    {
+      "name": "Infrastructure Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "IT Infrastructure Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "Systems Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "IT Operations Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "Data Center Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "Data Center Operations Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "Cloud Operations Engineer",
+      "priority": "medium"
+    },
+    {
+      "name": "Platform Operations Engineer",
+      "priority": "medium"
+    },
+    {
+      "name": "Virtualization Engineer",
+      "priority": "high"
+    },
+    {
+      "name": "DevOps Engineer",
+      "priority": "conditional"
+    }
+  ]
+}

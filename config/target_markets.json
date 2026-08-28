@@ -1,0 +1,192 @@
+{
+  "markets": [
+    {
+      "code": "DE",
+      "country": "Germany",
+      "enabled": true,
+      "tier": "core",
+      "search_weight": 30,
+      "strategy": "long_term",
+      "languages": [
+        "English",
+        "German"
+      ],
+      "search_locations": [
+        "Germany",
+        "Berlin",
+        "Munich",
+        "Hamburg",
+        "Frankfurt",
+        "Cologne",
+        "Dusseldorf",
+        "Stuttgart"
+      ]
+    },
+    {
+      "code": "DK",
+      "country": "Denmark",
+      "enabled": true,
+      "tier": "core",
+      "search_weight": 20,
+      "strategy": "long_term",
+      "languages": [
+        "English",
+        "Danish"
+      ],
+      "search_locations": [
+        "Denmark",
+        "Copenhagen",
+        "Aarhus",
+        "Odense",
+        "Aalborg"
+      ]
+    },
+    {
+      "code": "IE",
+      "country": "Ireland",
+      "enabled": true,
+      "tier": "core",
+      "search_weight": 15,
+      "strategy": "long_term",
+      "languages": [
+        "English"
+      ],
+      "search_locations": [
+        "Ireland",
+        "Dublin",
+        "Cork",
+        "Galway",
+        "Limerick"
+      ]
+    },
+    {
+      "code": "AT",
+      "country": "Austria",
+      "enabled": true,
+      "tier": "core",
+      "search_weight": 12,
+      "strategy": "long_term",
+      "languages": [
+        "English",
+        "German"
+      ],
+      "search_locations": [
+        "Austria",
+        "Vienna",
+        "Graz",
+        "Linz",
+        "Salzburg"
+      ]
+    },
+    {
+      "code": "FI",
+      "country": "Finland",
+      "enabled": true,
+      "tier": "targeted",
+      "search_weight": 10,
+      "strategy": "long_term",
+      "languages": [
+        "English",
+        "Finnish"
+      ],
+      "search_locations": [
+        "Finland",
+        "Helsinki",
+        "Espoo",
+        "Tampere",
+        "Oulu"
+      ]
+    },
+    {
+      "code": "NL",
+      "country": "Netherlands",
+      "enabled": true,
+      "tier": "targeted",
+      "search_weight": 8,
+      "strategy": "long_term",
+      "languages": [
+        "English",
+        "Dutch"
+      ],
+      "search_locations": [
+        "Netherlands",
+        "Amsterdam",
+        "Rotterdam",
+        "Utrecht",
+        "Eindhoven",
+        "The Hague"
+      ]
+    },
+    {
+      "code": "AU",
+      "country": "Australia",
+      "enabled": true,
+      "tier": "targeted",
+      "search_weight": 5,
+      "strategy": "long_term",
+      "languages": [
+        "English"
+      ],
+      "search_locations": [
+        "Australia",
+        "Sydney",
+        "Melbourne",
+        "Brisbane",
+        "Perth",
+        "Adelaide"
+      ]
+    },
+    {
+      "code": "AE",
+      "country": "United Arab Emirates",
+      "enabled": true,
+      "tier": "bridge",
+      "search_weight": 25,
+      "strategy": "fast_exit",
+      "languages": [
+        "English",
+        "Arabic"
+      ],
+      "search_locations": [
+        "United Arab Emirates",
+        "Dubai",
+        "Abu Dhabi",
+        "Sharjah"
+      ]
+    },
+    {
+      "code": "CA",
+      "country": "Canada",
+      "enabled": true,
+      "tier": "low_priority",
+      "search_weight": 3,
+      "strategy": "selective",
+      "languages": [
+        "English",
+        "French"
+      ],
+      "search_locations": [
+        "Canada",
+        "Toronto",
+        "Vancouver",
+        "Ottawa",
+        "Calgary",
+        "Montreal"
+      ]
+    },
+    {
+      "code": "US",
+      "country": "United States",
+      "enabled": false,
+      "tier": "disabled",
+      "search_weight": 0,
+      "strategy": "explicit_sponsorship_only",
+      "languages": [
+        "English"
+      ],
+      "search_locations": [
+        "United States"
+      ]
+    }
+  ]
+}
