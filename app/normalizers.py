@@ -20,3 +20,21 @@ def normalize_remotive_job(job):
         "url": job.get("url", ""),
         "source": "remotive",
     }
+
+
+def normalize_personio_job(job, company, account):
+    job_id = str(job.get("id", ""))
+
+    return {
+        "external_id": f"personio:{job_id}",
+        "title": job.get("name", ""),
+        "company": company,
+        "location": job.get("office", ""),
+        "description": job.get("description", ""),
+        "url": (
+            f"https://{account}.jobs.personio.de/job/{job_id}"
+            if job_id
+            else ""
+        ),
+        "source": "personio",
+    }

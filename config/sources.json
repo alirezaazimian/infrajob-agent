@@ -8,15 +8,22 @@
       "devops"
     ]
   },
+
   "greenhouse": {
     "boards": [
       {
         "board_name": "quantiq",
         "company": "Quantiq"
-      },
+      }
+    ]
+  },
+
+  "personio": {
+    "accounts": [
       {
-        "board_name": "this-company-does-not-exist-12345",
-        "company": "Broken Test Company"
+        "account": "myra",
+        "company": "Myra Security",
+        "language": "en"
       }
     ]
   }

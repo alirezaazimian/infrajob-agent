@@ -5,6 +5,7 @@ from app.collectors.greenhouse import fetch_greenhouse_jobs
 from app.normalizers import (
     normalize_remotive_job,
     normalize_greenhouse_job,
+    normalize_personio_job,
 )
 from app.job_filter import filter_jobs
 from app.job_scorer import calculate_job_score
@@ -12,6 +13,7 @@ from app.job_utils import remove_duplicates
 from app.config_loader import load_sources
 from app.logger import setup_logger
 from app.database import create_jobs_table, save_job
+from app.collectors.personio import fetch_personio_jobs
 
 
 MINIMUM_SCORE = 30
@@ -125,6 +127,70 @@ def collect_greenhouse_jobs(boards):
     return normalized_jobs
 
 
+def collect_personio_jobs(accounts):
+    normalized_jobs = []
+
+    for account_config in accounts:
+        account = account_config["account"]
+        company = account_config["company"]
+        language = account_config.get(
+            "language",
+            "en",
+        )
+
+        print(f"Collecting Personio: {company}")
+
+        logger.info(
+            "Collecting Personio jobs for %s",
+            company,
+        )
+
+        try:
+            jobs = fetch_personio_jobs(
+                account,
+                language=language,
+            )
+
+            logger.info(
+                "Personio %s returned %d jobs",
+                company,
+                len(jobs),
+            )
+
+        except requests.exceptions.HTTPError as error:
+            logger.error(
+                "Personio %s HTTP error: %s",
+                company,
+                error,
+            )
+            continue
+
+        except requests.exceptions.Timeout:
+            logger.error(
+                "Personio %s request timed out",
+                company,
+            )
+            continue
+
+        except requests.exceptions.ConnectionError:
+            logger.error(
+                "Personio %s connection failed",
+                company,
+            )
+            continue
+
+        for job in jobs:
+            normalized_jobs.append(
+                normalize_personio_job(
+                    job,
+                    company,
+                    account,
+                )
+            )
+
+    return normalized_jobs
+
+
 def main():
     print("InfraJob Agent")
     print("=" * 60)
@@ -142,7 +208,15 @@ def main():
         sources["greenhouse"]["boards"]
     )
 
-    all_jobs = remotive_jobs + greenhouse_jobs
+    personio_jobs = collect_personio_jobs(
+    sources["personio"]["accounts"]
+    )
+
+    all_jobs = (
+    remotive_jobs
+    + greenhouse_jobs
+    + personio_jobs
+    )
 
     unique_jobs = remove_duplicates(all_jobs)
 
@@ -184,6 +258,7 @@ def main():
     print("=" * 60)
     print(f"Remotive jobs: {len(remotive_jobs)}")
     print(f"Greenhouse jobs: {len(greenhouse_jobs)}")
+    print(f"Personio jobs: {len(personio_jobs)}")
     print(f"Total jobs: {len(all_jobs)}")
     print(f"Unique jobs: {len(unique_jobs)}")
     print(f"Relevant jobs: {len(relevant_jobs)}")
