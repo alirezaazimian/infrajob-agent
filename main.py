@@ -19,10 +19,12 @@ from app.job_scorer import calculate_job_score
 from app.job_utils import remove_duplicates
 from app.config_loader import load_sources
 from app.logger import setup_logger
+
 from app.database import (
     create_jobs_table,
     save_job,
 )
+
 from app.job_enricher import enrich_job
 
 from app.opportunity_scorer import (
@@ -34,60 +36,15 @@ from app.actionability import (
     get_actionability_priority,
 )
 
+from app.source_registry import (
+    get_all_company_sources,
+    get_enabled_company_sources,
+)
+
 
 MINIMUM_SCORE = 30
 
 logger = setup_logger()
-
-
-# ======================================================
-# Source configuration
-# ======================================================
-
-
-def source_is_enabled(
-    sources,
-    source_name,
-):
-    source_config = sources.get(
-        source_name,
-        {},
-    )
-
-    return source_config.get(
-        "enabled",
-        True,
-    )
-
-
-def log_disabled_source(
-    sources,
-    source_name,
-):
-    source_config = sources.get(
-        source_name,
-        {},
-    )
-
-    reason = source_config.get(
-        "disabled_reason"
-    )
-
-    message = (
-        f"Skipping {source_name}: "
-        f"source disabled"
-    )
-
-    if reason:
-        message += (
-            f" ({reason})"
-        )
-
-    print(message)
-
-    logger.warning(
-        message
-    )
 
 
 # ======================================================
@@ -160,332 +117,450 @@ def collect_remotive_jobs(
 
 
 # ======================================================
-# Greenhouse
+# Greenhouse registry source
 # ======================================================
 
 
-def collect_greenhouse_jobs(
-    boards,
+def collect_greenhouse_source(
+    source,
 ):
-    normalized_jobs = []
+    company = source[
+        "company"
+    ]
 
-    for board in boards:
-        board_name = (
-            board["board_name"]
-        )
+    board_name = source[
+        "identifier"
+    ]
 
-        company = (
-            board["company"]
-        )
+    print(
+        f"Collecting Greenhouse: "
+        f"{company}"
+    )
 
-        print(
-            f"Collecting Greenhouse: "
-            f"{company}"
+    logger.info(
+        "Collecting Greenhouse jobs "
+        "for %s",
+        company,
+    )
+
+    try:
+        jobs = fetch_greenhouse_jobs(
+            board_name
         )
 
         logger.info(
-            "Collecting Greenhouse "
-            "jobs for %s",
+            "Greenhouse %s "
+            "returned %d jobs",
+            company,
+            len(jobs),
+        )
+
+    except requests.exceptions.HTTPError as error:
+        logger.error(
+            "Greenhouse %s "
+            "HTTP error: %s",
+            company,
+            error,
+        )
+
+        return []
+
+    except requests.exceptions.Timeout:
+        logger.error(
+            "Greenhouse %s "
+            "request timed out",
             company,
         )
 
-        try:
-            jobs = (
-                fetch_greenhouse_jobs(
-                    board_name
-                )
-            )
+        return []
 
-            logger.info(
-                "Greenhouse %s "
-                "returned %d jobs",
-                company,
-                len(jobs),
-            )
+    except requests.exceptions.ConnectionError:
+        logger.error(
+            "Greenhouse %s "
+            "connection failed",
+            company,
+        )
 
-        except requests.exceptions.HTTPError as error:
-            logger.error(
-                "Greenhouse %s "
-                "HTTP error: %s",
-                company,
-                error,
-            )
-            continue
+        return []
 
-        except requests.exceptions.Timeout:
-            logger.error(
-                "Greenhouse %s "
-                "request timed out",
-                company,
-            )
-            continue
-
-        except requests.exceptions.ConnectionError:
-            logger.error(
-                "Greenhouse %s "
-                "connection failed",
-                company,
-            )
-            continue
-
-        for job in jobs:
-            normalized_jobs.append(
-                normalize_greenhouse_job(
-                    job,
-                    company,
-                )
-            )
-
-    return normalized_jobs
+    return [
+        normalize_greenhouse_job(
+            job,
+            company,
+        )
+        for job in jobs
+    ]
 
 
 # ======================================================
-# Personio
+# Personio registry source
 # ======================================================
 
 
-def collect_personio_jobs(
-    accounts,
+def collect_personio_source(
+    source,
 ):
-    normalized_jobs = []
+    company = source[
+        "company"
+    ]
 
-    for account_config in accounts:
-        account = (
-            account_config["account"]
-        )
+    account = source[
+        "identifier"
+    ]
 
-        company = (
-            account_config["company"]
-        )
+    options = source.get(
+        "options",
+        {},
+    )
 
-        language = account_config.get(
-            "language",
-            "en",
-        )
+    language = options.get(
+        "language",
+        "en",
+    )
 
-        print(
-            f"Collecting Personio: "
-            f"{company}"
+    print(
+        f"Collecting Personio: "
+        f"{company}"
+    )
+
+    logger.info(
+        "Collecting Personio jobs "
+        "for %s",
+        company,
+    )
+
+    try:
+        jobs = fetch_personio_jobs(
+            account,
+            language=language,
         )
 
         logger.info(
-            "Collecting Personio "
-            "jobs for %s",
+            "Personio %s "
+            "returned %d jobs",
+            company,
+            len(jobs),
+        )
+
+    except requests.exceptions.HTTPError as error:
+        logger.error(
+            "Personio %s "
+            "HTTP error: %s",
+            company,
+            error,
+        )
+
+        return []
+
+    except requests.exceptions.Timeout:
+        logger.error(
+            "Personio %s "
+            "request timed out",
             company,
         )
 
-        try:
-            jobs = fetch_personio_jobs(
-                account,
-                language=language,
-            )
+        return []
 
-            logger.info(
-                "Personio %s "
-                "returned %d jobs",
-                company,
-                len(jobs),
-            )
+    except requests.exceptions.ConnectionError:
+        logger.error(
+            "Personio %s "
+            "connection failed",
+            company,
+        )
 
-        except requests.exceptions.HTTPError as error:
-            logger.error(
-                "Personio %s "
-                "HTTP error: %s",
-                company,
-                error,
-            )
-            continue
+        return []
 
-        except requests.exceptions.Timeout:
-            logger.error(
-                "Personio %s "
-                "request timed out",
-                company,
-            )
-            continue
-
-        except requests.exceptions.ConnectionError:
-            logger.error(
-                "Personio %s "
-                "connection failed",
-                company,
-            )
-            continue
-
-        for job in jobs:
-            normalized_jobs.append(
-                normalize_personio_job(
-                    job,
-                    company,
-                    account,
-                )
-            )
-
-    return normalized_jobs
+    return [
+        normalize_personio_job(
+            job,
+            company,
+            account,
+        )
+        for job in jobs
+    ]
 
 
 # ======================================================
-# Lever
+# Lever registry source
 # ======================================================
 
 
-def collect_lever_jobs(
-    sites,
+def collect_lever_source(
+    source,
 ):
-    normalized_jobs = []
+    company = source[
+        "company"
+    ]
 
-    for site_config in sites:
-        site = (
-            site_config["site"]
-        )
+    site = source[
+        "identifier"
+    ]
 
-        company = (
-            site_config["company"]
-        )
+    options = source.get(
+        "options",
+        {},
+    )
 
-        region = site_config.get(
-            "region",
-            "global",
-        )
+    region = options.get(
+        "region",
+        "global",
+    )
 
-        print(
-            f"Collecting Lever: "
-            f"{company}"
+    print(
+        f"Collecting Lever: "
+        f"{company}"
+    )
+
+    logger.info(
+        "Collecting Lever jobs "
+        "for %s",
+        company,
+    )
+
+    try:
+        jobs = fetch_lever_jobs(
+            site,
+            region=region,
         )
 
         logger.info(
-            "Collecting Lever "
-            "jobs for %s",
+            "Lever %s "
+            "returned %d jobs",
+            company,
+            len(jobs),
+        )
+
+    except requests.exceptions.HTTPError as error:
+        logger.error(
+            "Lever %s "
+            "HTTP error: %s",
+            company,
+            error,
+        )
+
+        return []
+
+    except requests.exceptions.Timeout:
+        logger.error(
+            "Lever %s "
+            "request timed out",
             company,
         )
 
-        try:
-            jobs = fetch_lever_jobs(
-                site,
-                region=region,
-            )
+        return []
 
-            logger.info(
-                "Lever %s "
-                "returned %d jobs",
-                company,
-                len(jobs),
-            )
+    except requests.exceptions.ConnectionError:
+        logger.error(
+            "Lever %s "
+            "connection failed",
+            company,
+        )
 
-        except requests.exceptions.HTTPError as error:
-            logger.error(
-                "Lever %s "
-                "HTTP error: %s",
-                company,
-                error,
-            )
-            continue
+        return []
 
-        except requests.exceptions.Timeout:
-            logger.error(
-                "Lever %s "
-                "request timed out",
-                company,
-            )
-            continue
-
-        except requests.exceptions.ConnectionError:
-            logger.error(
-                "Lever %s "
-                "connection failed",
-                company,
-            )
-            continue
-
-        for job in jobs:
-            normalized_jobs.append(
-                normalize_lever_job(
-                    job,
-                    company,
-                    site,
-                )
-            )
-
-    return normalized_jobs
+    return [
+        normalize_lever_job(
+            job,
+            company,
+            site,
+        )
+        for job in jobs
+    ]
 
 
 # ======================================================
-# Ashby
+# Ashby registry source
 # ======================================================
 
 
-def collect_ashby_jobs(
-    boards,
+def collect_ashby_source(
+    source,
 ):
-    normalized_jobs = []
+    company = source[
+        "company"
+    ]
 
-    for board in boards:
-        board_name = (
-            board["board_name"]
-        )
+    board_name = source[
+        "identifier"
+    ]
 
-        company = (
-            board["company"]
-        )
+    print(
+        f"Collecting Ashby: "
+        f"{company}"
+    )
 
-        print(
-            f"Collecting Ashby: "
-            f"{company}"
+    logger.info(
+        "Collecting Ashby jobs "
+        "for %s",
+        company,
+    )
+
+    try:
+        jobs = fetch_ashby_jobs(
+            board_name
         )
 
         logger.info(
-            "Collecting Ashby "
-            "jobs for %s",
+            "Ashby %s "
+            "returned %d jobs",
+            company,
+            len(jobs),
+        )
+
+    except requests.exceptions.HTTPError as error:
+        logger.error(
+            "Ashby %s "
+            "HTTP error: %s",
+            company,
+            error,
+        )
+
+        return []
+
+    except requests.exceptions.Timeout:
+        logger.error(
+            "Ashby %s "
+            "request timed out",
             company,
         )
 
-        try:
-            jobs = fetch_ashby_jobs(
-                board_name
-            )
+        return []
 
-            logger.info(
-                "Ashby %s "
-                "returned %d jobs",
-                company,
-                len(jobs),
-            )
+    except requests.exceptions.ConnectionError:
+        logger.error(
+            "Ashby %s "
+            "connection failed",
+            company,
+        )
 
-        except requests.exceptions.HTTPError as error:
-            logger.error(
-                "Ashby %s "
-                "HTTP error: %s",
-                company,
-                error,
-            )
+        return []
+
+    return [
+        normalize_ashby_job(
+            job,
+            company,
+            board_name,
+        )
+        for job in jobs
+    ]
+
+
+# ======================================================
+# Registry dispatcher
+# ======================================================
+
+
+def collect_company_source(
+    source,
+):
+    ats = source[
+        "ats"
+    ]
+
+    if ats == "greenhouse":
+        return collect_greenhouse_source(
+            source
+        )
+
+    if ats == "personio":
+        return collect_personio_source(
+            source
+        )
+
+    if ats == "lever":
+        return collect_lever_source(
+            source
+        )
+
+    if ats == "ashby":
+        return collect_ashby_source(
+            source
+        )
+
+    logger.error(
+        "Unsupported ATS '%s' "
+        "for company %s",
+        ats,
+        source.get(
+            "company",
+            "Unknown",
+        ),
+    )
+
+    return []
+
+
+# ======================================================
+# Disabled registry sources
+# ======================================================
+
+
+def log_disabled_registry_sources(
+    sources,
+):
+    for source in sources:
+        if source.get(
+            "enabled",
+            False,
+        ):
             continue
 
-        except requests.exceptions.Timeout:
-            logger.error(
-                "Ashby %s "
-                "request timed out",
-                company,
-            )
-            continue
+        company = source[
+            "company"
+        ]
 
-        except requests.exceptions.ConnectionError:
-            logger.error(
-                "Ashby %s "
-                "connection failed",
-                company,
-            )
-            continue
+        ats = source[
+            "ats"
+        ]
 
-        for job in jobs:
-            normalized_jobs.append(
-                normalize_ashby_job(
-                    job,
-                    company,
-                    board_name,
-                )
+        reason = source.get(
+            "disabled_reason"
+        )
+
+        message = (
+            f"Skipping {company} "
+            f"({ats}): source disabled"
+        )
+
+        if reason:
+            message += (
+                f" ({reason})"
             )
 
-    return normalized_jobs
+        print(
+            message
+        )
+
+        logger.warning(
+            message
+        )
+
+
+# ======================================================
+# Registry statistics
+# ======================================================
+
+
+def create_ats_job_counts():
+    return {
+        "greenhouse": 0,
+        "personio": 0,
+        "lever": 0,
+        "ashby": 0,
+    }
+
+
+def count_sources_by_ats(
+    sources,
+    ats,
+):
+    return sum(
+        1
+        for source in sources
+        if source.get(
+            "ats"
+        ) == ats
+    )
 
 
 # ======================================================
@@ -508,144 +583,110 @@ def main():
 
     create_jobs_table()
 
+    # --------------------------------------------------
+    # General source configuration
+    # --------------------------------------------------
+
     sources = load_sources()
 
     # --------------------------------------------------
-    # Collection
+    # Company / ATS registry
     # --------------------------------------------------
 
-    if source_is_enabled(
-        sources,
+    all_company_sources = (
+        get_all_company_sources()
+    )
+
+    enabled_company_sources = (
+        get_enabled_company_sources()
+    )
+
+    log_disabled_registry_sources(
+        all_company_sources
+    )
+
+    # --------------------------------------------------
+    # Remotive collection
+    # --------------------------------------------------
+
+    remotive_config = sources.get(
         "remotive",
+        {},
+    )
+
+    if remotive_config.get(
+        "enabled",
+        True,
     ):
         remotive_jobs = (
             collect_remotive_jobs(
-                sources[
-                    "remotive"
-                ][
-                    "search_terms"
-                ]
+                remotive_config.get(
+                    "search_terms",
+                    [],
+                )
             )
         )
 
     else:
-        log_disabled_source(
-            sources,
-            "remotive",
+        print(
+            "Skipping Remotive: "
+            "source disabled"
+        )
+
+        logger.warning(
+            "Skipping Remotive: "
+            "source disabled"
         )
 
         remotive_jobs = []
 
     # --------------------------------------------------
-
-    if source_is_enabled(
-        sources,
-        "greenhouse",
-    ):
-        greenhouse_jobs = (
-            collect_greenhouse_jobs(
-                sources[
-                    "greenhouse"
-                ][
-                    "boards"
-                ]
-            )
-        )
-
-    else:
-        log_disabled_source(
-            sources,
-            "greenhouse",
-        )
-
-        greenhouse_jobs = []
-
+    # Registry-driven company collection
     # --------------------------------------------------
 
-    if source_is_enabled(
-        sources,
-        "personio",
+    company_jobs = []
+
+    ats_job_counts = (
+        create_ats_job_counts()
+    )
+
+    for source in (
+        enabled_company_sources
     ):
-        personio_jobs = (
-            collect_personio_jobs(
-                sources[
-                    "personio"
-                ][
-                    "accounts"
-                ]
-            )
+        jobs = collect_company_source(
+            source
         )
 
-    else:
-        log_disabled_source(
-            sources,
-            "personio",
+        company_jobs.extend(
+            jobs
         )
 
-        personio_jobs = []
+        ats = source[
+            "ats"
+        ]
+
+        if ats not in ats_job_counts:
+            ats_job_counts[
+                ats
+            ] = 0
+
+        ats_job_counts[
+            ats
+        ] += len(
+            jobs
+        )
 
     # --------------------------------------------------
-
-    if source_is_enabled(
-        sources,
-        "lever",
-    ):
-        lever_jobs = (
-            collect_lever_jobs(
-                sources[
-                    "lever"
-                ][
-                    "sites"
-                ]
-            )
-        )
-
-    else:
-        log_disabled_source(
-            sources,
-            "lever",
-        )
-
-        lever_jobs = []
-
-    # --------------------------------------------------
-
-    if source_is_enabled(
-        sources,
-        "ashby",
-    ):
-        ashby_jobs = (
-            collect_ashby_jobs(
-                sources[
-                    "ashby"
-                ][
-                    "boards"
-                ]
-            )
-        )
-
-    else:
-        log_disabled_source(
-            sources,
-            "ashby",
-        )
-
-        ashby_jobs = []
-
-    # --------------------------------------------------
-    # Merge
+    # Merge all sources
     # --------------------------------------------------
 
     all_jobs = (
         remotive_jobs
-        + greenhouse_jobs
-        + personio_jobs
-        + lever_jobs
-        + ashby_jobs
+        + company_jobs
     )
 
     # --------------------------------------------------
-    # Enrichment
+    # Intelligence enrichment
     # --------------------------------------------------
 
     enriched_jobs = [
@@ -676,7 +717,9 @@ def main():
     scored_jobs = []
 
     # --------------------------------------------------
-    # Technical + Opportunity + Actionability
+    # Technical Score
+    # Opportunity Score
+    # Actionability
     # --------------------------------------------------
 
     for job in relevant_jobs:
@@ -842,38 +885,55 @@ def main():
     )
 
     print(
+        f"Company sources: "
+        f"{len(enabled_company_sources)} enabled "
+        f"/ {len(all_company_sources)} total"
+    )
+
+    print(
         f"Remotive jobs: "
         f"{len(remotive_jobs)}"
     )
 
-    print(
-        f"Greenhouse jobs: "
-        f"{len(greenhouse_jobs)}"
-    )
-
-    print(
-        f"Personio jobs: "
-        f"{len(personio_jobs)}"
-    )
-
-    print(
-        f"Lever jobs: "
-        f"{len(lever_jobs)}"
-    )
-
-    if source_is_enabled(
-        sources,
+    for ats in [
+        "greenhouse",
+        "personio",
+        "lever",
         "ashby",
-    ):
-        print(
-            f"Ashby jobs: "
-            f"{len(ashby_jobs)}"
+    ]:
+        total_sources = (
+            count_sources_by_ats(
+                all_company_sources,
+                ats,
+            )
         )
 
-    else:
-        print(
-            "Ashby jobs: DISABLED"
+        enabled_sources = (
+            count_sources_by_ats(
+                enabled_company_sources,
+                ats,
+            )
         )
+
+        label = ats.capitalize()
+
+        if (
+            total_sources > 0
+            and enabled_sources == 0
+        ):
+            print(
+                f"{label} jobs: "
+                f"DISABLED"
+            )
+
+        else:
+            print(
+                f"{label} jobs: "
+                f"{ats_job_counts.get(
+                    ats,
+                    0
+                )}"
+            )
 
     print(
         f"Total jobs: "
@@ -1108,6 +1168,10 @@ def main():
                 0
             )}"
         )
+
+    # --------------------------------------------------
+    # Final logging
+    # --------------------------------------------------
 
     logger.info(
         "Pipeline completed: "

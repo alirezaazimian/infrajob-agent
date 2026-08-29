@@ -8,48 +8,5 @@
       "systems engineer",
       "devops"
     ]
-  },
-
-  "greenhouse": {
-    "enabled": true,
-    "boards": [
-      {
-        "board_name": "quantiq",
-        "company": "Quantiq"
-      }
-    ]
-  },
-
-  "personio": {
-    "enabled": true,
-    "accounts": [
-      {
-        "account": "myra",
-        "company": "Myra Security",
-        "language": "en"
-      }
-    ]
-  },
-
-  "lever": {
-    "enabled": true,
-    "sites": [
-      {
-        "site": "xsolla",
-        "company": "Xsolla",
-        "region": "global"
-      }
-    ]
-  },
-
-  "ashby": {
-    "enabled": false,
-    "disabled_reason": "Cloudflare blocks the current network path to ashbyhq.com",
-    "boards": [
-      {
-        "board_name": "focused",
-        "company": "Focused Energy"
-      }
-    ]
   }
 }

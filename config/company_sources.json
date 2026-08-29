@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "last_updated": "2026-08-29",
+
+  "companies": [
+    {
+      "id": "myra-security",
+      "company": "Myra Security",
+
+      "ats": "personio",
+      "identifier": "myra",
+
+      "enabled": true,
+      "priority": "core",
+
+      "markets": [
+        "DE"
+      ],
+
+      "discovered_via": "manual_seed",
+      "last_verified": "2026-08-29",
+
+      "options": {
+        "language": "en"
+      }
+    },
+
+    {
+      "id": "focused-energy",
+      "company": "Focused Energy",
+
+      "ats": "ashby",
+      "identifier": "focused",
+
+      "enabled": false,
+      "priority": "core",
+
+      "markets": [
+        "DE"
+      ],
+
+      "discovered_via": "manual_seed",
+      "last_verified": "2026-08-29",
+
+      "disabled_reason": "Cloudflare blocks the current network path to ashbyhq.com",
+
+      "options": {}
+    },
+
+    {
+      "id": "xsolla",
+      "company": "Xsolla",
+
+      "ats": "lever",
+      "identifier": "xsolla",
+
+      "enabled": true,
+      "priority": "discovery",
+
+      "markets": [
+        "GLOBAL"
+      ],
+
+      "discovered_via": "manual_seed",
+      "last_verified": "2026-08-29",
+
+      "options": {
+        "region": "global"
+      }
+    },
+
+    {
+      "id": "quantiq",
+      "company": "Quantiq",
+
+      "ats": "greenhouse",
+      "identifier": "quantiq",
+
+      "enabled": true,
+      "priority": "baseline",
+
+      "markets": [
+        "US"
+      ],
+
+      "discovered_via": "manual_seed",
+      "last_verified": "2026-08-29",
+
+      "options": {}
+    }
+  ]
+}
