@@ -1,56 +1,207 @@
 {
+  "schema_version": 2,
+  "last_updated": "2026-08-29",
+
+  "evidence_keywords": [
+    "linux",
+    "ubuntu",
+    "rhel",
+    "red hat",
+    "server",
+    "servers",
+    "vmware",
+    "vcenter",
+    "esxi",
+    "virtualization",
+    "zabbix",
+    "monitoring",
+    "networking",
+    "network",
+    "firewall",
+    "vpn",
+    "active directory",
+    "infrastructure",
+    "cloud infrastructure",
+    "aws",
+    "azure",
+    "gcp",
+    "docker",
+    "kubernetes",
+    "bash",
+    "veeam",
+    "data center",
+    "datacenter"
+  ],
+
+  "excluded_title_patterns": [
+    "software engineer",
+    "software developer",
+    "application engineer",
+    "machine learning engineer",
+    "data engineer",
+    "data scientist",
+    "director",
+    "vice president",
+    "head of",
+    "chief",
+    "vp"
+  ],
+
   "roles": [
     {
       "name": "Linux Administrator",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "linux administrator",
+        "linux systems administrator"
+      ],
+      "requires_evidence": false
     },
+
     {
       "name": "System Administrator",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "system administrator",
+        "systems administrator",
+        "sysadmin",
+        "server administrator"
+      ],
+      "requires_evidence": false
     },
-    {
-      "name": "Systems Administrator",
-      "priority": "high"
-    },
+
     {
       "name": "Infrastructure Engineer",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "infrastructure engineer",
+        "it infrastructure engineer"
+      ],
+      "requires_evidence": false
     },
-    {
-      "name": "IT Infrastructure Engineer",
-      "priority": "high"
-    },
+
     {
       "name": "Systems Engineer",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "systems engineer",
+        "system engineer"
+      ],
+      "requires_evidence": true,
+      "minimum_evidence_matches": 2
     },
+
     {
       "name": "IT Operations Engineer",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "it operations engineer"
+      ],
+      "requires_evidence": false
     },
+
     {
       "name": "Data Center Engineer",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "data center engineer",
+        "data center operations engineer",
+        "datacenter engineer",
+        "datacenter operations engineer"
+      ],
+      "requires_evidence": false
     },
-    {
-      "name": "Data Center Operations Engineer",
-      "priority": "high"
-    },
-    {
-      "name": "Cloud Operations Engineer",
-      "priority": "medium"
-    },
-    {
-      "name": "Platform Operations Engineer",
-      "priority": "medium"
-    },
+
     {
       "name": "Virtualization Engineer",
-      "priority": "high"
+      "priority": "high",
+      "aliases": [
+        "virtualization engineer",
+        "vmware engineer"
+      ],
+      "requires_evidence": false
     },
+
+    {
+      "name": "Cloud Operations Engineer",
+      "priority": "medium",
+      "aliases": [
+        "cloud operations engineer"
+      ],
+      "requires_evidence": true,
+      "minimum_evidence_matches": 2
+    },
+
+    {
+      "name": "Platform Operations Engineer",
+      "priority": "medium",
+      "aliases": [
+        "platform operations engineer"
+      ],
+      "requires_evidence": true,
+      "minimum_evidence_matches": 2
+    },
+
+    {
+      "name": "Network & Security Engineer",
+      "priority": "medium",
+      "aliases": [
+        "network and security engineer",
+        "network security engineer"
+      ],
+      "requires_evidence": false
+    },
+
+    {
+      "name": "Infrastructure & Cloud Security Engineer",
+      "priority": "medium",
+      "aliases": [
+        "infrastructure and cloud security engineer",
+        "cloud infrastructure security engineer"
+      ],
+      "requires_evidence": false
+    },
+
+    {
+      "name": "Platform Engineer",
+      "priority": "conditional",
+      "aliases": [
+        "platform engineer"
+      ],
+      "requires_evidence": true,
+      "minimum_evidence_matches": 2
+    },
+
+    {
+      "name": "Site Reliability Engineer",
+      "priority": "conditional",
+      "aliases": [
+        "site reliability engineer",
+        "sre engineer"
+      ],
+      "requires_evidence": true,
+      "minimum_evidence_matches": 2
+    },
+    
+    {
+      "name": "Infrastructure DevOps Engineer",
+      "priority": "medium",
+      "aliases": [
+        "linux devops engineer",
+        "linux system devops engineer",
+        "infrastructure devops engineer"
+      ],
+      "requires_evidence": false
+    },
+    
     {
       "name": "DevOps Engineer",
-      "priority": "conditional"
+      "priority": "conditional",
+      "aliases": [
+        "devops engineer"
+      ],
+      "requires_evidence": true,
+      "minimum_evidence_matches": 2
     }
   ]
 }
