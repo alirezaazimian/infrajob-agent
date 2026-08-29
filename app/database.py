@@ -131,6 +131,18 @@ def create_jobs_table():
                         NOT NULL
                         DEFAULT '{}'::jsonb,
 
+                    actionability VARCHAR(30)
+                        NOT NULL
+                        DEFAULT 'unclassified',
+
+                    market_group VARCHAR(30)
+                        NOT NULL
+                        DEFAULT 'unknown',
+
+                    actionability_reasons JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
+
                     description TEXT,
                     url TEXT,
                     source VARCHAR(50),
@@ -150,7 +162,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Country
+            # Country migrations
             # --------------------------------------------------
 
             cursor.execute(
@@ -178,7 +190,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Work authorization
+            # Work authorization migrations
             # --------------------------------------------------
 
             cursor.execute(
@@ -202,7 +214,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Positive eligibility evidence
+            # Eligibility evidence migrations
             # --------------------------------------------------
 
             cursor.execute(
@@ -246,7 +258,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Language
+            # Language migrations
             # --------------------------------------------------
 
             cursor.execute(
@@ -310,7 +322,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Immigration
+            # Immigration migrations
             # --------------------------------------------------
 
             cursor.execute(
@@ -344,7 +356,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Opportunity scoring
+            # Opportunity scoring migrations
             # --------------------------------------------------
 
             cursor.execute(
@@ -398,7 +410,41 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Application state
+            # Actionability migrations
+            # --------------------------------------------------
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                actionability VARCHAR(30)
+                NOT NULL
+                DEFAULT 'unclassified';
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                market_group VARCHAR(30)
+                NOT NULL
+                DEFAULT 'unknown';
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                actionability_reasons JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
+                """
+            )
+
+            # --------------------------------------------------
+            # Application status
             # --------------------------------------------------
 
             cursor.execute(
@@ -546,6 +592,23 @@ def save_job(job, score):
             )
         ),
 
+        "actionability": job.get(
+            "actionability",
+            "unclassified",
+        ),
+
+        "market_group": job.get(
+            "market_group",
+            "unknown",
+        ),
+
+        "actionability_reasons": Json(
+            job.get(
+                "actionability_reasons",
+                [],
+            )
+        ),
+
         "description": job.get(
             "description",
             "",
@@ -603,6 +666,10 @@ def save_job(job, score):
                     hard_blockers,
                     opportunity_breakdown,
 
+                    actionability,
+                    market_group,
+                    actionability_reasons,
+
                     description,
                     url,
                     source,
@@ -642,6 +709,10 @@ def save_job(job, score):
                     %(hard_blocked)s,
                     %(hard_blockers)s,
                     %(opportunity_breakdown)s,
+
+                    %(actionability)s,
+                    %(market_group)s,
+                    %(actionability_reasons)s,
 
                     %(description)s,
                     %(url)s,
@@ -729,6 +800,15 @@ def save_job(job, score):
 
                     opportunity_breakdown =
                         EXCLUDED.opportunity_breakdown,
+
+                    actionability =
+                        EXCLUDED.actionability,
+
+                    market_group =
+                        EXCLUDED.market_group,
+
+                    actionability_reasons =
+                        EXCLUDED.actionability_reasons,
 
                     description =
                         EXCLUDED.description,

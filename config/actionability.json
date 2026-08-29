@@ -1,0 +1,34 @@
+{
+  "version": 1,
+
+  "thresholds": {
+    "high_priority": 55,
+    "review": 40
+  },
+
+  "not_targeted_groups": [
+    "disabled",
+    "unknown"
+  ],
+
+  "low_priority_groups": [
+    "low_priority"
+  ],
+
+  "blocking_immigration_assessments": [
+    "blocked_by_job_posting"
+  ],
+
+  "low_priority_immigration_assessments": [
+    "market_disabled",
+    "no_current_pathway"
+  ],
+
+  "sort_priority": {
+    "high_priority": 5,
+    "review": 4,
+    "low_priority": 3,
+    "not_targeted": 2,
+    "blocked": 1
+  }
+}
