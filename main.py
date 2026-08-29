@@ -350,44 +350,43 @@ def main():
     )
 
     all_jobs = (
-    remotive_jobs
-    + greenhouse_jobs
-    + personio_jobs
-    + lever_jobs
-    + ashby_jobs
+        remotive_jobs
+        + greenhouse_jobs
+        + personio_jobs
+        + lever_jobs
+        + ashby_jobs
     )
 
     enriched_jobs = [
-    enrich_job(job)
-    for job in all_jobs
+        enrich_job(job)
+        for job in all_jobs
     ]
 
-    unique_jobs = remove_duplicates(enriched_jobs)
+    unique_jobs = remove_duplicates(
+        enriched_jobs
+    )
 
-    relevant_jobs = filter_jobs(unique_jobs)
+    relevant_jobs = filter_jobs(
+        unique_jobs
+    )
 
     scored_jobs = []
 
+    # --------------------------------------------------
+    # Technical scoring
+    # --------------------------------------------------
+
     for job in relevant_jobs:
-        score, matched_skills = calculate_job_score(job)
+        score, matched_skills = (
+            calculate_job_score(job)
+        )
 
-        if score >= MINIMUM_SCORE:
-            scored_jobs.append(
-                {
-                    "job": job,
-                    "score": score,
-                    "matched_skills": matched_skills,
-                }
-            )
+        if score < MINIMUM_SCORE:
+            continue
 
-    scored_jobs.sort(
-        key=lambda item: item["score"],
-        reverse=True,
-    )
-
-    for item in scored_jobs:
-        job = item["job"]
-        score = item["score"]
+        # ----------------------------------------------
+        # Opportunity scoring
+        # ----------------------------------------------
 
         opportunity_result = (
             calculate_opportunity_score(
@@ -426,6 +425,43 @@ def main():
             ]
         )
 
+        scored_jobs.append(
+            {
+                "job": job,
+                "score": score,
+                "matched_skills": matched_skills,
+            }
+        )
+
+    # --------------------------------------------------
+    # Opportunity ranking
+    #
+    # Primary:
+    #   Opportunity Score
+    #
+    # Tie breaker:
+    #   Technical Score
+    # --------------------------------------------------
+
+    scored_jobs.sort(
+        key=lambda item: (
+            item["job"].get(
+                "opportunity_score",
+                0,
+            ),
+            item["score"],
+        ),
+        reverse=True,
+    )
+
+    # --------------------------------------------------
+    # Persistence
+    # --------------------------------------------------
+
+    for item in scored_jobs:
+        job = item["job"]
+        score = item["score"]
+
         save_job(
             job,
             score,
@@ -440,41 +476,162 @@ def main():
             job["opportunity_score"],
         )
 
+    # --------------------------------------------------
+    # Pipeline summary
+    # --------------------------------------------------
+
     print()
     print("=" * 60)
-    print(f"Remotive jobs: {len(remotive_jobs)}")
-    print(f"Greenhouse jobs: {len(greenhouse_jobs)}")
-    print(f"Personio jobs: {len(personio_jobs)}")
-    print(f"Lever jobs: {len(lever_jobs)}")
-    print(f"Ashby jobs: {len(ashby_jobs)}")
-    print(f"Total jobs: {len(all_jobs)}")
-    print(f"Unique jobs: {len(unique_jobs)}")
-    print(f"Relevant jobs: {len(relevant_jobs)}")
-    print(f"Qualified jobs: {len(scored_jobs)}")
+
+    print(
+        f"Remotive jobs: "
+        f"{len(remotive_jobs)}"
+    )
+
+    print(
+        f"Greenhouse jobs: "
+        f"{len(greenhouse_jobs)}"
+    )
+
+    print(
+        f"Personio jobs: "
+        f"{len(personio_jobs)}"
+    )
+
+    print(
+        f"Lever jobs: "
+        f"{len(lever_jobs)}"
+    )
+
+    print(
+        f"Ashby jobs: "
+        f"{len(ashby_jobs)}"
+    )
+
+    print(
+        f"Total jobs: "
+        f"{len(all_jobs)}"
+    )
+
+    print(
+        f"Unique jobs: "
+        f"{len(unique_jobs)}"
+    )
+
+    print(
+        f"Relevant jobs: "
+        f"{len(relevant_jobs)}"
+    )
+
+    print(
+        f"Qualified jobs: "
+        f"{len(scored_jobs)}"
+    )
+
     print("=" * 60)
     print()
 
-    for index, item in enumerate(scored_jobs, start=1):
+    # --------------------------------------------------
+    # Ranked opportunity output
+    # --------------------------------------------------
+
+    for index, item in enumerate(
+        scored_jobs,
+        start=1,
+    ):
         job = item["job"]
         score = item["score"]
-        matched_skills = item["matched_skills"]
+        matched_skills = (
+            item["matched_skills"]
+        )
 
-        print(f"{index}. {job['title']}")
-        print(f"   Company: {job['company']}")
-        print(f"   Location: {job['location']}")
-        print(f"   Source: {job['source']}")
-        print(f"   Score: {score}/100")
+        print(
+            f"{index}. "
+            f"{job['title']}"
+        )
+
+        print(
+            f"   Company: "
+            f"{job['company']}"
+        )
+
+        print(
+            f"   Location: "
+            f"{job['location']}"
+        )
+
+        print(
+            f"   Country: "
+            f"{job.get('country') or 'Unknown'}"
+        )
+
+        print(
+            f"   Source: "
+            f"{job['source']}"
+        )
+
+        print(
+            f"   Technical Score: "
+            f"{score}/100"
+        )
+
+        print(
+            f"   Opportunity Score: "
+            f"{job['opportunity_score']}/100"
+        )
+
+        print(
+            f"   Immigration: "
+            f"{job.get(
+                'immigration_assessment',
+                'not_evaluated'
+            )}"
+        )
+
+        print(
+            f"   Language: "
+            f"{job.get(
+                'language_requirement',
+                'unknown'
+            )}"
+        )
+
+        print(
+            f"   Hard Blocked: "
+            f"{job.get(
+                'hard_blocked',
+                False
+            )}"
+        )
+
+        if job.get(
+            "hard_blockers"
+        ):
+            print(
+                "   Blockers: "
+                + ", ".join(
+                    job[
+                        "hard_blockers"
+                    ]
+                )
+            )
 
         if matched_skills:
             print(
                 "   Matched skills: "
-                + ", ".join(matched_skills)
+                + ", ".join(
+                    matched_skills
+                )
             )
 
         print()
 
     logger.info(
-        "Pipeline completed: %d total, %d unique, %d relevant, %d qualified",
+        "Pipeline completed: "
+        "%d total, "
+        "%d unique, "
+        "%d relevant, "
+        "%d qualified",
         len(all_jobs),
         len(unique_jobs),
         len(relevant_jobs),
