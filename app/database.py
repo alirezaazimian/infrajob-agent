@@ -34,11 +34,6 @@ def create_jobs_table():
 
     try:
         with connection.cursor() as cursor:
-
-            # --------------------------------------------------
-            # Base table
-            # --------------------------------------------------
-
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS jobs (
@@ -104,6 +99,38 @@ def create_jobs_table():
                         NOT NULL
                         DEFAULT '[]'::jsonb,
 
+                    immigration_assessment VARCHAR(50)
+                        NOT NULL
+                        DEFAULT 'not_evaluated',
+
+                    immigration_market_enabled BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    immigration_pathways JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
+
+                    opportunity_score INTEGER
+                        NOT NULL
+                        DEFAULT 0,
+
+                    raw_opportunity_score INTEGER
+                        NOT NULL
+                        DEFAULT 0,
+
+                    hard_blocked BOOLEAN
+                        NOT NULL
+                        DEFAULT FALSE,
+
+                    hard_blockers JSONB
+                        NOT NULL
+                        DEFAULT '[]'::jsonb,
+
+                    opportunity_breakdown JSONB
+                        NOT NULL
+                        DEFAULT '{}'::jsonb,
+
                     description TEXT,
                     url TEXT,
                     source VARCHAR(50),
@@ -123,7 +150,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Country migrations
+            # Country
             # --------------------------------------------------
 
             cursor.execute(
@@ -151,7 +178,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Work authorization migrations
+            # Work authorization
             # --------------------------------------------------
 
             cursor.execute(
@@ -175,7 +202,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Positive eligibility migrations
+            # Positive eligibility evidence
             # --------------------------------------------------
 
             cursor.execute(
@@ -219,7 +246,7 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Language migrations
+            # Language
             # --------------------------------------------------
 
             cursor.execute(
@@ -283,7 +310,95 @@ def create_jobs_table():
             )
 
             # --------------------------------------------------
-            # Application state migration
+            # Immigration
+            # --------------------------------------------------
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                immigration_assessment VARCHAR(50)
+                NOT NULL
+                DEFAULT 'not_evaluated';
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                immigration_market_enabled BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                immigration_pathways JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
+                """
+            )
+
+            # --------------------------------------------------
+            # Opportunity scoring
+            # --------------------------------------------------
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                opportunity_score INTEGER
+                NOT NULL
+                DEFAULT 0;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                raw_opportunity_score INTEGER
+                NOT NULL
+                DEFAULT 0;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                hard_blocked BOOLEAN
+                NOT NULL
+                DEFAULT FALSE;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                hard_blockers JSONB
+                NOT NULL
+                DEFAULT '[]'::jsonb;
+                """
+            )
+
+            cursor.execute(
+                """
+                ALTER TABLE jobs
+                ADD COLUMN IF NOT EXISTS
+                opportunity_breakdown JSONB
+                NOT NULL
+                DEFAULT '{}'::jsonb;
+                """
+            )
+
+            # --------------------------------------------------
+            # Application state
             # --------------------------------------------------
 
             cursor.execute(
@@ -305,9 +420,152 @@ def create_jobs_table():
 def save_job(job, score):
     connection = get_connection()
 
+    params = {
+        "external_id": job["external_id"],
+        "title": job["title"],
+        "company": job.get("company"),
+        "location": job.get("location"),
+
+        "country_code": job.get("country_code"),
+        "country": job.get("country"),
+        "country_confidence": job.get(
+            "country_confidence"
+        ),
+
+        "work_authorization_blocked": job.get(
+            "work_authorization_blocked",
+            False,
+        ),
+
+        "work_authorization_signals": Json(
+            job.get(
+                "work_authorization_signals",
+                [],
+            )
+        ),
+
+        "sponsorship_evidence": job.get(
+            "sponsorship_evidence",
+            False,
+        ),
+
+        "relocation_evidence": job.get(
+            "relocation_evidence",
+            False,
+        ),
+
+        "international_hiring_evidence": job.get(
+            "international_hiring_evidence",
+            False,
+        ),
+
+        "positive_eligibility_signals": Json(
+            job.get(
+                "positive_eligibility_signals",
+                [],
+            )
+        ),
+
+        "language_requirement": job.get(
+            "language_requirement",
+            "unknown",
+        ),
+
+        "german_required": job.get(
+            "german_required",
+            False,
+        ),
+
+        "german_preferred": job.get(
+            "german_preferred",
+            False,
+        ),
+
+        "english_required": job.get(
+            "english_required",
+            False,
+        ),
+
+        "other_required_languages": Json(
+            job.get(
+                "other_required_languages",
+                [],
+            )
+        ),
+
+        "language_signals": Json(
+            job.get(
+                "language_signals",
+                [],
+            )
+        ),
+
+        "immigration_assessment": job.get(
+            "immigration_assessment",
+            "not_evaluated",
+        ),
+
+        "immigration_market_enabled": job.get(
+            "immigration_market_enabled",
+            False,
+        ),
+
+        "immigration_pathways": Json(
+            job.get(
+                "immigration_pathways",
+                [],
+            )
+        ),
+
+        "opportunity_score": job.get(
+            "opportunity_score",
+            0,
+        ),
+
+        "raw_opportunity_score": job.get(
+            "raw_opportunity_score",
+            0,
+        ),
+
+        "hard_blocked": job.get(
+            "hard_blocked",
+            False,
+        ),
+
+        "hard_blockers": Json(
+            job.get(
+                "hard_blockers",
+                [],
+            )
+        ),
+
+        "opportunity_breakdown": Json(
+            job.get(
+                "opportunity_breakdown",
+                {},
+            )
+        ),
+
+        "description": job.get(
+            "description",
+            "",
+        ),
+
+        "url": job.get(
+            "url",
+            "",
+        ),
+
+        "source": job.get(
+            "source",
+            "",
+        ),
+
+        "score": score,
+    }
+
     try:
         with connection.cursor() as cursor:
-
             cursor.execute(
                 """
                 INSERT INTO jobs (
@@ -335,47 +593,65 @@ def save_job(job, score):
                     other_required_languages,
                     language_signals,
 
+                    immigration_assessment,
+                    immigration_market_enabled,
+                    immigration_pathways,
+
+                    opportunity_score,
+                    raw_opportunity_score,
+                    hard_blocked,
+                    hard_blockers,
+                    opportunity_breakdown,
+
                     description,
                     url,
                     source,
                     score
                 )
-
                 VALUES (
-                    %s,
-                    %s,
-                    %s,
-                    %s,
+                    %(external_id)s,
+                    %(title)s,
+                    %(company)s,
+                    %(location)s,
 
-                    %s,
-                    %s,
-                    %s,
+                    %(country_code)s,
+                    %(country)s,
+                    %(country_confidence)s,
 
-                    %s,
-                    %s,
+                    %(work_authorization_blocked)s,
+                    %(work_authorization_signals)s,
 
-                    %s,
-                    %s,
-                    %s,
-                    %s,
+                    %(sponsorship_evidence)s,
+                    %(relocation_evidence)s,
+                    %(international_hiring_evidence)s,
+                    %(positive_eligibility_signals)s,
 
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
-                    %s,
+                    %(language_requirement)s,
+                    %(german_required)s,
+                    %(german_preferred)s,
+                    %(english_required)s,
+                    %(other_required_languages)s,
+                    %(language_signals)s,
 
-                    %s,
-                    %s,
-                    %s,
-                    %s
+                    %(immigration_assessment)s,
+                    %(immigration_market_enabled)s,
+                    %(immigration_pathways)s,
+
+                    %(opportunity_score)s,
+                    %(raw_opportunity_score)s,
+                    %(hard_blocked)s,
+                    %(hard_blockers)s,
+                    %(opportunity_breakdown)s,
+
+                    %(description)s,
+                    %(url)s,
+                    %(source)s,
+                    %(score)s
                 )
 
                 ON CONFLICT (external_id)
 
                 DO UPDATE SET
-
                     title =
                         EXCLUDED.title,
 
@@ -430,6 +706,30 @@ def save_job(job, score):
                     language_signals =
                         EXCLUDED.language_signals,
 
+                    immigration_assessment =
+                        EXCLUDED.immigration_assessment,
+
+                    immigration_market_enabled =
+                        EXCLUDED.immigration_market_enabled,
+
+                    immigration_pathways =
+                        EXCLUDED.immigration_pathways,
+
+                    opportunity_score =
+                        EXCLUDED.opportunity_score,
+
+                    raw_opportunity_score =
+                        EXCLUDED.raw_opportunity_score,
+
+                    hard_blocked =
+                        EXCLUDED.hard_blocked,
+
+                    hard_blockers =
+                        EXCLUDED.hard_blockers,
+
+                    opportunity_breakdown =
+                        EXCLUDED.opportunity_breakdown,
+
                     description =
                         EXCLUDED.description,
 
@@ -445,98 +745,7 @@ def save_job(job, score):
                     last_seen =
                         CURRENT_TIMESTAMP;
                 """,
-
-                (
-                    job["external_id"],
-                    job["title"],
-                    job["company"],
-                    job["location"],
-
-                    job.get(
-                        "country_code"
-                    ),
-
-                    job.get(
-                        "country"
-                    ),
-
-                    job.get(
-                        "country_confidence"
-                    ),
-
-                    job.get(
-                        "work_authorization_blocked",
-                        False,
-                    ),
-
-                    Json(
-                        job.get(
-                            "work_authorization_signals",
-                            [],
-                        )
-                    ),
-
-                    job.get(
-                        "sponsorship_evidence",
-                        False,
-                    ),
-
-                    job.get(
-                        "relocation_evidence",
-                        False,
-                    ),
-
-                    job.get(
-                        "international_hiring_evidence",
-                        False,
-                    ),
-
-                    Json(
-                        job.get(
-                            "positive_eligibility_signals",
-                            [],
-                        )
-                    ),
-
-                    job.get(
-                        "language_requirement",
-                        "unknown",
-                    ),
-
-                    job.get(
-                        "german_required",
-                        False,
-                    ),
-
-                    job.get(
-                        "german_preferred",
-                        False,
-                    ),
-
-                    job.get(
-                        "english_required",
-                        False,
-                    ),
-
-                    Json(
-                        job.get(
-                            "other_required_languages",
-                            [],
-                        )
-                    ),
-
-                    Json(
-                        job.get(
-                            "language_signals",
-                            [],
-                        )
-                    ),
-
-                    job["description"],
-                    job["url"],
-                    job["source"],
-                    score,
-                ),
+                params,
             )
 
         connection.commit()

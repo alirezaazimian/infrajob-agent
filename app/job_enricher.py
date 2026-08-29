@@ -9,6 +9,10 @@ from app.language_detector import (
     detect_language_requirements,
 )
 
+from app.immigration_evaluator import (
+    evaluate_job_immigration,
+)
+
 
 def enrich_job(job):
     enriched_job = job.copy()
@@ -127,6 +131,39 @@ def enrich_job(job):
         "language_signals"
     ] = language_result[
         "language_signals"
+    ]
+
+    # --------------------------------------------------
+    # Immigration evaluation
+    #
+    # IMPORTANT:
+    # We pass enriched_job here, not the original job.
+    # The immigration evaluator needs country,
+    # sponsorship and authorization evidence.
+    # --------------------------------------------------
+
+    immigration_result = (
+        evaluate_job_immigration(
+            enriched_job
+        )
+    )
+
+    enriched_job[
+        "immigration_assessment"
+    ] = immigration_result[
+        "assessment"
+    ]
+
+    enriched_job[
+        "immigration_market_enabled"
+    ] = immigration_result[
+        "market_enabled"
+    ]
+
+    enriched_job[
+        "immigration_pathways"
+    ] = immigration_result[
+        "pathways"
     ]
 
     return enriched_job

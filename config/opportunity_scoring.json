@@ -1,0 +1,72 @@
+{
+  "version": 1,
+
+  "weights": {
+    "technical_fit": 40,
+    "country_fit": 15,
+    "immigration_fit": 20,
+    "sponsorship_fit": 10,
+    "language_fit": 10,
+    "international_hiring_fit": 5
+  },
+
+  "country_groups": {
+    "DE": "core",
+    "DK": "core",
+    "IE": "core",
+    "AT": "core",
+
+    "FI": "targeted",
+    "NL": "targeted",
+    "AU": "targeted",
+
+    "AE": "bridge",
+
+    "CA": "low_priority",
+
+    "US": "disabled"
+  },
+
+  "country_fit": {
+    "core": 15,
+    "targeted": 11,
+    "bridge": 9,
+    "low_priority": 4,
+    "disabled": 0,
+    "unknown": 0
+  },
+
+  "immigration_fit": {
+    "potentially_eligible": 20,
+    "needs_verification": 10,
+    "blocked_by_job_posting": 0,
+    "no_current_pathway": 3,
+    "rules_not_configured": 0,
+    "market_disabled": 0,
+    "country_unknown": 0,
+    "not_evaluated": 0
+  },
+
+  "sponsorship_fit": {
+    "sponsorship_evidence": 10,
+    "relocation_only": 5,
+    "no_evidence": 0
+  },
+
+  "language_fit": {
+    "english_required": 10,
+    "unknown": 7,
+    "german_preferred": 6,
+    "german_required": 0,
+    "other_language_required": 0
+  },
+
+  "international_hiring_fit": {
+    "evidence": 5,
+    "no_evidence": 0
+  },
+
+  "hard_blockers": [
+    "work_authorization_blocked"
+  ]
+}

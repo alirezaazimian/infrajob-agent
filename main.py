@@ -19,6 +19,9 @@ from app.collectors.personio import fetch_personio_jobs
 from app.collectors.lever import fetch_lever_jobs
 from app.collectors.ashby import fetch_ashby_jobs
 from app.job_enricher import enrich_job
+from app.opportunity_scorer import (
+    calculate_opportunity_score,
+)
 
 
 MINIMUM_SCORE = 30
@@ -386,13 +389,55 @@ def main():
         job = item["job"]
         score = item["score"]
 
-        save_job(job, score)
+        opportunity_result = (
+            calculate_opportunity_score(
+                job,
+                score,
+            )
+        )
+
+        job["opportunity_score"] = (
+            opportunity_result[
+                "opportunity_score"
+            ]
+        )
+
+        job["raw_opportunity_score"] = (
+            opportunity_result[
+                "raw_opportunity_score"
+            ]
+        )
+
+        job["hard_blocked"] = (
+            opportunity_result[
+                "hard_blocked"
+            ]
+        )
+
+        job["hard_blockers"] = (
+            opportunity_result[
+                "hard_blockers"
+            ]
+        )
+
+        job["opportunity_breakdown"] = (
+            opportunity_result[
+                "breakdown"
+            ]
+        )
+
+        save_job(
+            job,
+            score,
+        )
 
         logger.info(
-            "Saved job to database: %s | %s | score=%d",
+            "Saved job to database: %s | %s | "
+            "technical=%d | opportunity=%d",
             job["company"],
             job["title"],
             score,
+            job["opportunity_score"],
         )
 
     print()

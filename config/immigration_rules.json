@@ -1,0 +1,400 @@
+{
+  "schema_version": 1,
+  "last_verified": "2026-08-29",
+
+  "countries": [
+    {
+      "code": "DE",
+      "name": "Germany",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "de_eu_blue_card",
+          "name": "EU Blue Card",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": false,
+          "recognized_sponsor_required": false,
+
+          "minimum_contract_months": 6,
+
+          "salary": {
+            "currency": "EUR",
+            "period": "year",
+            "general_threshold": 50700,
+            "shortage_threshold": 45934.20
+          },
+
+          "occupation_rule": "shortage_threshold_requires_official_shortage_occupation_match",
+
+          "qualification_rule": "academic_or_eligible_tertiary_qualification",
+
+          "source_name": "Make it in Germany - EU Blue Card",
+          "source_domain": "make-it-in-germany.com",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        },
+
+        {
+          "id": "de_it_blue_card_experience",
+          "name": "EU Blue Card for IT specialists",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": false,
+          "recognized_sponsor_required": false,
+
+          "minimum_contract_months": 6,
+
+          "salary": {
+            "currency": "EUR",
+            "period": "year",
+            "threshold": 45934.20
+          },
+
+          "experience_rule": {
+            "minimum_relevant_years": 3,
+            "lookback_years": 7
+          },
+
+          "source_name": "Make it in Germany - EU Blue Card",
+          "source_domain": "make-it-in-germany.com",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "DK",
+      "name": "Denmark",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "dk_positive_list",
+          "name": "Positive List for Higher Education",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": false,
+          "recognized_sponsor_required": false,
+
+          "salary_rule": "salary_and_terms_must_correspond_to_danish_standards",
+
+          "known_role_matches": [
+            {
+              "role": "System Administrator",
+              "education": "minimum_three_year_it_bachelor_level",
+              "valid_until": "2027-12-31"
+            }
+          ],
+
+          "source_name": "New to Denmark - Positive List",
+          "source_domain": "nyidanmark.dk",
+
+          "valid_from": "2026-07-01",
+
+          "confidence": "high"
+        },
+
+        {
+          "id": "dk_pay_limit",
+          "name": "Pay Limit Scheme",
+
+          "job_offer_required": true,
+
+          "salary": {
+            "currency": "DKK",
+            "period": "year",
+            "threshold": 552000
+          },
+
+          "source_name": "New to Denmark - Pay Limit Scheme",
+          "source_domain": "nyidanmark.dk",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "IE",
+      "name": "Ireland",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "ie_critical_skills",
+          "name": "Critical Skills Employment Permit",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+
+          "occupation_rule": "occupation_must_qualify_for_critical_skills_route",
+
+          "salary": {
+            "currency": "EUR",
+            "period": "year",
+            "relevant_degree_threshold": 40904,
+            "experience_based_threshold": 68911
+          },
+
+          "source_name": "Department of Enterprise - Critical Skills Employment Permit",
+          "source_domain": "enterprise.gov.ie",
+
+          "valid_from": "2026-03-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        },
+
+        {
+          "id": "ie_general_employment",
+          "name": "General Employment Permit",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+
+          "labour_market_test": true,
+
+          "salary": {
+            "currency": "EUR",
+            "period": "year",
+            "threshold": 36605
+          },
+
+          "source_name": "Department of Enterprise - Minimum Annual Remuneration",
+          "source_domain": "enterprise.gov.ie",
+
+          "valid_from": "2026-03-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "AT",
+      "name": "Austria",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "at_other_key_worker",
+          "name": "Red-White-Red Card - Other Key Worker",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+
+          "labour_market_test": true,
+
+          "minimum_points": 55,
+
+          "salary": {
+            "currency": "EUR",
+            "period": "month",
+            "threshold": 3465
+          },
+
+          "source_name": "Migration Austria - Other Key Workers",
+          "source_domain": "migration.gv.at",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        },
+
+        {
+          "id": "at_shortage_worker",
+          "name": "Red-White-Red Card - Shortage Occupation",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+
+          "minimum_points": 55,
+
+          "occupation_rule": "must_match_current_shortage_occupation_list",
+          "salary_rule": "minimum_collective_agreement_or_legal_salary",
+
+          "source_name": "Migration Austria - Shortage Occupations",
+          "source_domain": "migration.gv.at",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "FI",
+      "name": "Finland",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "fi_specialist",
+          "name": "Residence Permit for Specialist",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": false,
+
+          "salary": {
+            "currency": "EUR",
+            "period": "month",
+            "threshold": 3937
+          },
+
+          "qualification_rule": "higher_education_or_equivalent_special_expertise",
+
+          "source_name": "Finnish Immigration Service - Specialist",
+          "source_domain": "migri.fi",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "NL",
+      "name": "Netherlands",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "nl_highly_skilled_migrant",
+          "name": "Highly Skilled Migrant",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+          "recognized_sponsor_required": true,
+
+          "salary": {
+            "currency": "EUR",
+            "period": "month",
+
+            "age_30_or_over": 5942,
+            "under_30": 4357,
+            "reduced_criterion": 3122
+          },
+
+          "salary_rule": "salary_must_also_be_market_rate",
+
+          "source_name": "IND - Highly Skilled Migrant",
+          "source_domain": "ind.nl",
+
+          "valid_from": "2026-01-01",
+          "valid_until": "2026-12-31",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "AU",
+      "name": "Australia",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "au_sid_core_skills",
+          "name": "Skills in Demand 482 - Core Skills",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+          "approved_sponsor_required": true,
+
+          "minimum_relevant_experience_years": 1,
+
+          "occupation_rule": "must_match_core_skills_occupation_list",
+
+          "salary": {
+            "currency": "AUD",
+            "period": "year",
+            "threshold": 79423
+          },
+
+          "salary_rule": "must_meet_threshold_and_annual_market_salary_rate",
+
+          "english_requirement": true,
+
+          "source_name": "Australian Department of Home Affairs - Skills in Demand",
+          "source_domain": "immi.homeaffairs.gov.au",
+
+          "valid_from": "2026-07-01",
+          "valid_until": "2027-06-30",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "AE",
+      "name": "United Arab Emirates",
+      "enabled": true,
+
+      "pathways": [
+        {
+          "id": "ae_standard_work_permit",
+          "name": "Standard Overseas Work Permit",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+
+          "employer_applies_for_permit": true,
+
+          "minimum_age": 18,
+
+          "salary": null,
+
+          "source_name": "UAE Ministry of Human Resources - Overseas Work Permit",
+          "source_domain": "mohre.gov.ae",
+
+          "confidence": "high"
+        }
+      ]
+    },
+
+    {
+      "code": "CA",
+      "name": "Canada",
+      "enabled": false,
+
+      "pathways": [
+        {
+          "id": "ca_employer_specific",
+          "name": "Employer-Specific Work Permit",
+
+          "job_offer_required": true,
+          "employer_sponsorship_required": true,
+
+          "lmia_rule": "lmia_required_unless_exempt",
+
+          "salary": null,
+
+          "source_name": "Immigration Canada - Employer Specific Work Permit",
+          "source_domain": "canada.ca",
+
+          "confidence": "high"
+        }
+      ]
+    }
+  ]
+}
