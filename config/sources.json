@@ -1,5 +1,6 @@
 {
   "remotive": {
+    "enabled": true,
     "search_terms": [
       "linux",
       "system administrator",
@@ -10,6 +11,7 @@
   },
 
   "greenhouse": {
+    "enabled": true,
     "boards": [
       {
         "board_name": "quantiq",
@@ -19,6 +21,7 @@
   },
 
   "personio": {
+    "enabled": true,
     "accounts": [
       {
         "account": "myra",
@@ -29,6 +32,7 @@
   },
 
   "lever": {
+    "enabled": true,
     "sites": [
       {
         "site": "xsolla",
@@ -39,6 +43,8 @@
   },
 
   "ashby": {
+    "enabled": false,
+    "disabled_reason": "Cloudflare blocks the current network path to ashbyhq.com",
     "boards": [
       {
         "board_name": "focused",

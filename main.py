@@ -40,12 +40,70 @@ MINIMUM_SCORE = 30
 logger = setup_logger()
 
 
-def collect_remotive_jobs(search_terms):
+# ======================================================
+# Source configuration
+# ======================================================
+
+
+def source_is_enabled(
+    sources,
+    source_name,
+):
+    source_config = sources.get(
+        source_name,
+        {},
+    )
+
+    return source_config.get(
+        "enabled",
+        True,
+    )
+
+
+def log_disabled_source(
+    sources,
+    source_name,
+):
+    source_config = sources.get(
+        source_name,
+        {},
+    )
+
+    reason = source_config.get(
+        "disabled_reason"
+    )
+
+    message = (
+        f"Skipping {source_name}: "
+        f"source disabled"
+    )
+
+    if reason:
+        message += (
+            f" ({reason})"
+        )
+
+    print(message)
+
+    logger.warning(
+        message
+    )
+
+
+# ======================================================
+# Remotive
+# ======================================================
+
+
+def collect_remotive_jobs(
+    search_terms,
+):
     normalized_jobs = []
 
     for term in search_terms:
         print(
-            f"Searching Remotive: {term}"
+            f"Searching Remotive: "
+            f"{term}"
         )
 
         logger.info(
@@ -101,7 +159,14 @@ def collect_remotive_jobs(search_terms):
     return normalized_jobs
 
 
-def collect_greenhouse_jobs(boards):
+# ======================================================
+# Greenhouse
+# ======================================================
+
+
+def collect_greenhouse_jobs(
+    boards,
+):
     normalized_jobs = []
 
     for board in boards:
@@ -174,7 +239,14 @@ def collect_greenhouse_jobs(boards):
     return normalized_jobs
 
 
-def collect_personio_jobs(accounts):
+# ======================================================
+# Personio
+# ======================================================
+
+
+def collect_personio_jobs(
+    accounts,
+):
     normalized_jobs = []
 
     for account_config in accounts:
@@ -252,7 +324,14 @@ def collect_personio_jobs(accounts):
     return normalized_jobs
 
 
-def collect_lever_jobs(sites):
+# ======================================================
+# Lever
+# ======================================================
+
+
+def collect_lever_jobs(
+    sites,
+):
     normalized_jobs = []
 
     for site_config in sites:
@@ -330,7 +409,14 @@ def collect_lever_jobs(sites):
     return normalized_jobs
 
 
-def collect_ashby_jobs(boards):
+# ======================================================
+# Ashby
+# ======================================================
+
+
+def collect_ashby_jobs(
+    boards,
+):
     normalized_jobs = []
 
     for board in boards:
@@ -402,6 +488,11 @@ def collect_ashby_jobs(boards):
     return normalized_jobs
 
 
+# ======================================================
+# Main pipeline
+# ======================================================
+
+
 def main():
     print(
         "InfraJob Agent"
@@ -423,55 +514,123 @@ def main():
     # Collection
     # --------------------------------------------------
 
-    remotive_jobs = (
-        collect_remotive_jobs(
-            sources[
-                "remotive"
-            ][
-                "search_terms"
-            ]
+    if source_is_enabled(
+        sources,
+        "remotive",
+    ):
+        remotive_jobs = (
+            collect_remotive_jobs(
+                sources[
+                    "remotive"
+                ][
+                    "search_terms"
+                ]
+            )
         )
-    )
 
-    greenhouse_jobs = (
-        collect_greenhouse_jobs(
-            sources[
-                "greenhouse"
-            ][
-                "boards"
-            ]
+    else:
+        log_disabled_source(
+            sources,
+            "remotive",
         )
-    )
 
-    personio_jobs = (
-        collect_personio_jobs(
-            sources[
-                "personio"
-            ][
-                "accounts"
-            ]
-        )
-    )
+        remotive_jobs = []
 
-    lever_jobs = (
-        collect_lever_jobs(
-            sources[
-                "lever"
-            ][
-                "sites"
-            ]
-        )
-    )
+    # --------------------------------------------------
 
-    ashby_jobs = (
-        collect_ashby_jobs(
-            sources[
-                "ashby"
-            ][
-                "boards"
-            ]
+    if source_is_enabled(
+        sources,
+        "greenhouse",
+    ):
+        greenhouse_jobs = (
+            collect_greenhouse_jobs(
+                sources[
+                    "greenhouse"
+                ][
+                    "boards"
+                ]
+            )
         )
-    )
+
+    else:
+        log_disabled_source(
+            sources,
+            "greenhouse",
+        )
+
+        greenhouse_jobs = []
+
+    # --------------------------------------------------
+
+    if source_is_enabled(
+        sources,
+        "personio",
+    ):
+        personio_jobs = (
+            collect_personio_jobs(
+                sources[
+                    "personio"
+                ][
+                    "accounts"
+                ]
+            )
+        )
+
+    else:
+        log_disabled_source(
+            sources,
+            "personio",
+        )
+
+        personio_jobs = []
+
+    # --------------------------------------------------
+
+    if source_is_enabled(
+        sources,
+        "lever",
+    ):
+        lever_jobs = (
+            collect_lever_jobs(
+                sources[
+                    "lever"
+                ][
+                    "sites"
+                ]
+            )
+        )
+
+    else:
+        log_disabled_source(
+            sources,
+            "lever",
+        )
+
+        lever_jobs = []
+
+    # --------------------------------------------------
+
+    if source_is_enabled(
+        sources,
+        "ashby",
+    ):
+        ashby_jobs = (
+            collect_ashby_jobs(
+                sources[
+                    "ashby"
+                ][
+                    "boards"
+                ]
+            )
+        )
+
+    else:
+        log_disabled_source(
+            sources,
+            "ashby",
+        )
+
+        ashby_jobs = []
 
     # --------------------------------------------------
     # Merge
@@ -487,13 +646,6 @@ def main():
 
     # --------------------------------------------------
     # Enrichment
-    #
-    # Country
-    # Work authorization
-    # Sponsorship
-    # Relocation
-    # Language
-    # Immigration
     # --------------------------------------------------
 
     enriched_jobs = [
@@ -512,7 +664,7 @@ def main():
     )
 
     # --------------------------------------------------
-    # Relevance filtering
+    # Technical relevance filtering
     # --------------------------------------------------
 
     relevant_jobs = (
@@ -524,7 +676,7 @@ def main():
     scored_jobs = []
 
     # --------------------------------------------------
-    # Technical scoring
+    # Technical + Opportunity + Actionability
     # --------------------------------------------------
 
     for job in relevant_jobs:
@@ -580,7 +732,7 @@ def main():
         ]
 
         # ----------------------------------------------
-        # Actionability classification
+        # Actionability
         # ----------------------------------------------
 
         actionability_result = (
@@ -649,8 +801,13 @@ def main():
     # --------------------------------------------------
 
     for item in scored_jobs:
-        job = item["job"]
-        score = item["score"]
+        job = item[
+            "job"
+        ]
+
+        score = item[
+            "score"
+        ]
 
         save_job(
             job,
@@ -704,10 +861,19 @@ def main():
         f"{len(lever_jobs)}"
     )
 
-    print(
-        f"Ashby jobs: "
-        f"{len(ashby_jobs)}"
-    )
+    if source_is_enabled(
+        sources,
+        "ashby",
+    ):
+        print(
+            f"Ashby jobs: "
+            f"{len(ashby_jobs)}"
+        )
+
+    else:
+        print(
+            "Ashby jobs: DISABLED"
+        )
 
     print(
         f"Total jobs: "
@@ -736,14 +902,16 @@ def main():
     print()
 
     # --------------------------------------------------
-    # Ranked output
+    # Ranked jobs
     # --------------------------------------------------
 
     for index, item in enumerate(
         scored_jobs,
         start=1,
     ):
-        job = item["job"]
+        job = item[
+            "job"
+        ]
 
         score = item[
             "score"
@@ -864,9 +1032,11 @@ def main():
                 )
             )
 
-        hard_blockers = job.get(
-            "hard_blockers",
-            [],
+        hard_blockers = (
+            job.get(
+                "hard_blockers",
+                [],
+            )
         )
 
         if hard_blockers:
@@ -931,21 +1101,13 @@ def main():
         "blocked",
         "unclassified",
     ]:
-        count = (
-            actionability_counts.get(
-                category,
-                0,
-            )
-        )
-
         print(
             f"{category.upper()}: "
-            f"{count}"
+            f"{actionability_counts.get(
+                category,
+                0
+            )}"
         )
-
-    # --------------------------------------------------
-    # Final log
-    # --------------------------------------------------
 
     logger.info(
         "Pipeline completed: "
