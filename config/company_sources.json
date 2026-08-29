@@ -26,6 +26,50 @@
     },
 
     {
+      "id": "researchgate",
+      "company": "ResearchGate",
+
+      "ats": "lever",
+      "identifier": "researchgate",
+
+      "enabled": true,
+      "priority": "core",
+
+      "markets": [
+        "DE"
+      ],
+
+      "discovered_via": "verified_web_discovery",
+      "last_verified": "2026-08-29",
+
+      "options": {
+        "region": "global"
+      }
+    },
+
+    {
+      "id": "innocraft",
+      "company": "InnoCraft",
+
+      "ats": "lever",
+      "identifier": "innocraft",
+
+      "enabled": true,
+      "priority": "core",
+
+      "markets": [
+        "DE"
+      ],
+
+      "discovered_via": "verified_web_discovery",
+      "last_verified": "2026-08-29",
+
+      "options": {
+        "region": "global"
+      }
+    },
+
+    {
       "id": "focused-energy",
       "company": "Focused Energy",
 
@@ -45,6 +89,50 @@
       "disabled_reason": "Cloudflare blocks the current network path to ashbyhq.com",
 
       "options": {}
+    },
+
+    {
+      "id": "veo",
+      "company": "Veo",
+
+      "ats": "lever",
+      "identifier": "veo",
+
+      "enabled": true,
+      "priority": "core",
+
+      "markets": [
+        "DK"
+      ],
+
+      "discovered_via": "verified_web_discovery",
+      "last_verified": "2026-08-29",
+
+      "options": {
+        "region": "global"
+      }
+    },
+
+    {
+      "id": "qualysoft",
+      "company": "Qualysoft",
+
+      "ats": "lever",
+      "identifier": "qualysoft",
+
+      "enabled": true,
+      "priority": "core",
+
+      "markets": [
+        "AT"
+      ],
+
+      "discovered_via": "verified_web_discovery",
+      "last_verified": "2026-08-29",
+
+      "options": {
+        "region": "global"
+      }
     },
 
     {
