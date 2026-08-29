@@ -153,6 +153,35 @@
       ]
     },
     {
+      "code": "HU",
+      "name": "Hungary",
+      "country_aliases": [
+        "Hungary",
+        "Magyarország"
+      ],
+      "city_aliases": [
+        "Budapest",
+        "Debrecen",
+        "Szeged"
+      ]
+    },
+    {
+      "code": "RO",
+      "name": "Romania",
+      "country_aliases": [
+        "Romania",
+        "România"
+      ],
+      "city_aliases": [
+        "Bucharest",
+        "București",
+        "Bucuresti",
+        "Cluj-Napoca",
+        "Timisoara",
+        "Timișoara"
+      ]
+    },
+    {
       "code": "AZ",
       "name": "Azerbaijan",
       "country_aliases": [
