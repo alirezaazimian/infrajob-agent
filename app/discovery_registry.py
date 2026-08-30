@@ -477,3 +477,46 @@ def remove_discovered_source(
     )
 
     return True
+
+    cat >> app/discovery_registry.py <<'PY'
+
+
+def get_discovered_source_by_identity(
+    ats,
+    identifier,
+):
+    normalized_ats = (
+        ats
+        or ""
+    ).strip().lower()
+
+    normalized_identifier = (
+        identifier
+        or ""
+    ).strip().lower()
+
+    for source in (
+        get_all_discovered_sources()
+    ):
+        source_ats = (
+            source.get(
+                "ats"
+            )
+            or ""
+        ).strip().lower()
+
+        source_identifier = (
+            source.get(
+                "identifier"
+            )
+            or ""
+        ).strip().lower()
+
+        if (
+            source_ats == normalized_ats
+            and source_identifier
+            == normalized_identifier
+        ):
+            return source
+
+    return None

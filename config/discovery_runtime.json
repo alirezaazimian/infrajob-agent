@@ -1,7 +1,20 @@
 {
   "schema_version": 1,
+
   "max_queries_per_run": 24,
+  "max_candidates_per_run": 20,
+  "max_verifications_per_run": 10,
+
   "cooldown_hours": 72,
   "error_retry_hours": 12,
-  "rate_limit_retry_hours": 24
+  "rate_limit_retry_hours": 24,
+
+  "search_provider": {
+    "name": "ddgs",
+    "backend": "auto",
+    "region": "us-en",
+    "safesearch": "moderate",
+    "max_results_per_query": 10,
+    "timeout_seconds": 15
+  }
 }

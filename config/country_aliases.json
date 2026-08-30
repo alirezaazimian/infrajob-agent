@@ -7,6 +7,7 @@
         "Germany",
         "Deutschland"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Berlin",
         "Munich",
@@ -28,6 +29,7 @@
       "country_aliases": [
         "Denmark"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Copenhagen",
         "Aarhus",
@@ -41,6 +43,7 @@
       "country_aliases": [
         "Ireland"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Dublin",
         "Cork",
@@ -55,6 +58,7 @@
         "Austria",
         "Österreich"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Vienna",
         "Wien",
@@ -69,6 +73,7 @@
       "country_aliases": [
         "Finland"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Helsinki",
         "Espoo",
@@ -84,6 +89,7 @@
         "The Netherlands",
         "Holland"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Amsterdam",
         "Rotterdam",
@@ -97,6 +103,16 @@
       "name": "Australia",
       "country_aliases": [
         "Australia"
+      ],
+      "region_aliases": [
+        "New South Wales",
+        "Victoria",
+        "Queensland",
+        "Western Australia",
+        "South Australia",
+        "Tasmania",
+        "Australian Capital Territory",
+        "Northern Territory"
       ],
       "city_aliases": [
         "Sydney",
@@ -113,6 +129,7 @@
         "United Arab Emirates",
         "UAE"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Dubai",
         "Abu Dhabi",
@@ -125,14 +142,29 @@
       "country_aliases": [
         "Canada"
       ],
+      "region_aliases": [
+        "Ontario",
+        "Quebec",
+        "Québec",
+        "British Columbia",
+        "Alberta",
+        "Manitoba",
+        "Saskatchewan",
+        "Nova Scotia",
+        "New Brunswick",
+        "Newfoundland and Labrador",
+        "Prince Edward Island",
+        "Yukon",
+        "Northwest Territories",
+        "Nunavut"
+      ],
       "city_aliases": [
         "Toronto",
         "Vancouver",
         "Ottawa",
         "Calgary",
         "Montreal",
-        "Montréal",
-        "British Columbia"
+        "Montréal"
       ]
     },
     {
@@ -140,8 +172,71 @@
       "name": "United States",
       "country_aliases": [
         "United States",
+        "United States of America",
         "USA",
-        "United States of America"
+        "US",
+        "U.S."
+      ],
+      "region_aliases": [
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming",
+        "District of Columbia",
+
+        "MD",
+        "CO",
+        "FL",
+        "DC",
+        "HI",
+        "NY",
+        "CA"
       ],
       "city_aliases": [
         "Austin",
@@ -149,7 +244,121 @@
         "New York",
         "San Francisco",
         "Seattle",
-        "Raleigh"
+        "Raleigh",
+        "Boston",
+        "Chicago",
+        "Houston",
+        "Dallas",
+        "Denver",
+        "Miami"
+      ]
+    },
+    {
+      "code": "IN",
+      "name": "India",
+      "country_aliases": [
+        "India"
+      ],
+      "region_aliases": [
+        "Haryana",
+        "Karnataka",
+        "Maharashtra",
+        "Tamil Nadu",
+        "Telangana",
+        "Delhi",
+        "Uttar Pradesh"
+      ],
+      "city_aliases": [
+        "Gurugram",
+        "Gurgaon",
+        "Bangalore",
+        "Bengaluru",
+        "Mumbai",
+        "Pune",
+        "Hyderabad",
+        "Chennai",
+        "New Delhi",
+        "Noida"
+      ]
+    },
+    {
+      "code": "PL",
+      "name": "Poland",
+      "country_aliases": [
+        "Poland",
+        "Polska"
+      ],
+      "region_aliases": [],
+      "city_aliases": [
+        "Warsaw",
+        "Warszawa",
+        "Krakow",
+        "Kraków",
+        "Wroclaw",
+        "Wrocław",
+        "Gdansk",
+        "Gdańsk",
+        "Poznan",
+        "Poznań"
+      ]
+    },
+    {
+      "code": "FR",
+      "name": "France",
+      "country_aliases": [
+        "France"
+      ],
+      "region_aliases": [],
+      "city_aliases": [
+        "Paris",
+        "Lyon",
+        "Toulouse",
+        "Marseille",
+        "Bordeaux",
+        "Lille"
+      ]
+    },
+    {
+      "code": "GB",
+      "name": "United Kingdom",
+      "country_aliases": [
+        "United Kingdom",
+        "UK",
+        "U.K.",
+        "Great Britain",
+        "England",
+        "Scotland",
+        "Wales",
+        "Northern Ireland"
+      ],
+      "region_aliases": [],
+      "city_aliases": [
+        "London",
+        "Manchester",
+        "Birmingham",
+        "Edinburgh",
+        "Glasgow",
+        "Bristol",
+        "Leeds"
+      ]
+    },
+    {
+      "code": "ES",
+      "name": "Spain",
+      "country_aliases": [
+        "Spain",
+        "España",
+        "Espana"
+      ],
+      "region_aliases": [],
+      "city_aliases": [
+        "Madrid",
+        "Barcelona",
+        "Valencia",
+        "Seville",
+        "Sevilla",
+        "Malaga",
+        "Málaga"
       ]
     },
     {
@@ -159,6 +368,7 @@
         "Hungary",
         "Magyarország"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Budapest",
         "Debrecen",
@@ -172,6 +382,7 @@
         "Romania",
         "România"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Bucharest",
         "București",
@@ -187,6 +398,7 @@
       "country_aliases": [
         "Azerbaijan"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Baku"
       ]
@@ -197,6 +409,7 @@
       "country_aliases": [
         "Serbia"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Belgrade"
       ]
@@ -208,6 +421,7 @@
         "Russia",
         "Russian Federation"
       ],
+      "region_aliases": [],
       "city_aliases": [
         "Moscow",
         "Perm"

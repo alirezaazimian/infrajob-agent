@@ -1,5 +1,1264 @@
 {
   "schema_version": 1,
   "last_updated": "2026-08-30",
-  "sources": []
+  "sources": [
+    {
+      "id": "thinkahead:lever:thinkahead",
+      "company": "Thinkahead",
+      "ats": "lever",
+      "identifier": "thinkahead",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/thinkahead",
+      "verified_at": "2026-08-30T03:03:04+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator",
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/thinkahead/cd1807ad-9dac-456e-97cc-595be1289e4d"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "AHEAD - Linux Administrator",
+          "result_snippet": "Proactively maintain and develop all Linux infrastructure technology to maintain a 24x7x365 uptime service · Engineering of systems administration-related solutions for various project and operational needs"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/thinkahead"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:04+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 139,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:25:56+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 139,
+          "target_role_jobs": 3,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "IN": 63,
+            "US": 72,
+            "UNKNOWN": 4
+          },
+          "target_role_country_counts": {
+            "IN": 3
+          },
+          "role_counts": {
+            "Platform Engineer": 2,
+            "Systems Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "AI Platform Engineer",
+              "location": "India",
+              "country_code": "IN",
+              "country": "India",
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/thinkahead/9bb45260-8225-4175-972e-a15c3213bf30"
+            },
+            {
+              "title": "Senior Technical Consultant - AI Platform Engineer",
+              "location": "Gurugram, Haryana",
+              "country_code": "IN",
+              "country": "India",
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/thinkahead/fa8521eb-285a-41d3-acfe-a0e46a3e5d4e"
+            },
+            {
+              "title": "Sr. Systems Engineer",
+              "location": "Gurugram, Haryana",
+              "country_code": "IN",
+              "country": "India",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/thinkahead/3df56b4c-7d17-4369-aa60-5ec007d021d1"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "synergyecp:lever:synergyecp",
+      "company": "Synergyecp",
+      "ats": "lever",
+      "identifier": "synergyecp",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/synergyecp",
+      "verified_at": "2026-08-30T03:03:08+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/synergyecp/b350e01d-bafc-4310-836f-d504c21d94c1"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Synergy ECP - Platform / Linux System Administrator",
+          "result_snippet": "Overview We are seeking Linux System Administrators to manage, maintain, and secure enterprise computing environments."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/synergyecp"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:08+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 46,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:03+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 46,
+          "target_role_jobs": 3,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 35,
+            "UNKNOWN": 11
+          },
+          "target_role_country_counts": {
+            "US": 3
+          },
+          "role_counts": {
+            "Network & Security Engineer": 1,
+            "System Administrator": 1,
+            "DevOps Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Network Security Engineer",
+              "location": "Annapolis Junction, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Network & Security Engineer",
+              "role_priority": "medium",
+              "url": "https://jobs.lever.co/synergyecp/c3ebb9f8-8cf3-4191-939a-1d1bd2041594"
+            },
+            {
+              "title": "Platform / Linux System Administrator",
+              "location": "Annapolis Junction, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/synergyecp/90f408fe-e903-471d-9a3e-04459dbd0791"
+            },
+            {
+              "title": "Senior DevOps Engineer",
+              "location": "Columbia, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/synergyecp/77958747-d081-425b-b790-7bb8d0f5639e"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "researchinnovationscom:lever:researchinnovationscom",
+      "company": "Researchinnovations.Com",
+      "ats": "lever",
+      "identifier": "researchinnovations.com",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/researchinnovations.com",
+      "verified_at": "2026-08-30T03:03:10+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/researchinnovations.com"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Research Innovations - Lever",
+          "result_snippet": "Job openings at Research Innovations On-site — Full-time St. Petersburg, FL / San Antonio, TX / Melbourne, FL"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/researchinnovations.com"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:10+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 16,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:06+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 16,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 6,
+            "UNKNOWN": 9,
+            "CA": 1
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "purvis:lever:purvis",
+      "company": "Purvis",
+      "ats": "lever",
+      "identifier": "purvis",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/purvis",
+      "verified_at": "2026-08-30T03:03:12+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/purvis/c804ec1e-eef3-4c84-9817-060c556637ac"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "PURVIS - Linux Systems Administrator (202608)",
+          "result_snippet": "2 weeks ago - PURVIS Systems has an immediate opening for a Systems Administrator with a strong background in Linux system administration and working knowledge of network engineering."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/purvis"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:12+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 8,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:08+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 8,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "UNKNOWN": 7,
+            "US": 1
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "margo-group:lever:margo-group",
+      "company": "Margo Group",
+      "ats": "lever",
+      "identifier": "margo-group",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/margo-group",
+      "verified_at": "2026-08-30T03:03:20+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/margo-group/da74fd3c-83d9-4570-b8ea-9c017ad9176a"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "MARGO - Senior Cloud DevOps Engineer / Administrator",
+          "result_snippet": "May 27, 2026 - Strong knowledge of Linux systems (especially RHEL). Proficiency in application administration across both Windows and Linux (Docker) environments."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/margo-group"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:20+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 69,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:15+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 69,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "FR": 36,
+            "GB": 16,
+            "PL": 17
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "linkllc:lever:linkllc",
+      "company": "Linkllc",
+      "ats": "lever",
+      "identifier": "linkllc",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/linkllc",
+      "verified_at": "2026-08-30T03:03:23+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator",
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/linkllc/6fb0b5fc-535e-4746-be28-7c3925da2cde"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Link, LLC - Linux Systems Administrator (STO), BS+6 yrs or HS+10 yrs",
+          "result_snippet": "Required Skills/Experience: • Linux system administration and integration experience (RHEL, CentOS, Ubuntu) • Cloud services experience (AWS, Azure); services provisioning, management of virtual services, familiarity with vendor Platform as a Service offerings • System monitoring and maintenance to include service upgrades and security patching and IAVA management • Troubleshooting of services (Tier 1/2 level) • Configuration management support, familiarity with Puppet/SIMP, Ansible, Salt, Chef • RPM development, deployment, and upgrade experience • Familiarity with configuration and workflow tools such as GitLab, Jira"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/linkllc"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:23+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 45,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:19+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 45,
+          "target_role_jobs": 3,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 43,
+            "UNKNOWN": 2
+          },
+          "target_role_country_counts": {
+            "US": 3
+          },
+          "role_counts": {
+            "System Administrator": 1,
+            "Linux Administrator": 2
+          },
+          "target_role_samples": [
+            {
+              "title": "Entry Level Systems Administrator (VISTA), BS or HS+5",
+              "location": "Annapolis Junction, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/linkllc/abf629c1-f670-41ec-bd4a-5c0d5a76a110"
+            },
+            {
+              "title": "Linux Systems Administrator (DTS), BS+10 yrs or HS+14 yrs",
+              "location": "Annapolis Junction, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Linux Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/linkllc/9561053e-b8e3-4fc1-abea-904835f3353c"
+            },
+            {
+              "title": "Linux Systems Administrator (STO), BS+6 yrs or HS+10 yrs",
+              "location": "Annapolis Junction, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Linux Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/linkllc/6fb0b5fc-535e-4746-be28-7c3925da2cde"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "hostinger:lever:hostinger",
+      "company": "Hostinger",
+      "ats": "lever",
+      "identifier": "hostinger",
+      "market": "DE",
+      "status": "rejected",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/hostinger",
+      "verified_at": null,
+      "rejection_reason": "ATS source was not found",
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator",
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/hostinger/2a464da8-3fc0-4e14-9a8d-711218c05059"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Hostinger - Senior Linux System Administrator | Infrastructure Team | Based in Indonesia",
+          "result_snippet": "Deep understanding of Linux systems, including administration, performance tuning, and troubleshooting."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/hostinger"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:24+00:00",
+          "verified": false,
+          "reachable": true,
+          "status": "invalid_identifier",
+          "job_count": 0,
+          "reason": "ATS source was not found"
+        }
+      }
+    },
+    {
+      "id": "clearedge:lever:clearedge",
+      "company": "Clearedge",
+      "ats": "lever",
+      "identifier": "clearedge",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/clearedge",
+      "verified_at": "2026-08-30T03:03:32+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator",
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/clearedge/4a964053-96b5-4876-84b0-392af72151ed"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "ClearEdge - Linux Systems Administrator",
+          "result_snippet": "Your Mission As a Senior Linux Systems Administrator, you will play a vital role in implementing, maintaining, and securing critical IT systems. You will manage day-to-day system operations, provide Tier 2 escalation support, implement security ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/clearedge"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:32+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 39,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:21+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 39,
+          "target_role_jobs": 4,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 39
+          },
+          "target_role_country_counts": {
+            "US": 4
+          },
+          "role_counts": {
+            "DevOps Engineer": 1,
+            "System Administrator": 2,
+            "Systems Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "DevOps Engineer II",
+              "location": "Jessup, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/clearedge/5c02fd77-ac83-4f0d-9f0a-501d45ee0dfb"
+            },
+            {
+              "title": "Mid System Administrator",
+              "location": "Washington, D.C.",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/clearedge/beeed058-29b5-459d-bdbf-5e0960740116"
+            },
+            {
+              "title": "Senior System Administrator",
+              "location": "Linthicum, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/clearedge/82aecfaa-a2f0-4cd0-bea5-3688d0c00684"
+            },
+            {
+              "title": "Senior Systems Engineer",
+              "location": "Annapolis Junction, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/clearedge/9e53c72c-cd89-46f1-abc4-5605f95f52a8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "cesiumastro:lever:cesiumastro",
+      "company": "Cesiumastro",
+      "ats": "lever",
+      "identifier": "CesiumAstro",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/CesiumAstro",
+      "verified_at": "2026-08-30T03:03:42+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/CesiumAstro?location=Westminster,+CO"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "CesiumAstro jobs - jobs.lever.co",
+          "result_snippet": "Job openings at CesiumAstro On-site — Internship/Co-op Westminster, CO"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/CesiumAstro"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:42+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 251,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:28+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 251,
+          "target_role_jobs": 5,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 229,
+            "GB": 11,
+            "DE": 11
+          },
+          "target_role_country_counts": {
+            "US": 5
+          },
+          "role_counts": {
+            "System Administrator": 2,
+            "Linux Administrator": 1,
+            "Systems Engineer": 2
+          },
+          "target_role_samples": [
+            {
+              "title": "Information Technology (IT) Systems Administrator I",
+              "location": "Westminster, CO",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/CesiumAstro/a912e4b7-4c39-4d62-baf7-4db5d8eedafe"
+            },
+            {
+              "title": "IT System Administrator II",
+              "location": "Melbourne, FL",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/CesiumAstro/d4ea916a-7012-4ae2-a3b8-0fa98f3162fc"
+            },
+            {
+              "title": "Linux Administrator II",
+              "location": "Westminster, CO",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Linux Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/CesiumAstro/1b35a106-8a71-4ed9-8e62-78025d700e23"
+            },
+            {
+              "title": "Principal Systems Engineer (Ground Station Architect)",
+              "location": "Melbourne, FL",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/CesiumAstro/e912919f-22ca-40c5-a6c1-3b9b024e8941"
+            },
+            {
+              "title": "Senior Spacecraft Systems Engineer – Software",
+              "location": "Westminster, CO",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/CesiumAstro/59ca334e-691f-4b8a-a346-f98a0842696d"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "agiloft:lever:agiloft",
+      "company": "Agiloft",
+      "ats": "lever",
+      "identifier": "agiloft",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/agiloft",
+      "verified_at": "2026-08-30T03:03:44+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator",
+            "DE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/agiloft/86382fc6-016d-4ebb-a3d9-39ff163f7a33"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Agiloft - Datacenter/Linux Administrator 1",
+          "result_snippet": "This is a great opportunity for someone who enjoys installing and maintaining systems in a data center and would also like to learn Linux Administration skills."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/agiloft"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:03:44+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 7,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:30+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 7,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 4,
+            "CA": 2,
+            "GB": 1
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "palantir-technologies:lever:palantir",
+      "company": "Palantir Technologies",
+      "ats": "lever",
+      "identifier": "palantir",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/palantir",
+      "verified_at": "2026-08-30T03:05:14+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/palantir?location=Abu+Dhabi,+United+Arab+Emirates"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Palantir Technologies jobs",
+          "result_snippet": "Dubai, United Arab Emirates · Fayetteville, NC · Honolulu, HI · London, United Kingdom · New York, NY · Palo Alto, CA · Paris, France · San Diego, CA · Seattle, WA · Seoul, South Korea · Singapore, Singapore · Stockholm, Sweden · Sydney, Australia · Tel Aviv, Israel · Tokyo, Japan · Vilnius, Lithuania · Warsaw, Poland · Washington, D.C. Team · All · Administrative ·"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/palantir"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:05:14+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 307,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:26:43+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 307,
+          "target_role_jobs": 17,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "GB": 38,
+            "US": 230,
+            "UNKNOWN": 23,
+            "DK": 1,
+            "AU": 3,
+            "NL": 2,
+            "AE": 4,
+            "ES": 2,
+            "FR": 3,
+            "PL": 1
+          },
+          "target_role_country_counts": {
+            "US": 13,
+            "PL": 1,
+            "FR": 1,
+            "GB": 2
+          },
+          "role_counts": {
+            "DevOps Engineer": 2,
+            "Infrastructure Engineer": 10,
+            "Site Reliability Engineer": 2,
+            "Platform Engineer": 3
+          },
+          "target_role_samples": [
+            {
+              "title": "DevOps Engineer",
+              "location": "Washington, D.C.",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/palantir/51ea4a3b-7764-4c87-96e4-310e19c856d5"
+            },
+            {
+              "title": "DevOps Engineer",
+              "location": "New York, NY",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/palantir/c3f40e41-6258-4233-a7f9-091bf67df30b"
+            },
+            {
+              "title": "Edge Infrastructure Engineer",
+              "location": "Warsaw, Poland",
+              "country_code": "PL",
+              "country": "Poland",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/3d06b4bc-6a7b-4f73-b5c5-4544354e3d0f"
+            },
+            {
+              "title": "Edge Infrastructure Engineer",
+              "location": "Paris, France",
+              "country_code": "FR",
+              "country": "France",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/ce20af4c-4de3-4079-bbdf-bc30a2e25404"
+            },
+            {
+              "title": "Edge Infrastructure Engineer",
+              "location": "London, United Kingdom",
+              "country_code": "GB",
+              "country": "United Kingdom",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/fe65ee3c-61e0-4eb6-99e5-c90e38e7043f"
+            },
+            {
+              "title": "Forward Deployed Infrastructure Engineer - UK Government",
+              "location": "London, United Kingdom",
+              "country_code": "GB",
+              "country": "United Kingdom",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/72e51928-07f0-4be0-aae5-0ae6956a4846"
+            },
+            {
+              "title": "Forward Deployed Infrastructure Engineer - US Government",
+              "location": "Honolulu, HI",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/0fccbe95-2520-4df3-8600-7897656c06a2"
+            },
+            {
+              "title": "Forward Deployed Infrastructure Engineer - US Government",
+              "location": "Washington, D.C.",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/74748e0e-a0bc-4c53-a636-ef14e36d9b5e"
+            },
+            {
+              "title": "Forward Deployed Infrastructure Engineer - US Government",
+              "location": "New York, NY",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/b57f08e9-546c-4b9b-8d21-db0ebbc11363"
+            },
+            {
+              "title": "Forward Deployed Infrastructure Engineer, New Grad - US Government",
+              "location": "Palo Alto, CA",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/palantir/33243fb5-6907-40c7-930c-968b25d825d0"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "jobgether:lever:jobgether",
+      "company": "Jobgether",
+      "ats": "lever",
+      "identifier": "jobgether",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/jobgether",
+      "verified_at": "2026-08-30T03:06:05+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/jobgether"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Jobgether jobs",
+          "result_snippet": "United Arab Emirates · US · Team · All · Customer Success · Support · General · General · Marketing · Marketing · Operations · Project Management · Research & Development · Design · Product · Sales · Account Executive · Business Development ·"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/jobgether"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:06:05+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 4081,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:28:01+00:00",
+          "status": "review_large_board",
+          "qualified": false,
+          "reason": "Board size exceeds the automatic promotion threshold and requires review.",
+          "requested_market": "AE",
+          "verified_markets": [
+            "AE",
+            "AT",
+            "AU",
+            "CA",
+            "DE",
+            "DK",
+            "FI",
+            "IE",
+            "NL"
+          ],
+          "total_jobs": 4081,
+          "target_role_jobs": 133,
+          "requested_market_role_jobs": 3,
+          "enabled_market_role_jobs": 35,
+          "unknown_country_role_jobs": 50,
+          "country_counts": {
+            "US": 1042,
+            "UNKNOWN": 1122,
+            "CA": 326,
+            "IN": 339,
+            "ES": 166,
+            "DE": 161,
+            "GB": 168,
+            "FR": 162,
+            "RO": 80,
+            "AU": 63,
+            "AE": 45,
+            "IE": 150,
+            "NL": 151,
+            "PL": 33,
+            "AT": 31,
+            "FI": 14,
+            "DK": 14,
+            "HU": 14
+          },
+          "target_role_country_counts": {
+            "IN": 11,
+            "US": 18,
+            "UNKNOWN": 50,
+            "DE": 5,
+            "NL": 6,
+            "FR": 4,
+            "DK": 1,
+            "CA": 10,
+            "RO": 2,
+            "AU": 2,
+            "ES": 4,
+            "PL": 2,
+            "GB": 6,
+            "AE": 3,
+            "AT": 2,
+            "HU": 1,
+            "IE": 5,
+            "FI": 1
+          },
+          "role_counts": {
+            "Systems Engineer": 7,
+            "DevOps Engineer": 6,
+            "System Administrator": 2,
+            "Platform Engineer": 50,
+            "Infrastructure Engineer": 46,
+            "Site Reliability Engineer": 21,
+            "Network & Security Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Agentic Systems Engineer",
+              "location": "India",
+              "country_code": "IN",
+              "country": "India",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/jobgether/8f19cda1-f19e-4c48-a319-4f28e883f1e0"
+            },
+            {
+              "title": "Associate DevOps Engineer",
+              "location": "India",
+              "country_code": "IN",
+              "country": "India",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/jobgether/8d561590-71f0-449f-8efa-fd4949d48836"
+            },
+            {
+              "title": "Cloud and DevOps Engineer",
+              "location": "US",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/jobgether/68a392b4-0b97-4c78-8619-d77c992a7743"
+            },
+            {
+              "title": "Cloud Virtual Infrastructure System Administrator",
+              "location": "US",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/jobgether/10c690eb-78ca-4a09-ba17-4b9be0e5277d"
+            },
+            {
+              "title": "DevOps & Platform Engineer",
+              "location": "South Africa",
+              "country_code": null,
+              "country": null,
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/jobgether/bc7a0162-0c2e-4eb4-8cf3-4dcb169a26cc"
+            },
+            {
+              "title": "DevOps Automation Platform Engineer",
+              "location": "India",
+              "country_code": "IN",
+              "country": "India",
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/jobgether/5947d9a7-8508-44a9-892d-8331723986e1"
+            },
+            {
+              "title": "DevOps Engineer (AWS GovCloud Kubernetes)",
+              "location": "US",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/jobgether/7fb33ed4-f811-4d15-b2ac-4f6da7af4a32"
+            },
+            {
+              "title": "Infrastructure Engineer – Vulnerability, DevOps & Automation",
+              "location": "Germany",
+              "country_code": "DE",
+              "country": "Germany",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/jobgether/036b02d8-5990-498b-9303-d45a66830b7e"
+            },
+            {
+              "title": "Infrastructure Engineer – Vulnerability, DevOps & Automation",
+              "location": "Netherlands",
+              "country_code": "NL",
+              "country": "Netherlands",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/jobgether/06a0b72d-50c8-4851-ac9e-01d7bbe6079b"
+            },
+            {
+              "title": "Infrastructure Engineer – Vulnerability, DevOps & Automation",
+              "location": "Israel",
+              "country_code": null,
+              "country": null,
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/jobgether/08843167-fa59-4cef-8a12-b3f315181ccf"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "airalo:lever:airalo",
+      "company": "Airalo",
+      "ats": "lever",
+      "identifier": "airalo",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:02:50+00:00",
+      "source_url": "https://jobs.lever.co/airalo",
+      "verified_at": "2026-08-30T03:06:09+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/airalo"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Airalo jobs",
+          "result_snippet": "Remote — Full-TimeUnited Kingdom / United Arab Emirates / Spain · Legal · Legal · Apply · Remote — RemoteUnited Kingdom / Spain / Dubai · Networks · Technologies · Apply · Remote — Full-TimeEurope · Apply · Remote — Full-TimeEurope / United Kingdom ·"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/airalo"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:06:09+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 20,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:28:05+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 20,
+          "target_role_jobs": 1,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "ES": 3,
+            "UNKNOWN": 8,
+            "GB": 9
+          },
+          "target_role_country_counts": {
+            "ES": 1
+          },
+          "role_counts": {
+            "Site Reliability Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Senior Site Reliability Engineer",
+              "location": "Spain",
+              "country_code": "ES",
+              "country": "Spain",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/airalo/b1d1f480-6aa9-4600-9325-c50382dd9f0a"
+            }
+          ]
+        }
+      }
+    }
+  ]
 }

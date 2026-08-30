@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+
+  "minimum_market_role_jobs": 1,
+
+  "large_board_threshold": 1000,
+
+  "sample_job_limit": 10,
+
+  "nonproduction_identifier_patterns": [
+    "(^|[-_])demo($|[-_])",
+    "(^|[-_])sandbox($|[-_])"
+  ]
+}
