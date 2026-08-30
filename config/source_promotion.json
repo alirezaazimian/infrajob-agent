@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "auto_promotion_enabled": true,
+  "max_promotions_per_run": 5,
+  "allowed_qualification_statuses": [
+    "qualified"
+  ],
+  "default_enabled": true,
+  "default_priority": "discovery"
+}

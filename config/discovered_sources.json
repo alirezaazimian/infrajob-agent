@@ -1259,6 +1259,1850 @@
           ]
         }
       }
+    },
+    {
+      "id": "job-application-for-linux-system-administrator-at-digital-ocean:greenhouse:digitaloceancitesremotes",
+      "company": "Job Application for Linux System Administrator at Digital Ocean",
+      "ats": "greenhouse",
+      "identifier": "digitaloceancitesremotes",
+      "market": "DE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/digitaloceancitesremotes",
+      "verified_at": "2026-08-30T03:29:36+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://boards.greenhouse.io/digitaloceancitesremotes/jobs/3474477"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Job Application for Linux System Administrator at Digital Ocean Jobs",
+          "result_snippet": "Remote - UK, Netherlands & Germany · We are looking for a seasoned system administrator to help us keep the cloud running smoothly. Reporting to the manager of Cloud Operations, the Cloud Operations/Linux Administrator monitors and provides first-response to all cloud health issues that impact, or could potentially impact, customer experience."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/digitaloceancitesremotes"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:36+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified_empty",
+          "job_count": 0,
+          "reason": "Source is valid but currently has no jobs"
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:31:19+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "DE",
+          "verified_markets": [],
+          "total_jobs": 0,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {},
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "anydesk:greenhouse:anydesk",
+      "company": "Anydesk",
+      "ats": "greenhouse",
+      "identifier": "anydesk",
+      "market": "DE",
+      "status": "promoted",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/anydesk",
+      "verified_at": "2026-08-30T03:29:36+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/anydesk/jobs/4221715101"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 310004,
+          "result_title": "Job Application for Operations Engineer / Linux Administrator (m/f/d) at AnyDesk",
+          "result_snippet": "In this role you will be responsible for the maintenance, configuration and reliable operation of our business infrastructure. With your in-depth knowledge of Linux administration, networking and automation tools, you will ensure the seamless ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/anydesk"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:36+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 12,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:31:20+00:00",
+          "status": "qualified",
+          "qualified": true,
+          "reason": "Source contains target-role jobs in the requested market.",
+          "requested_market": "DE",
+          "verified_markets": [
+            "DE"
+          ],
+          "total_jobs": 12,
+          "target_role_jobs": 3,
+          "requested_market_role_jobs": 1,
+          "enabled_market_role_jobs": 1,
+          "unknown_country_role_jobs": 1,
+          "country_counts": {
+            "US": 5,
+            "UNKNOWN": 5,
+            "DE": 2
+          },
+          "target_role_country_counts": {
+            "US": 1,
+            "UNKNOWN": 1,
+            "DE": 1
+          },
+          "role_counts": {
+            "DevOps Engineer": 1,
+            "Linux Administrator": 2
+          },
+          "target_role_samples": [
+            {
+              "title": "DevOps Engineer",
+              "location": "Tampa, Florida, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.eu.greenhouse.io/anydesk/jobs/4780500101"
+            },
+            {
+              "title": "Operations Engineer / Linux Administrator ",
+              "location": "Hong Kong",
+              "country_code": null,
+              "country": null,
+              "role": "Linux Administrator",
+              "role_priority": "high",
+              "url": "https://job-boards.eu.greenhouse.io/anydesk/jobs/4925917101"
+            },
+            {
+              "title": "Operations Engineer / Linux Administrator (m/f/d)",
+              "location": "Stuttgart, Baden-Württemberg, Germany",
+              "country_code": "DE",
+              "country": "Germany",
+              "role": "Linux Administrator",
+              "role_priority": "high",
+              "url": "https://job-boards.eu.greenhouse.io/anydesk/jobs/4221715101"
+            }
+          ]
+        },
+        "promotion": {
+          "promoted_at": "2026-08-30T03:38:39+00:00",
+          "production_source_id": "anydesk-greenhouse",
+          "markets": [
+            "DE"
+          ]
+        }
+      }
+    },
+    {
+      "id": "opswat:greenhouse:opswat",
+      "company": "Opswat",
+      "ats": "greenhouse",
+      "identifier": "opswat",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/opswat",
+      "verified_at": "2026-08-30T03:29:37+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/opswat/jobs/4499078005",
+            "https://job-boards.greenhouse.io/opswat/jobs/4716452005"
+          ],
+          "evidence_count": 2,
+          "best_query_score": 260004,
+          "result_title": "Search Open Positions - OPSWAT",
+          "result_snippet": "Proficiency in Linux operating systems. providing detection, classification, assessment, and management of thousands of third-party applications across Windows ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/opswat"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:37+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 81,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:31:21+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 81,
+          "target_role_jobs": 2,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "UNKNOWN": 51,
+            "IN": 4,
+            "RO": 6,
+            "US": 9,
+            "DE": 2,
+            "HU": 5,
+            "ES": 1,
+            "AE": 1,
+            "FR": 1,
+            "GB": 1
+          },
+          "target_role_country_counts": {
+            "RO": 1,
+            "HU": 1
+          },
+          "role_counts": {
+            "DevOps Engineer": 1,
+            "Systems Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "DevOps Engineer",
+              "location": "Timișoara, Timiș, Romania",
+              "country_code": "RO",
+              "country": "Romania",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.opswat.com/jobs/4418821005?gh_jid=4418821005"
+            },
+            {
+              "title": "Senior Machine Learning System Engineer",
+              "location": "Budapest, Hungary",
+              "country_code": "HU",
+              "country": "Hungary",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://www.opswat.com/jobs/4719030005?gh_jid=4719030005"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "andurilindustries:greenhouse:andurilindustries",
+      "company": "Andurilindustries",
+      "ats": "greenhouse",
+      "identifier": "andurilindustries",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/andurilindustries",
+      "verified_at": "2026-08-30T03:29:39+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/andurilindustries/jobs/5206672007",
+            "https://job-boards.greenhouse.io/andurilindustries/jobs/5208587007"
+          ],
+          "evidence_count": 2,
+          "best_query_score": 260004,
+          "result_title": "Technical Site Reliability Engineer - Greenhouse",
+          "result_snippet": "Abu Dhabi, United Arab Emirates; Linux systems administration depth; comfort in mixed Linux/Windows environments. Prior work in a defense, aerospace, or ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/andurilindustries"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:39+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 2179,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:00+00:00",
+          "status": "review_large_board",
+          "qualified": false,
+          "reason": "Board size exceeds the automatic promotion threshold and requires review.",
+          "requested_market": "AE",
+          "verified_markets": [
+            "AE",
+            "AU"
+          ],
+          "total_jobs": 2179,
+          "target_role_jobs": 69,
+          "requested_market_role_jobs": 1,
+          "enabled_market_role_jobs": 7,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 2052,
+            "AU": 50,
+            "GB": 24,
+            "NL": 8,
+            "UNKNOWN": 23,
+            "AE": 16,
+            "IE": 5,
+            "DE": 1
+          },
+          "target_role_country_counts": {
+            "US": 61,
+            "GB": 1,
+            "AU": 6,
+            "AE": 1
+          },
+          "role_counts": {
+            "Systems Engineer": 35,
+            "System Administrator": 9,
+            "DevOps Engineer": 2,
+            "Infrastructure Engineer": 6,
+            "Platform Engineer": 5,
+            "Site Reliability Engineer": 12
+          },
+          "target_role_samples": [
+            {
+              "title": "AI Systems Engineer",
+              "location": "Santa Ana, California, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5225164007?gh_jid=5225164007"
+            },
+            {
+              "title": "Applied LLM Systems Engineer",
+              "location": "Costa Mesa, California, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5197253007?gh_jid=5197253007"
+            },
+            {
+              "title": "AV Systems Administrator",
+              "location": "Costa Mesa, California, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5134986007?gh_jid=5134986007"
+            },
+            {
+              "title": "AV Systems Administrator ",
+              "location": "Washington, District of Columbia, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5190224007?gh_jid=5190224007"
+            },
+            {
+              "title": "Classified System Administrator (Active Clearance), Intelligence Systems",
+              "location": "Reston, Virginia, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5160343007?gh_jid=5160343007"
+            },
+            {
+              "title": "DevOps Engineer ",
+              "location": "London, England, United Kingdom",
+              "country_code": "GB",
+              "country": "United Kingdom",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5038708007?gh_jid=5038708007"
+            },
+            {
+              "title": "Engineering Solutions Systems Administrator (TeamCenter)",
+              "location": "Costa Mesa, California, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5172268007?gh_jid=5172268007"
+            },
+            {
+              "title": "Engineering Systems Administrator",
+              "location": "Sydney, New South Wales, Australia",
+              "country_code": "AU",
+              "country": "Australia",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5191917007?gh_jid=5191917007"
+            },
+            {
+              "title": "HPC Systems Engineer, Modeling & Simulation",
+              "location": "Costa Mesa, California, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5154234007?gh_jid=5154234007"
+            },
+            {
+              "title": "Infrastructure Engineer, Kubernetes",
+              "location": "Reston, Virginia, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://boards.greenhouse.io/andurilindustries/jobs/5177879007?gh_jid=5177879007"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "veritiongroupllc:greenhouse:veritiongroupllc",
+      "company": "Veritiongroupllc",
+      "ats": "greenhouse",
+      "identifier": "veritiongroupllc",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/veritiongroupllc",
+      "verified_at": "2026-08-30T03:29:39+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/veritiongroupllc"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Open Positions - Verition Fund Management",
+          "result_snippet": "We use cookies and other tracking technologies to improve your browsing experience on our website, to show you personalized content and to analyze our website ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/veritiongroupllc"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:39+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 32,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:01+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 32,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 23,
+            "GB": 3,
+            "UNKNOWN": 4,
+            "AE": 2
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "sentinelone--open-positions:greenhouse:sentinellabs",
+      "company": "SentinelOne | Open Positions",
+      "ats": "greenhouse",
+      "identifier": "sentinellabs",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/sentinellabs",
+      "verified_at": "2026-08-30T03:29:40+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/sentinellabs/jobs/6284948003"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Jobs at SentinelOne | Open Positions",
+          "result_snippet": "Explore jobs at SentinelOne. Browse open positions across teams. United Arab Emirates Sales Future Opportunity: - Low Level C++ - Linux & Cloud Security Brno,"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/sentinellabs"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:40+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 226,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:03+00:00",
+          "status": "review_unknown_location",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but their locations could not be mapped reliably to a country.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 226,
+          "target_role_jobs": 19,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 13,
+          "country_counts": {
+            "UNKNOWN": 119,
+            "US": 67,
+            "AU": 2,
+            "DE": 2,
+            "IN": 16,
+            "NL": 6,
+            "CA": 1,
+            "AE": 1,
+            "PL": 5,
+            "ES": 3,
+            "GB": 2,
+            "FR": 2
+          },
+          "target_role_country_counts": {
+            "UNKNOWN": 13,
+            "US": 5,
+            "IN": 1
+          },
+          "role_counts": {
+            "Platform Engineer": 7,
+            "DevOps Engineer": 1,
+            "Infrastructure Engineer": 5,
+            "Site Reliability Engineer": 6
+          },
+          "target_role_samples": [
+            {
+              "title": "Principal AI Platform Engineer",
+              "location": "Prague, Czech Republic",
+              "country_code": null,
+              "country": null,
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7824582003"
+            },
+            {
+              "title": "Principal AI Platform Engineer",
+              "location": "Czech Republic",
+              "country_code": null,
+              "country": null,
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7824558003"
+            },
+            {
+              "title": "Principal AI Platform Engineer",
+              "location": "Brno, South Moravian, Czech Republic",
+              "country_code": null,
+              "country": null,
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7824589003"
+            },
+            {
+              "title": "Senior AI Platform Engineer, Infrastructure Services",
+              "location": "United States - Remote",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7823236003"
+            },
+            {
+              "title": "Senior DevOps Engineer",
+              "location": "Bengaluru, Karnataka, India",
+              "country_code": "IN",
+              "country": "India",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7763235003"
+            },
+            {
+              "title": "Senior Infrastructure Engineer - Streaming, Caching, DBaaS",
+              "location": "Slovakia",
+              "country_code": null,
+              "country": null,
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7775898003"
+            },
+            {
+              "title": "Senior Infrastructure Engineer - Streaming, Caching, DBaaS",
+              "location": "Czech Republic",
+              "country_code": null,
+              "country": null,
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7775895003"
+            },
+            {
+              "title": "Senior Infrastructure Engineer - Streaming, Caching, DBaaS",
+              "location": "Brno, South Moravian, Czech Republic",
+              "country_code": null,
+              "country": null,
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7775894003"
+            },
+            {
+              "title": "Senior Infrastructure Engineer - Streaming, Caching, DBaaS",
+              "location": "Prague, Czech Republic",
+              "country_code": null,
+              "country": null,
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7774979003"
+            },
+            {
+              "title": "Senior Site Reliability Engineer ",
+              "location": "Slovakia",
+              "country_code": null,
+              "country": null,
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://www.sentinelone.com/jobs/?gh_jid=7827640003"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ripple:greenhouse:ripple",
+      "company": "Ripple",
+      "ats": "greenhouse",
+      "identifier": "ripple",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/ripple",
+      "verified_at": "2026-08-30T03:29:41+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/ripple"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Open Roles - Ripple",
+          "result_snippet": "Check out our current blockchain and crypto job openings around the world. United Arab Emirates Dublin, Showing: 89 jobs Filter. Development Director - RippleX ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/ripple"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:41+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 128,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:05+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 128,
+          "target_role_jobs": 6,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 94,
+            "GB": 18,
+            "CA": 5,
+            "IE": 2,
+            "AE": 1,
+            "UNKNOWN": 6,
+            "AU": 2
+          },
+          "target_role_country_counts": {
+            "US": 6
+          },
+          "role_counts": {
+            "Site Reliability Engineer": 4,
+            "DevOps Engineer": 2
+          },
+          "target_role_samples": [
+            {
+              "title": "Senior Site Reliability Engineer, Observability",
+              "location": "New York, NY, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://ripple.com/careers/all-jobs/job/8052513?gh_jid=8052513"
+            },
+            {
+              "title": "Senior Site Reliability Engineer, Observability ",
+              "location": "Chicago, Illinois, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://ripple.com/careers/all-jobs/job/8052534?gh_jid=8052534"
+            },
+            {
+              "title": "Senior Staff DevOps Engineer",
+              "location": "New York, NY, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://ripple.com/careers/all-jobs/job/8002028?gh_jid=8002028"
+            },
+            {
+              "title": "Senior Staff DevOps Engineer",
+              "location": "Chicago, Illinois, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://ripple.com/careers/all-jobs/job/8002049?gh_jid=8002049"
+            },
+            {
+              "title": "Site Reliability Engineer, Observability ",
+              "location": "Chicago, Illinois, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://ripple.com/careers/all-jobs/job/7947821?gh_jid=7947821"
+            },
+            {
+              "title": "Site Reliability Engineer, Observability ",
+              "location": "New York, NY, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://ripple.com/careers/all-jobs/job/7947800?gh_jid=7947800"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "oklo:greenhouse:oklo",
+      "company": "Oklo",
+      "ats": "greenhouse",
+      "identifier": "oklo",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/oklo",
+      "verified_at": "2026-08-30T03:29:51+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/oklo/jobs/5649054004"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Systems Engineer, Requirements and Integration - Greenhouse",
+          "result_snippet": "Oklo is transforming the future of energy, and we're looking for a Systems Engineer with 3-5 years of dedicated experience in requirements management within ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/oklo"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:51+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 63,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:07+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 63,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 21,
+            "UNKNOWN": 42
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "axon:greenhouse:axon",
+      "company": "Axon",
+      "ats": "greenhouse",
+      "identifier": "axon",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/axon",
+      "verified_at": "2026-08-30T03:29:52+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/axon/jobs/7631963003"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Senior Sales Engineer, Dedrone, META - Greenhouse",
+          "result_snippet": "United Arab Emirates-Remote. Linux Basic understanding of Physical Security, IP-Camera Placement and technology. Associates degree in Engineering or Computer ..."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/axon"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:52+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 502,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:15+00:00",
+          "status": "review_market_mismatch",
+          "qualified": false,
+          "reason": "Source contains target-role jobs in enabled markets, but not in the market assigned during discovery.",
+          "requested_market": "AE",
+          "verified_markets": [
+            "AU"
+          ],
+          "total_jobs": 502,
+          "target_role_jobs": 11,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 1,
+          "unknown_country_role_jobs": 1,
+          "country_counts": {
+            "US": 403,
+            "UNKNOWN": 43,
+            "AU": 4,
+            "NL": 5,
+            "DE": 10,
+            "CA": 10,
+            "RO": 5,
+            "FR": 2,
+            "GB": 14,
+            "FI": 2,
+            "ES": 1,
+            "AE": 3
+          },
+          "target_role_country_counts": {
+            "UNKNOWN": 1,
+            "US": 8,
+            "AU": 1,
+            "GB": 1
+          },
+          "role_counts": {
+            "Site Reliability Engineer": 11
+          },
+          "target_role_samples": [
+            {
+              "title": "Senior DevOps SRE Engineer",
+              "location": "Israel-Tel-Aviv Yafo Office",
+              "country_code": null,
+              "country": null,
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7802176003"
+            },
+            {
+              "title": "Senior Site Reliability Engineer, Axon 911",
+              "location": "New York, New York, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7791890003"
+            },
+            {
+              "title": "Senior Site Reliability Engineer I",
+              "location": "Boston, Massachusetts, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7798749003"
+            },
+            {
+              "title": "Senior Site Reliability Engineer I",
+              "location": "Seattle, Washington, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7728075003"
+            },
+            {
+              "title": "Senior Site Reliability Engineer I",
+              "location": "Boston, Massachusetts, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7660088003"
+            },
+            {
+              "title": "Senior Site Reliability Engineer I",
+              "location": "Seattle, Washington, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7664159003"
+            },
+            {
+              "title": "Site Reliability Engineer (Australia, Remote)",
+              "location": "Australia",
+              "country_code": "AU",
+              "country": "Australia",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7683359003"
+            },
+            {
+              "title": "Site Reliability Engineer II",
+              "location": "Washington, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7612104003"
+            },
+            {
+              "title": "Sr Site Reliability Engineer I",
+              "location": "London, England, United Kingdom",
+              "country_code": "GB",
+              "country": "United Kingdom",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7596722003"
+            },
+            {
+              "title": "Sr. Site Reliability Engineer I",
+              "location": "Boston, Massachusetts, United States",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://job-boards.greenhouse.io/axon/jobs/7742807003"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "908devicesinc:greenhouse:908devicesinc",
+      "company": "908Devicesinc",
+      "ats": "greenhouse",
+      "identifier": "908devicesinc",
+      "market": "AE",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://boards.greenhouse.io/908devicesinc",
+      "verified_at": "2026-08-30T03:29:53+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AE:greenhouse:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://job-boards.greenhouse.io/908devicesinc"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 260004,
+          "result_title": "Careers - 908 Devices",
+          "result_snippet": "Explore career opportunities at 908 Devices! Join our passionate team working on cutting-edge technologies in mass spec and field detection."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://boards.greenhouse.io/908devicesinc"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:29:53+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 8,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:15+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "AE",
+          "verified_markets": [],
+          "total_jobs": 8,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "UNKNOWN": 5,
+            "US": 3
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "acceldata:lever:acceldata",
+      "company": "Acceldata",
+      "ats": "lever",
+      "identifier": "acceldata",
+      "market": "DK",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/acceldata",
+      "verified_at": "2026-08-30T03:30:38+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "DK:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/acceldata/289d564f-1305-4214-8e78-9be6ce0f6605"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 210004,
+          "result_title": "Acceldata - System Administrator - Contract",
+          "result_snippet": "About the Role We are looking for a skilled System Administrator to manage and maintain our growing IT infrastructure. You’ll play a critical role in ensuring our systems remain secure, scalable, and highly available - while enabling teams to operate smoothly across platforms."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/acceldata"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:30:38+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 48,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:19+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "DK",
+          "verified_markets": [],
+          "total_jobs": 48,
+          "target_role_jobs": 2,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 15,
+            "GB": 5,
+            "UNKNOWN": 8,
+            "IN": 20
+          },
+          "target_role_country_counts": {
+            "IN": 2
+          },
+          "role_counts": {
+            "Platform Engineer": 1,
+            "System Administrator": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Staff Platform Engineer",
+              "location": "Bengaluru",
+              "country_code": "IN",
+              "country": "India",
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/acceldata/63634645-c457-4c73-a1bd-7bc8e1dc18c8"
+            },
+            {
+              "title": "System Administrator - Contract",
+              "location": "Bengaluru",
+              "country_code": "IN",
+              "country": "India",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/acceldata/289d564f-1305-4214-8e78-9be6ce0f6605"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "waabi:lever:waabi",
+      "company": "Waabi",
+      "ats": "lever",
+      "identifier": "waabi",
+      "market": "AT",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/waabi",
+      "verified_at": "2026-08-30T03:30:46+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AT:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/waabi/571033e1-509b-4da2-9f38-76d76b34d234"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 130004,
+          "result_title": "Waabi - IT Systems Administrator",
+          "result_snippet": "- Administer endpoint management platforms for Windows, macOS, and Linux devices"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/waabi"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:30:46+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 82,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:23+00:00",
+          "status": "review_market_mismatch",
+          "qualified": false,
+          "reason": "Source contains target-role jobs in enabled markets, but not in the market assigned during discovery.",
+          "requested_market": "AT",
+          "verified_markets": [
+            "CA"
+          ],
+          "total_jobs": 82,
+          "target_role_jobs": 2,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 1,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "CA": 34,
+            "US": 29,
+            "UNKNOWN": 19
+          },
+          "target_role_country_counts": {
+            "US": 1,
+            "CA": 1
+          },
+          "role_counts": {
+            "Infrastructure Engineer": 2
+          },
+          "target_role_samples": [
+            {
+              "title": "Physical Infrastructure Engineer (On-premise)",
+              "location": "Dallas, TX",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/waabi/933f2e35-ffaf-41db-b836-56de0323f519"
+            },
+            {
+              "title": "Senior / Staff Machine Learning Infrastructure Engineer",
+              "location": "Remote US & Canada",
+              "country_code": "CA",
+              "country": "Canada",
+              "role": "Infrastructure Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/waabi/1b9e7190-acb7-47bb-b6e4-d589d8561082"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "soundstack:lever:soundstack",
+      "company": "Soundstack",
+      "ats": "lever",
+      "identifier": "SoundStack",
+      "market": "AT",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/SoundStack",
+      "verified_at": "2026-08-30T03:30:48+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AT:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/SoundStack/6fd3066c-0295-4140-9d58-bf2c7e4639be"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 130004,
+          "result_title": "SoundStack - Systems Administrator - Pittsburgh, PA",
+          "result_snippet": "The Systems Administrator on SoundStack’s Technical Operations team plays a critical role in supporting the day-to-day operations of SoundStack’s Infrastructure. This role focuses on deploying and maintaining new servers (Windows and Linux), supporting the Incident Management process, and ensuring smooth workflows for new customer deployments."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/SoundStack"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:30:48+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 4,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:24+00:00",
+          "status": "review_unknown_location",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but their locations could not be mapped reliably to a country.",
+          "requested_market": "AT",
+          "verified_markets": [],
+          "total_jobs": 4,
+          "target_role_jobs": 1,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 1,
+          "country_counts": {
+            "US": 3,
+            "UNKNOWN": 1
+          },
+          "target_role_country_counts": {
+            "UNKNOWN": 1
+          },
+          "role_counts": {
+            "System Administrator": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Systems Administrator - Pittsburgh, PA",
+              "location": "Pittsburgh, PA",
+              "country_code": null,
+              "country": null,
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/SoundStack/6fd3066c-0295-4140-9d58-bf2c7e4639be"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "sdatasystemscom:lever:sdatasystemscom",
+      "company": "Sdatasystems.Com",
+      "ats": "lever",
+      "identifier": "sdatasystems.com",
+      "market": "AT",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/sdatasystems.com",
+      "verified_at": "2026-08-30T03:30:50+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AT:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/sdatasystems.com/66669610-2cb0-4abe-b62b-f9f0674e2d10?lever-source=Indeed"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 130004,
+          "result_title": "Strategic Data Systems - Linux System Administrator",
+          "result_snippet": "May 24, 2026 - • 3-5 years of professional experience in system administration of Linux-based servers and Linux-based workstations."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/sdatasystems.com"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:30:50+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 22,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:26+00:00",
+          "status": "review_unknown_location",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but their locations could not be mapped reliably to a country.",
+          "requested_market": "AT",
+          "verified_markets": [],
+          "total_jobs": 22,
+          "target_role_jobs": 2,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 2,
+          "country_counts": {
+            "US": 3,
+            "UNKNOWN": 19
+          },
+          "target_role_country_counts": {
+            "UNKNOWN": 2
+          },
+          "role_counts": {
+            "System Administrator": 1,
+            "Linux Administrator": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Linux System Administrator",
+              "location": "The Pentagon",
+              "country_code": null,
+              "country": null,
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/sdatasystems.com/bb31fb4b-51de-4457-9394-f84a8375a4b3"
+            },
+            {
+              "title": "Senior Linux Systems Administrator",
+              "location": "Dahlgren, VA",
+              "country_code": null,
+              "country": null,
+              "role": "Linux Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/sdatasystems.com/5480bfb1-195b-41d5-908d-ece18ebf4ad9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "nextgenfed:lever:nextgenfed",
+      "company": "Nextgenfed",
+      "ats": "lever",
+      "identifier": "nextgenfed",
+      "market": "AT",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/nextgenfed",
+      "verified_at": "2026-08-30T03:30:54+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AT:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/nextgenfed/8c44bb03-3588-4412-90f3-17813076eae6"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 130004,
+          "result_title": "NextGen Federal Systems - System Administrator - Lever",
+          "result_snippet": "June 4, 2026 - · Engineer and administer VMWare and Linux server environments in classified (IL6) and unclassified (IL5) networks"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/nextgenfed"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:30:54+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 31,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:30+00:00",
+          "status": "reject_wrong_market",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but none were found in enabled target markets.",
+          "requested_market": "AT",
+          "verified_markets": [],
+          "total_jobs": 31,
+          "target_role_jobs": 3,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 28,
+            "UNKNOWN": 3
+          },
+          "target_role_country_counts": {
+            "US": 3
+          },
+          "role_counts": {
+            "Systems Engineer": 2,
+            "System Administrator": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Senior Systems Engineer",
+              "location": "Dayton, Ohio",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/nextgenfed/3bc8903c-a755-4de8-b51e-25a0f005c193"
+            },
+            {
+              "title": "System Administrator",
+              "location": "Fort Meade, Maryland",
+              "country_code": "US",
+              "country": "United States",
+              "role": "System Administrator",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/nextgenfed/8c44bb03-3588-4412-90f3-17813076eae6"
+            },
+            {
+              "title": "Tech Lead Principal Systems Engineer",
+              "location": "Dayton, Ohio",
+              "country_code": "US",
+              "country": "United States",
+              "role": "Systems Engineer",
+              "role_priority": "high",
+              "url": "https://jobs.lever.co/nextgenfed/1af6bc89-1f1b-46f1-9584-9345582b4cb9"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lendbuzz:lever:lendbuzz",
+      "company": "Lendbuzz",
+      "ats": "lever",
+      "identifier": "lendbuzz",
+      "market": "AT",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/lendbuzz",
+      "verified_at": "2026-08-30T03:30:59+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AT:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/lendbuzz/18536e28-0cc5-4d0e-b086-aadd6b11676d"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 130004,
+          "result_title": "Lendbuzz - IT System Administrator",
+          "result_snippet": "May 7, 2026 - You see it as vital to enable them to excel in their work. You will be responsible for setting up new computers (mac and linux), tracking and maintaining software patches using JAMF."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/lendbuzz"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:30:59+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 61,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:33+00:00",
+          "status": "review_unknown_location",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but their locations could not be mapped reliably to a country.",
+          "requested_market": "AT",
+          "verified_markets": [],
+          "total_jobs": 61,
+          "target_role_jobs": 1,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 1,
+          "country_counts": {
+            "US": 34,
+            "UNKNOWN": 27
+          },
+          "target_role_country_counts": {
+            "UNKNOWN": 1
+          },
+          "role_counts": {
+            "Site Reliability Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "Senior DevOps / Site Reliability Engineer (SRE)",
+              "location": "Tel Aviv",
+              "country_code": null,
+              "country": null,
+              "role": "Site Reliability Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/lendbuzz/7c977c98-4c56-4946-a4e9-35498b6f7cad"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "corebts:lever:corebts",
+      "company": "Corebts",
+      "ats": "lever",
+      "identifier": "corebts",
+      "market": "AT",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/corebts",
+      "verified_at": "2026-08-30T03:31:01+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "AT:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/corebts/04c6b3cb-4464-4059-9a01-a0f166ad2ce1"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 130004,
+          "result_title": "NRI North America - Systems Administrator - Corporate IT",
+          "result_snippet": "June 2, 2026 - Management of servers including latest Windows Server versions, Linux, and appliance based virtual machines."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/corebts"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:31:01+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 10,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:36+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "AT",
+          "verified_markets": [],
+          "total_jobs": 10,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 6,
+            "UNKNOWN": 4
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "jmawireless:lever:jmawireless",
+      "company": "Jmawireless",
+      "ats": "lever",
+      "identifier": "jmawireless",
+      "market": "FI",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/jmawireless",
+      "verified_at": "2026-08-30T03:31:04+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "FI:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/jmawireless/7f6d87bc-008c-4587-bc9e-410d92890bf2"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 110004,
+          "result_title": "JMA Wireless - IT Systems Engineer - Linux/Platform Operations",
+          "result_snippet": "March 16, 2026 - This role works closely with a ... cross-coverage across the infrastructure. Manage, maintain, and optimize Linux server environments across physical, virtual, and cloud-based infrastructure...."
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/jmawireless"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:31:04+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 8,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:38+00:00",
+          "status": "reject_no_target_roles",
+          "qualified": false,
+          "reason": "Verified board contains no jobs matching the target role taxonomy.",
+          "requested_market": "FI",
+          "verified_markets": [],
+          "total_jobs": 8,
+          "target_role_jobs": 0,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 0,
+          "country_counts": {
+            "US": 7,
+            "IN": 1
+          },
+          "target_role_country_counts": {},
+          "role_counts": {},
+          "target_role_samples": []
+        }
+      }
+    },
+    {
+      "id": "fantom-corporation:lever:fantom-corporation",
+      "company": "Fantom Corporation",
+      "ats": "lever",
+      "identifier": "fantom-corporation",
+      "market": "FI",
+      "status": "verified",
+      "discovered_via": "web_search",
+      "discovered_at": "2026-08-30T03:29:35+00:00",
+      "source_url": "https://jobs.lever.co/fantom-corporation",
+      "verified_at": "2026-08-30T03:31:06+00:00",
+      "rejection_reason": null,
+      "metadata": {
+        "discovery": {
+          "query_ids": [
+            "FI:lever:linux-administrator"
+          ],
+          "matched_roles": [
+            "Linux Administrator"
+          ],
+          "result_urls": [
+            "https://jobs.lever.co/fantom-corporation/616d0344-63b3-4544-a12a-3d9db4652826"
+          ],
+          "evidence_count": 1,
+          "best_query_score": 110004,
+          "result_title": "Fantom Corporation - Linux System Engineer",
+          "result_snippet": "June 16, 2026 - 4–6 years of experience as a Linux Systems Engineer, Systems Administrator, or similar technical role"
+        },
+        "ats_detection": {
+          "confidence": "high",
+          "detected_url": "https://jobs.lever.co/fantom-corporation"
+        },
+        "last_verification": {
+          "checked_at": "2026-08-30T03:31:06+00:00",
+          "verified": true,
+          "reachable": true,
+          "status": "verified",
+          "job_count": 25,
+          "reason": null
+        },
+        "qualification": {
+          "checked_at": "2026-08-30T03:32:42+00:00",
+          "status": "review_unknown_location",
+          "qualified": false,
+          "reason": "Target-role jobs exist, but their locations could not be mapped reliably to a country.",
+          "requested_market": "FI",
+          "verified_markets": [],
+          "total_jobs": 25,
+          "target_role_jobs": 5,
+          "requested_market_role_jobs": 0,
+          "enabled_market_role_jobs": 0,
+          "unknown_country_role_jobs": 2,
+          "country_counts": {
+            "UNKNOWN": 17,
+            "US": 8
+          },
+          "target_role_country_counts": {
+            "UNKNOWN": 2,
+            "US": 3
+          },
+          "role_counts": {
+            "DevOps Engineer": 4,
+            "Platform Engineer": 1
+          },
+          "target_role_samples": [
+            {
+              "title": "DevOps Engineer",
+              "location": "Chantilly, VA",
+              "country_code": null,
+              "country": null,
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/fantom-corporation/25c067a4-c426-4af2-980a-88846311e324"
+            },
+            {
+              "title": "DevOps Engineer",
+              "location": "Hanover, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/fantom-corporation/d41adbba-80cc-45a8-b6c9-a48d3ecba4ba"
+            },
+            {
+              "title": "Jr DevOps Engineer",
+              "location": "Hanover, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/fantom-corporation/82a9211c-f2f3-4e61-927c-3c0ab1b0e9f2"
+            },
+            {
+              "title": "Platform Engineer",
+              "location": "Chantilly, VA",
+              "country_code": null,
+              "country": null,
+              "role": "Platform Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/fantom-corporation/1201c592-3003-4162-9fc8-73e5c2a355d0"
+            },
+            {
+              "title": "Sr DevOps Engineer",
+              "location": "Hanover, MD",
+              "country_code": "US",
+              "country": "United States",
+              "role": "DevOps Engineer",
+              "role_priority": "conditional",
+              "url": "https://jobs.lever.co/fantom-corporation/2024ad27-eed6-4d22-b2bd-f5f856956c70"
+            }
+          ]
+        }
+      }
     }
   ]
 }

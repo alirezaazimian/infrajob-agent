@@ -1,74 +1,55 @@
 {
   "schema_version": 1,
-  "last_updated": "2026-08-29",
-
+  "last_updated": "2026-08-30",
   "companies": [
     {
       "id": "myra-security",
       "company": "Myra Security",
-
       "ats": "personio",
       "identifier": "myra",
-
       "enabled": true,
       "priority": "core",
-
       "markets": [
         "DE"
       ],
-
       "discovered_via": "manual_seed",
       "last_verified": "2026-08-29",
-
       "options": {
         "language": "en"
       }
     },
-
     {
       "id": "researchgate",
       "company": "ResearchGate",
-
       "ats": "lever",
       "identifier": "researchgate",
-
       "enabled": true,
       "priority": "core",
-
       "markets": [
         "DE"
       ],
-
       "discovered_via": "verified_web_discovery",
       "last_verified": "2026-08-29",
-
       "options": {
         "region": "global"
       }
     },
-
     {
       "id": "innocraft",
       "company": "InnoCraft",
-
       "ats": "lever",
       "identifier": "innocraft",
-
       "enabled": true,
       "priority": "core",
-
       "markets": [
         "DE"
       ],
-
       "discovered_via": "verified_web_discovery",
       "last_verified": "2026-08-29",
-
       "options": {
         "region": "global"
       }
     },
-
     {
       "id": "focused-energy",
       "company": "Focused Energy",
@@ -83,91 +64,91 @@
       "last_verified": "2026-08-30",
       "options": {}
     },
-
     {
       "id": "veo",
       "company": "Veo",
-
       "ats": "lever",
       "identifier": "veo",
-
       "enabled": true,
       "priority": "core",
-
       "markets": [
         "DK"
       ],
-
       "discovered_via": "verified_web_discovery",
       "last_verified": "2026-08-29",
-
       "options": {
         "region": "global"
       }
     },
-
     {
       "id": "qualysoft",
       "company": "Qualysoft",
-
       "ats": "lever",
       "identifier": "qualysoft",
-
       "enabled": true,
       "priority": "core",
-
       "markets": [
         "AT"
       ],
-
       "discovered_via": "verified_web_discovery",
       "last_verified": "2026-08-29",
-
       "options": {
         "region": "global"
       }
     },
-
     {
       "id": "xsolla",
       "company": "Xsolla",
-
       "ats": "lever",
       "identifier": "xsolla",
-
       "enabled": true,
       "priority": "discovery",
-
       "markets": [
         "GLOBAL"
       ],
-
       "discovered_via": "manual_seed",
       "last_verified": "2026-08-29",
-
       "options": {
         "region": "global"
       }
     },
-
     {
       "id": "quantiq",
       "company": "Quantiq",
-
       "ats": "greenhouse",
       "identifier": "quantiq",
-
       "enabled": true,
       "priority": "baseline",
-
       "markets": [
         "US"
       ],
-
       "discovered_via": "manual_seed",
       "last_verified": "2026-08-29",
-
       "options": {}
+    },
+    {
+      "id": "anydesk-greenhouse",
+      "company": "Anydesk",
+      "ats": "greenhouse",
+      "identifier": "anydesk",
+      "enabled": true,
+      "priority": "discovery",
+      "markets": [
+        "DE"
+      ],
+      "discovered_via": "web_search",
+      "last_verified": "2026-08-30",
+      "options": {},
+      "discovery_origin": {
+        "discovery_source_id": "anydesk:greenhouse:anydesk",
+        "requested_market": "DE",
+        "query_ids": [
+          "DE:greenhouse:linux-administrator"
+        ],
+        "matched_roles": [
+          "Linux Administrator"
+        ]
+      }
     }
   ]
 }
