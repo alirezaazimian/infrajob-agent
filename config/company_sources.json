@@ -72,22 +72,15 @@
     {
       "id": "focused-energy",
       "company": "Focused Energy",
-
       "ats": "ashby",
       "identifier": "focused",
-
-      "enabled": false,
+      "enabled": true,
       "priority": "core",
-
       "markets": [
         "DE"
       ],
-
       "discovered_via": "manual_seed",
-      "last_verified": "2026-08-29",
-
-      "disabled_reason": "Cloudflare blocks the current network path to ashbyhq.com",
-
+      "last_verified": "2026-08-30",
       "options": {}
     },
 
