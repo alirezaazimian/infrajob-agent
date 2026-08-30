@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+
+  "search_scope": {
+    "country_level_only": true
+  },
+
+  "tier_query_limits": {
+    "core": 28,
+    "bridge": 20,
+    "targeted": 16,
+    "low_priority": 8,
+    "disabled": 0
+  },
+
+  "ats_targets": [
+    {
+      "ats": "lever",
+      "priority": 4,
+      "search_prefix": "site:jobs.lever.co"
+    },
+    {
+      "ats": "greenhouse",
+      "priority": 4,
+      "search_prefix": "site:greenhouse.io"
+    },
+    {
+      "ats": "personio",
+      "priority": 3,
+      "search_prefix": "(site:personio.de OR site:personio.com)"
+    },
+    {
+      "ats": "ashby",
+      "priority": 4,
+      "search_prefix": "site:jobs.ashbyhq.com"
+    }
+  ],
+
+  "role_queries": [
+    {
+      "role": "Linux Administrator",
+      "phrase": "linux administrator",
+      "priority": 100
+    },
+    {
+      "role": "System Administrator",
+      "phrase": "system administrator",
+      "priority": 95
+    },
+    {
+      "role": "Infrastructure Engineer",
+      "phrase": "infrastructure engineer",
+      "priority": 90
+    },
+    {
+      "role": "IT Operations Engineer",
+      "phrase": "it operations engineer",
+      "priority": 85
+    },
+    {
+      "role": "Infrastructure DevOps Engineer",
+      "phrase": "infrastructure devops engineer",
+      "priority": 80
+    },
+    {
+      "role": "Network & Security Engineer",
+      "phrase": "network security engineer",
+      "priority": 70
+    },
+    {
+      "role": "Platform Engineer",
+      "phrase": "platform engineer",
+      "priority": 65
+    }
+  ]
+}

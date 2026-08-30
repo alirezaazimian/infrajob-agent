@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "max_queries_per_run": 24,
+  "cooldown_hours": 72,
+  "error_retry_hours": 12,
+  "rate_limit_retry_hours": 24
+}
