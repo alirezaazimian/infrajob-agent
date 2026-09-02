@@ -36,6 +36,11 @@ from app.actionability import (
     get_actionability_priority,
 )
 
+from app.vacancy_readiness import (
+    classify_vacancy_readiness,
+    get_readiness_priority,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -720,6 +725,7 @@ def main():
     # Technical Score
     # Opportunity Score
     # Actionability
+    # Vacancy Readiness
     # --------------------------------------------------
 
     for job in relevant_jobs:
@@ -802,6 +808,40 @@ def main():
             "reasons"
         ]
 
+        # ----------------------------------------------
+        # Vacancy readiness
+        # ----------------------------------------------
+
+        readiness_result = (
+            classify_vacancy_readiness(
+                job
+            )
+        )
+
+        job[
+            "vacancy_readiness"
+        ] = readiness_result[
+            "readiness"
+        ]
+
+        job[
+            "readiness_reasons"
+        ] = readiness_result[
+            "reasons"
+        ]
+
+        job[
+            "readiness_blockers"
+        ] = readiness_result[
+            "blockers"
+        ]
+
+        job[
+            "readiness_review_flags"
+        ] = readiness_result[
+            "review_flags"
+        ]
+
         scored_jobs.append(
             {
                 "job": job,
@@ -815,13 +855,21 @@ def main():
     # --------------------------------------------------
     # Final ranking
     #
-    # 1. Actionability
-    # 2. Opportunity Score
-    # 3. Technical Score
+    # 1. Vacancy Readiness
+    # 2. Actionability
+    # 3. Opportunity Score
+    # 4. Technical Score
     # --------------------------------------------------
 
     scored_jobs.sort(
         key=lambda item: (
+            get_readiness_priority(
+                item["job"].get(
+                    "vacancy_readiness",
+                    "unclassified",
+                )
+            ),
+
             get_actionability_priority(
                 item["job"].get(
                     "actionability",
@@ -862,7 +910,8 @@ def main():
             "%s | %s | "
             "technical=%d | "
             "opportunity=%d | "
-            "actionability=%s",
+            "actionability=%s | "
+            "readiness=%s",
             job["company"],
             job["title"],
             score,
@@ -871,6 +920,9 @@ def main():
             ],
             job[
                 "actionability"
+            ],
+            job[
+                "vacancy_readiness"
             ],
         )
 
@@ -1030,6 +1082,14 @@ def main():
         )
 
         print(
+            f"   Vacancy Readiness: "
+            f"{job.get(
+                'vacancy_readiness',
+                'unclassified'
+            ).upper()}"
+        )
+
+        print(
             f"   Market Group: "
             f"{job.get(
                 'market_group',
@@ -1092,6 +1152,51 @@ def main():
                 )
             )
 
+        readiness_reasons = (
+            job.get(
+                "readiness_reasons",
+                [],
+            )
+        )
+
+        if readiness_reasons:
+            print(
+                "   Readiness Reasons: "
+                + ", ".join(
+                    readiness_reasons
+                )
+            )
+
+        readiness_review_flags = (
+            job.get(
+                "readiness_review_flags",
+                [],
+            )
+        )
+
+        if readiness_review_flags:
+            print(
+                "   Readiness Review Flags: "
+                + ", ".join(
+                    readiness_review_flags
+                )
+            )
+
+        readiness_blockers = (
+            job.get(
+                "readiness_blockers",
+                [],
+            )
+        )
+
+        if readiness_blockers:
+            print(
+                "   Readiness Blockers: "
+                + ", ".join(
+                    readiness_blockers
+                )
+            )
+
         hard_blockers = (
             job.get(
                 "hard_blockers",
@@ -1116,6 +1221,56 @@ def main():
             )
 
         print()
+
+    # --------------------------------------------------
+    # Vacancy readiness summary
+    # --------------------------------------------------
+
+    readiness_counts = {}
+
+    for item in scored_jobs:
+        readiness = (
+            item["job"].get(
+                "vacancy_readiness",
+                "unclassified",
+            )
+        )
+
+        readiness_counts[
+            readiness
+        ] = (
+            readiness_counts.get(
+                readiness,
+                0,
+            )
+            + 1
+        )
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "Vacancy Readiness Summary"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for category in [
+        "ready",
+        "review",
+        "not_ready",
+        "unclassified",
+    ]:
+        print(
+            f"{category.upper()}: "
+            f"{readiness_counts.get(
+                category,
+                0
+            )}"
+        )
 
     # --------------------------------------------------
     # Actionability summary
