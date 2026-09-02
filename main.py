@@ -59,6 +59,16 @@ from app.requirement_repository import (
     save_job_requirements,
 )
 
+from app.live_vacancy_validator import (
+    validate_live_vacancy,
+    skipped_live_validation,
+)
+
+from app.live_validation_repository import (
+    ensure_live_validation_columns,
+    save_live_validation,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -607,6 +617,7 @@ def main():
     create_jobs_table()
     ensure_vacancy_readiness_columns()
     ensure_requirement_columns()
+    ensure_live_validation_columns()
 
     # --------------------------------------------------
     # General source configuration
@@ -888,10 +899,50 @@ def main():
                 ]
             )
 
+            completion_status = job[
+                "requirements"
+            ][
+                "completion"
+            ].get(
+                "status",
+                "unclassified",
+            )
+
+            # ------------------------------------------
+            # M21.3.1 Live vacancy validation
+            #
+            # Only continue when requirement extraction
+            # is COMPLETE or REVIEW. INCOMPLETE
+            # extractions are intentionally skipped.
+            # ------------------------------------------
+
+            if completion_status in {
+                "complete",
+                "review",
+            }:
+                job[
+                    "live_validation"
+                ] = validate_live_vacancy(
+                    job
+                )
+
+            else:
+                job[
+                    "live_validation"
+                ] = skipped_live_validation(
+                    "requirement extraction is incomplete"
+                )
+
         else:
             job[
                 "requirements"
             ] = None
+
+            job[
+                "live_validation"
+            ] = skipped_live_validation(
+                "vacancy readiness is not actionable"
+            )
 
         scored_jobs.append(
             {
@@ -961,6 +1012,10 @@ def main():
         )
 
         save_job_requirements(
+            job
+        )
+
+        save_live_validation(
             job
         )
 
@@ -1300,6 +1355,42 @@ def main():
                     )
                 )
 
+        live_validation = job.get(
+            "live_validation",
+            {},
+        )
+
+        if (
+            live_validation
+            and live_validation.get(
+                "status"
+            )
+            != "skipped"
+        ):
+            print(
+                "   Live Validation: "
+                f"{live_validation.get('status', 'unclassified').upper()} "
+                f"(http={live_validation.get('http_status')})"
+            )
+
+            print(
+                "   Live Validation Reason: "
+                f"{live_validation.get('reason', '')}"
+            )
+
+            live_flags = live_validation.get(
+                "review_flags",
+                [],
+            )
+
+            if live_flags:
+                print(
+                    "   Live Validation Flags: "
+                    + ", ".join(
+                        live_flags
+                    )
+                )
+
         hard_blockers = (
             job.get(
                 "hard_blockers",
@@ -1382,6 +1473,60 @@ def main():
         print(
             f"{category.upper()}: "
             f"{completion_counts.get(category, 0)}"
+        )
+
+    # --------------------------------------------------
+    # M21.3.1 Live vacancy validation summary
+    # --------------------------------------------------
+
+    live_counts = {}
+
+    for item in scored_jobs:
+        live_validation = (
+            item["job"].get(
+                "live_validation",
+                {},
+            )
+            or {}
+        )
+
+        status = live_validation.get(
+            "status",
+            "unclassified",
+        )
+
+        live_counts[
+            status
+        ] = (
+            live_counts.get(
+                status,
+                0,
+            )
+            + 1
+        )
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "Live Vacancy Validation Summary"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for category in [
+        "live",
+        "closed",
+        "review",
+        "skipped",
+        "unclassified",
+    ]:
+        print(
+            f"{category.upper()}: "
+            f"{live_counts.get(category, 0)}"
         )
 
     # --------------------------------------------------
