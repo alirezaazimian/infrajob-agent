@@ -50,6 +50,11 @@ from app.requirement_extractor import (
     extract_requirements,
 )
 
+from app.requirement_repository import (
+    ensure_requirement_columns,
+    save_job_requirements,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -597,6 +602,7 @@ def main():
 
     create_jobs_table()
     ensure_vacancy_readiness_columns()
+    ensure_requirement_columns()
 
     # --------------------------------------------------
     # General source configuration
@@ -937,6 +943,10 @@ def main():
         )
 
         save_vacancy_readiness(
+            job
+        )
+
+        save_job_requirements(
             job
         )
 
