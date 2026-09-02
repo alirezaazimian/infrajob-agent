@@ -74,6 +74,11 @@ from app.final_vacancy_decision import (
     get_final_decision_priority,
 )
 
+from app.final_decision_repository import (
+    ensure_final_decision_columns,
+    save_final_vacancy_decision,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -623,6 +628,7 @@ def main():
     ensure_vacancy_readiness_columns()
     ensure_requirement_columns()
     ensure_live_validation_columns()
+    ensure_final_decision_columns()
 
     # --------------------------------------------------
     # General source configuration
@@ -1065,6 +1071,10 @@ def main():
         )
 
         save_live_validation(
+            job
+        )
+
+        save_final_vacancy_decision(
             job
         )
 
