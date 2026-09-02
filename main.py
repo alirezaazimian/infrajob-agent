@@ -50,6 +50,10 @@ from app.requirement_extractor import (
     extract_requirements,
 )
 
+from app.requirement_completion import (
+    evaluate_requirement_completion,
+)
+
 from app.requirement_repository import (
     ensure_requirement_columns,
     save_job_requirements,
@@ -874,6 +878,16 @@ def main():
                 job
             )
 
+            job[
+                "requirements"
+            ][
+                "completion"
+            ] = evaluate_requirement_completion(
+                job[
+                    "requirements"
+                ]
+            )
+
         else:
             job[
                 "requirements"
@@ -1261,6 +1275,31 @@ def main():
                 f"{requirements['skills']['required']}"
             )
 
+            completion = requirements.get(
+                "completion",
+                {},
+            )
+
+            print(
+                "   Requirement Completion: "
+                f"{completion.get('status', 'unclassified').upper()} "
+                f"(signals={completion.get('signal_count', 0)}, "
+                f"strong={completion.get('strong_requirement_count', 0)})"
+            )
+
+            completion_flags = completion.get(
+                "review_flags",
+                [],
+            )
+
+            if completion_flags:
+                print(
+                    "   Requirement Completion Flags: "
+                    + ", ".join(
+                        completion_flags
+                    )
+                )
+
         hard_blockers = (
             job.get(
                 "hard_blockers",
@@ -1285,6 +1324,65 @@ def main():
             )
 
         print()
+
+    # --------------------------------------------------
+    # Requirement extraction completion summary
+    # --------------------------------------------------
+
+    completion_counts = {}
+
+    for item in scored_jobs:
+        requirements = item[
+            "job"
+        ].get(
+            "requirements"
+        )
+
+        if not requirements:
+            continue
+
+        completion = requirements.get(
+            "completion",
+            {},
+        )
+
+        status = completion.get(
+            "status",
+            "unclassified",
+        )
+
+        completion_counts[
+            status
+        ] = (
+            completion_counts.get(
+                status,
+                0,
+            )
+            + 1
+        )
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "Requirement Extraction Completion Summary"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for category in [
+        "complete",
+        "review",
+        "incomplete",
+        "unclassified",
+    ]:
+        print(
+            f"{category.upper()}: "
+            f"{completion_counts.get(category, 0)}"
+        )
 
     # --------------------------------------------------
     # Vacancy readiness summary
