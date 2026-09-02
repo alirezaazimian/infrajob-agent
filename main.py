@@ -41,6 +41,15 @@ from app.vacancy_readiness import (
     get_readiness_priority,
 )
 
+from app.vacancy_readiness_repository import (
+    ensure_vacancy_readiness_columns,
+    save_vacancy_readiness,
+)
+
+from app.requirement_extractor import (
+    extract_requirements,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -587,6 +596,7 @@ def main():
     )
 
     create_jobs_table()
+    ensure_vacancy_readiness_columns()
 
     # --------------------------------------------------
     # General source configuration
@@ -842,6 +852,27 @@ def main():
             "review_flags"
         ]
 
+        # ----------------------------------------------
+        # Requirement extraction
+        # ----------------------------------------------
+
+        if job[
+            "vacancy_readiness"
+        ] in {
+            "ready",
+            "review",
+        }:
+            job[
+                "requirements"
+            ] = extract_requirements(
+                job
+            )
+
+        else:
+            job[
+                "requirements"
+            ] = None
+
         scored_jobs.append(
             {
                 "job": job,
@@ -903,6 +934,10 @@ def main():
         save_job(
             job,
             score,
+        )
+
+        save_vacancy_readiness(
+            job
         )
 
         logger.info(
@@ -1195,6 +1230,25 @@ def main():
                 + ", ".join(
                     readiness_blockers
                 )
+            )
+
+        requirements = job.get(
+            "requirements"
+        )
+
+        if requirements:
+            print(
+                "   Requirements: "
+                f"experience_min="
+                f"{requirements['experience']['minimum_years']}, "
+                f"degree="
+                f"{requirements['education']['levels']}, "
+                f"languages_required="
+                f"{requirements['languages']['required']}, "
+                f"location_mode="
+                f"{requirements['location']['mode']}, "
+                f"required_skills="
+                f"{requirements['skills']['required']}"
             )
 
         hard_blockers = (

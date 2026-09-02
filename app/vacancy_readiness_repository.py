@@ -3,15 +3,48 @@ from psycopg2.extras import Json
 from app.database import get_connection
 
 
+EXPECTED_DATABASE = "infrajob"
+
+
+def _assert_infrajob_database(
+    connection,
+):
+    """
+    Refuse schema/data writes unless PostgreSQL is connected
+    to the InfraJob Agent database.
+    """
+
+    with connection.cursor() as cursor:
+        cursor.execute(
+            "SELECT current_database();"
+        )
+
+        current_database = (
+            cursor.fetchone()[0]
+        )
+
+    if current_database != EXPECTED_DATABASE:
+        raise RuntimeError(
+            "Database safety check failed: "
+            f"expected '{EXPECTED_DATABASE}', "
+            f"but connected to '{current_database}'. "
+            "No InfraJob schema/data changes were performed."
+        )
+
+
 def ensure_vacancy_readiness_columns():
     """
-    Add Vacancy Readiness persistence columns to the existing
-    jobs table without changing application-state behavior.
+    Add Vacancy Readiness columns only to the InfraJob database.
+    The database-name safety check runs before ALTER TABLE.
     """
 
     connection = get_connection()
 
     try:
+        _assert_infrajob_database(
+            connection
+        )
+
         with connection.cursor() as cursor:
             cursor.execute(
                 """
@@ -55,6 +88,10 @@ def ensure_vacancy_readiness_columns():
 
         connection.commit()
 
+    except Exception:
+        connection.rollback()
+        raise
+
     finally:
         connection.close()
 
@@ -63,13 +100,16 @@ def save_vacancy_readiness(
     job,
 ):
     """
-    Persist the latest readiness decision for an already
-    UPSERTed job row.
+    Persist the readiness decision only inside the InfraJob DB.
     """
 
     connection = get_connection()
 
     try:
+        _assert_infrajob_database(
+            connection
+        )
+
         with connection.cursor() as cursor:
             cursor.execute(
                 """
@@ -91,10 +131,14 @@ def save_vacancy_readiness(
                     %(external_id)s;
                 """,
                 {
-                    "external_id": job["external_id"],
-                    "vacancy_readiness": job.get(
-                        "vacancy_readiness",
-                        "unclassified",
+                    "external_id": job[
+                        "external_id"
+                    ],
+                    "vacancy_readiness": (
+                        job.get(
+                            "vacancy_readiness",
+                            "unclassified",
+                        )
                     ),
                     "readiness_reasons": Json(
                         job.get(
@@ -118,6 +162,10 @@ def save_vacancy_readiness(
             )
 
         connection.commit()
+
+    except Exception:
+        connection.rollback()
+        raise
 
     finally:
         connection.close()
