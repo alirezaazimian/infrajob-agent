@@ -69,6 +69,11 @@ from app.live_validation_repository import (
     save_live_validation,
 )
 
+from app.final_vacancy_decision import (
+    classify_final_vacancy_decision,
+    get_final_decision_priority,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -944,6 +949,42 @@ def main():
                 "vacancy readiness is not actionable"
             )
 
+        final_decision = (
+            classify_final_vacancy_decision(
+                job
+            )
+        )
+
+        job[
+            "final_decision"
+        ] = final_decision[
+            "decision"
+        ]
+
+        job[
+            "final_decision_reasons"
+        ] = final_decision[
+            "reasons"
+        ]
+
+        job[
+            "final_decision_blockers"
+        ] = final_decision[
+            "blockers"
+        ]
+
+        job[
+            "final_decision_review_flags"
+        ] = final_decision[
+            "review_flags"
+        ]
+
+        job[
+            "final_decision_version"
+        ] = final_decision[
+            "version"
+        ]
+
         scored_jobs.append(
             {
                 "job": job,
@@ -957,14 +998,22 @@ def main():
     # --------------------------------------------------
     # Final ranking
     #
-    # 1. Vacancy Readiness
-    # 2. Actionability
-    # 3. Opportunity Score
-    # 4. Technical Score
+    # 1. Final Vacancy Decision
+    # 2. Vacancy Readiness
+    # 3. Actionability
+    # 4. Opportunity Score
+    # 5. Technical Score
     # --------------------------------------------------
 
     scored_jobs.sort(
         key=lambda item: (
+            get_final_decision_priority(
+                item["job"].get(
+                    "final_decision",
+                    "unclassified",
+                )
+            ),
+
             get_readiness_priority(
                 item["job"].get(
                     "vacancy_readiness",
@@ -1391,6 +1440,50 @@ def main():
                     )
                 )
 
+        print(
+            "   Final Vacancy Decision: "
+            f"{job.get('final_decision', 'unclassified').upper()}"
+        )
+
+        final_reasons = job.get(
+            "final_decision_reasons",
+            [],
+        )
+
+        if final_reasons:
+            print(
+                "   Final Decision Reasons: "
+                + ", ".join(
+                    final_reasons
+                )
+            )
+
+        final_review_flags = job.get(
+            "final_decision_review_flags",
+            [],
+        )
+
+        if final_review_flags:
+            print(
+                "   Final Decision Review Flags: "
+                + ", ".join(
+                    final_review_flags
+                )
+            )
+
+        final_blockers = job.get(
+            "final_decision_blockers",
+            [],
+        )
+
+        if final_blockers:
+            print(
+                "   Final Decision Blockers: "
+                + ", ".join(
+                    final_blockers
+                )
+            )
+
         hard_blockers = (
             job.get(
                 "hard_blockers",
@@ -1415,6 +1508,53 @@ def main():
             )
 
         print()
+
+    # --------------------------------------------------
+    # M21.4.1 Final vacancy decision summary
+    # --------------------------------------------------
+
+    final_decision_counts = {}
+
+    for item in scored_jobs:
+        status = item[
+            "job"
+        ].get(
+            "final_decision",
+            "unclassified",
+        )
+
+        final_decision_counts[
+            status
+        ] = (
+            final_decision_counts.get(
+                status,
+                0,
+            )
+            + 1
+        )
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "Final Vacancy Decision Summary"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for category in [
+        "apply",
+        "review",
+        "skip",
+        "unclassified",
+    ]:
+        print(
+            f"{category.upper()}: "
+            f"{final_decision_counts.get(category, 0)}"
+        )
 
     # --------------------------------------------------
     # Requirement extraction completion summary
