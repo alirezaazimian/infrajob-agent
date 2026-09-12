@@ -1,3 +1,4 @@
+from uuid import uuid4
 import requests
 
 from app.collectors.remotive import fetch_jobs
@@ -620,8 +621,13 @@ def main():
         "=" * 60
     )
 
+    run_id = str(
+        uuid4()
+    )
+
     logger.info(
-        "InfraJob Agent started"
+        "InfraJob Agent started | run_id=%s",
+        run_id,
     )
 
     create_jobs_table()
@@ -1075,7 +1081,8 @@ def main():
         )
 
         save_final_vacancy_decision(
-            job
+            job,
+            run_id,
         )
 
         logger.info(
@@ -1795,6 +1802,11 @@ def main():
         len(unique_jobs),
         len(relevant_jobs),
         len(scored_jobs),
+    )
+
+    logger.info(
+        "Pipeline run_id=%s",
+        run_id,
     )
 
 
