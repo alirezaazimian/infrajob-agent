@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ job.title }} · InfraJob</title>
+<style>
+:root{
+  color-scheme:dark;
+  --bg:#0d0f10;--surface:#121516;--paper:#d8d5c8;--dim:#a5a294;
+  --muted:#777b76;--line:#242829;--line2:#34393a;
+  --lime:#b8cf63;--rust:#c47a5a;--sky:#7397a8;--amber:#c8aa66;--red:#b86e72;
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--paper)}
+body{
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 15% 0%,rgba(184,207,99,.03),transparent 26%),
+    var(--bg);
+}
+a{color:inherit;text-decoration:none}
+.shell{width:min(1220px,calc(100% - 36px));margin:0 auto;padding:26px 0 64px}
+.nav{
+  display:flex;justify-content:space-between;gap:12px;
+  padding-bottom:16px;border-bottom:1px solid var(--line);
+  color:var(--muted);
+  font:700 10px/1.4 "JetBrains Mono","Fira Code",monospace;
+  letter-spacing:.12em;text-transform:uppercase
+}
+.back{color:var(--sky)}
+.hero{
+  display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:34px;
+  padding:30px 0 36px;border-bottom:1px solid var(--line2)
+}
+.kicker{color:var(--muted);font:700 10px/1.4 "JetBrains Mono","Fira Code",monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:13px}
+h1{margin:0;max-width:900px;font-size:clamp(42px,6.5vw,82px);line-height:.93;letter-spacing:-.065em}
+.meta{margin-top:17px;color:var(--dim);font-size:14px}
+.ext{display:inline-block;margin-top:13px;color:var(--sky);font:700 10px/1.4 "JetBrains Mono","Fira Code",monospace;text-transform:uppercase}
+.route{border-left:1px solid var(--line2);padding-left:18px}
+.route small{display:block;color:var(--muted);font:700 9px/1.4 "JetBrains Mono","Fira Code",monospace;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+.route strong{display:block;color:var(--amber);font:700 14px/1.45 "JetBrains Mono","Fira Code",monospace;text-transform:uppercase}
+.grid{display:grid;grid-template-columns:260px minmax(0,1fr);gap:34px;margin-top:28px}
+.rail{align-self:start;position:sticky;top:20px}
+.block{padding:0 0 18px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+.block-title{color:var(--muted);font:700 9px/1.4 "JetBrains Mono","Fira Code",monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.metric{display:flex;justify-content:space-between;gap:12px;padding:6px 0;color:var(--dim);font-size:12px}
+.metric b{color:var(--paper);font:600 11px/1.4 "JetBrains Mono","Fira Code",monospace;text-align:right}
+.section{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--line)}
+.section-tag{color:var(--muted);font:700 9px/1.4 "JetBrains Mono","Fira Code",monospace;letter-spacing:.14em;text-transform:uppercase;margin-bottom:9px}
+.section h2{margin:0 0 16px;font-size:28px;letter-spacing:-.04em}
+.list-group+.list-group{margin-top:18px}
+.list-label{color:var(--muted);font:700 9px/1.4 "JetBrains Mono","Fira Code",monospace;text-transform:uppercase;letter-spacing:.09em;margin-bottom:7px}
+ul{margin:0;padding-left:19px}
+li{color:#c3c1b7;line-height:1.6}
+li+li{margin-top:7px}
+pre{
+  margin:0;padding:16px;border:1px solid var(--line);background:#0b0d0e;
+  color:#babbb3;font:500 11px/1.65 "JetBrains Mono","Fira Code",monospace;
+  white-space:pre-wrap;word-break:break-word;max-height:520px;overflow:auto
+}
+.description{color:#bebdb4;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.footer{margin-top:24px;color:#555955;font:600 9px/1.55 "JetBrains Mono","Fira Code",monospace;word-break:break-all;text-transform:uppercase;letter-spacing:.08em}
+@media(max-width:850px){
+  .hero{grid-template-columns:1fr}.route{border-left:0;border-top:1px solid var(--line);padding:14px 0 0}
+  .grid{grid-template-columns:1fr}.rail{position:static;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+}
+@media(max-width:560px){.shell{width:calc(100% - 18px)}.rail{grid-template-columns:1fr}h1{font-size:42px}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <nav class="nav">
+    <a class="back" href="/">← decision queue</a>
+    <span>InfraJob / vacancy</span>
+  </nav>
+
+  <header class="hero">
+    <div>
+      <div class="kicker">{{ job.source or "unknown source" }} / {{ job.company }}</div>
+      <h1>{{ job.title }}</h1>
+      <div class="meta">{{ job.company }}{% if job.location %} · {{ job.location }}{% endif %}</div>
+      {% if job.url %}<a class="ext" href="{{ job.url }}" target="_blank" rel="noopener noreferrer">original vacancy ↗</a>{% endif %}
+    </div>
+
+    <aside class="route">
+      <small>Application route</small>
+      <strong>{{ (job.application_decision or "unclassified")|replace("_"," ") }}</strong>
+    </aside>
+  </header>
+
+  <div class="grid">
+    <aside class="rail">
+      <div class="block">
+        <div class="block-title">Vacancy signal</div>
+        <div class="metric"><span>Technical</span><b>{{ job.technical_score if job.technical_score is not none else "—" }}</b></div>
+        <div class="metric"><span>Opportunity</span><b>{{ job.opportunity_score if job.opportunity_score is not none else "—" }}</b></div>
+        <div class="metric"><span>Actionability</span><b>{{ (job.actionability or "—")|replace("_"," ") }}</b></div>
+        <div class="metric"><span>Readiness</span><b>{{ (job.vacancy_readiness or "—")|replace("_"," ") }}</b></div>
+        <div class="metric"><span>Vacancy decision</span><b>{{ (job.final_decision or "—")|replace("_"," ") }}</b></div>
+      </div>
+
+      <div class="block">
+        <div class="block-title">Candidate signal</div>
+        <div class="metric"><span>Status</span><b>{{ (job.candidate_match_status or "—")|replace("_"," ") }}</b></div>
+        <div class="metric"><span>Score</span><b>{{ job.candidate_match_score if job.candidate_match_score is not none else "—" }}</b></div>
+        <div class="metric"><span>Coverage</span><b>{% if job.candidate_match_coverage is not none %}{{ job.candidate_match_coverage }}%{% else %}—{% endif %}</b></div>
+        <div class="metric"><span>Skip reason</span><b>{{ job.candidate_match_skip_reason or "—" }}</b></div>
+      </div>
+    </aside>
+
+    <div>
+      <section class="section">
+        <div class="section-tag">Decision rationale</div>
+        <h2>Why it landed here</h2>
+
+        {% if job.application_decision_reasons %}
+        <div class="list-group">
+          <div class="list-label">Reasons</div>
+          <ul>{% for item in job.application_decision_reasons %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        {% if job.application_decision_review_flags %}
+        <div class="list-group">
+          <div class="list-label">Review flags</div>
+          <ul>{% for item in job.application_decision_review_flags %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+
+        {% if job.application_decision_blockers %}
+        <div class="list-group">
+          <div class="list-label">Blockers</div>
+          <ul>{% for item in job.application_decision_blockers %}<li>{{ item }}</li>{% endfor %}</ul>
+        </div>
+        {% endif %}
+      </section>
+
+      <section class="section">
+        <div class="section-tag">Requirement model</div>
+        <h2>What the role asks for</h2>
+        <pre>{{ job.requirements | tojson(indent=2) }}</pre>
+      </section>
+
+      <section class="section">
+        <div class="section-tag">Candidate model</div>
+        <h2>Where you fit</h2>
+        <pre>{{ job.candidate_match | tojson(indent=2) }}</pre>
+      </section>
+
+      <section class="section">
+        <div class="section-tag">Source</div>
+        <h2>Vacancy description</h2>
+        <div class="description">{{ job.description or "No description stored." }}</div>
+      </section>
+    </div>
+  </div>
+
+  <footer class="footer">
+    run_id: {{ run_id }} · application_decision_version: {{ job.application_decision_version or "—" }}
+  </footer>
+</main>
+</body>
+</html>

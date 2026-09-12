@@ -88,9 +88,20 @@ from app.candidate_matcher import (
     match_candidate_to_requirements,
 )
 
+from app.application_decision import (
+    classify_application_decision,
+    get_application_decision_priority,
+)
+
 from app.candidate_match_repository import (
     ensure_candidate_match_columns,
     save_candidate_match,
+)
+
+
+from app.application_decision_repository import (
+    ensure_application_decision_columns,
+    save_application_decision,
 )
 
 from app.source_registry import (
@@ -670,6 +681,7 @@ def main():
     ensure_live_validation_columns()
     ensure_final_decision_columns()
     ensure_candidate_match_columns()
+    ensure_application_decision_columns()
 
     # --------------------------------------------------
     # General source configuration
@@ -1090,6 +1102,56 @@ def main():
             "candidate_match_skip_reason"
         ] = candidate_match_skip_reason
 
+        # ----------------------------------------------
+        # M24.2 Application decision
+        #
+        # This combines the vacancy-level decision with
+        # the candidate-specific match. It still does
+        # NOT submit an application automatically.
+        # ----------------------------------------------
+
+        application_decision = (
+            classify_application_decision(
+                job
+            )
+        )
+
+        job[
+            "application_decision"
+        ] = application_decision[
+            "decision"
+        ]
+
+        job[
+            "application_decision_reasons"
+        ] = application_decision[
+            "reasons"
+        ]
+
+        job[
+            "application_decision_blockers"
+        ] = application_decision[
+            "blockers"
+        ]
+
+        job[
+            "application_decision_review_flags"
+        ] = application_decision[
+            "review_flags"
+        ]
+
+        job[
+            "application_decision_version"
+        ] = application_decision[
+            "version"
+        ]
+
+        job[
+            "application_decision_inputs"
+        ] = application_decision[
+            "inputs"
+        ]
+
         scored_jobs.append(
             {
                 "job": job,
@@ -1103,15 +1165,23 @@ def main():
     # --------------------------------------------------
     # Final ranking
     #
-    # 1. Final Vacancy Decision
-    # 2. Vacancy Readiness
-    # 3. Actionability
-    # 4. Opportunity Score
-    # 5. Technical Score
+    # 1. Application Decision
+    # 2. Final Vacancy Decision
+    # 3. Vacancy Readiness
+    # 4. Actionability
+    # 5. Opportunity Score
+    # 6. Technical Score
     # --------------------------------------------------
 
     scored_jobs.sort(
         key=lambda item: (
+            get_application_decision_priority(
+                item["job"].get(
+                    "application_decision",
+                    "unclassified",
+                )
+            ),
+
             get_final_decision_priority(
                 item["job"].get(
                     "final_decision",
@@ -1185,6 +1255,11 @@ def main():
                 "schema_version",
                 "unknown",
             ),
+        )
+
+        save_application_decision(
+            job,
+            run_id,
         )
 
         logger.info(
@@ -1641,6 +1716,50 @@ def main():
                 )
             )
 
+        print(
+            "   Application Decision: "
+            f"{job.get('application_decision', 'unclassified').upper()}"
+        )
+
+        application_reasons = job.get(
+            "application_decision_reasons",
+            [],
+        )
+
+        if application_reasons:
+            print(
+                "   Application Decision Reasons: "
+                + ", ".join(
+                    application_reasons
+                )
+            )
+
+        application_review_flags = job.get(
+            "application_decision_review_flags",
+            [],
+        )
+
+        if application_review_flags:
+            print(
+                "   Application Decision Review Flags: "
+                + ", ".join(
+                    application_review_flags
+                )
+            )
+
+        application_blockers = job.get(
+            "application_decision_blockers",
+            [],
+        )
+
+        if application_blockers:
+            print(
+                "   Application Decision Blockers: "
+                + ", ".join(
+                    application_blockers
+                )
+            )
+
         hard_blockers = (
             job.get(
                 "hard_blockers",
@@ -1665,6 +1784,54 @@ def main():
             )
 
         print()
+
+    # --------------------------------------------------
+    # M24.2 Application decision summary
+    # --------------------------------------------------
+
+    application_decision_counts = {}
+
+    for item in scored_jobs:
+        status = item[
+            "job"
+        ].get(
+            "application_decision",
+            "unclassified",
+        )
+
+        application_decision_counts[
+            status
+        ] = (
+            application_decision_counts.get(
+                status,
+                0,
+            )
+            + 1
+        )
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "Application Decision Summary"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for category in [
+        "apply_now",
+        "apply_with_tailored_cv",
+        "human_review",
+        "do_not_apply",
+        "unclassified",
+    ]:
+        print(
+            f"{category.upper()}: "
+            f"{application_decision_counts.get(category, 0)}"
+        )
 
     # --------------------------------------------------
     # M23.2 Candidate matching summary
