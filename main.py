@@ -80,6 +80,19 @@ from app.final_decision_repository import (
     save_final_vacancy_decision,
 )
 
+from app.candidate_profile import (
+    load_candidate_profile,
+)
+
+from app.candidate_matcher import (
+    match_candidate_to_requirements,
+)
+
+from app.candidate_match_repository import (
+    ensure_candidate_match_columns,
+    save_candidate_match,
+)
+
 from app.source_registry import (
     get_all_company_sources,
     get_enabled_company_sources,
@@ -630,11 +643,33 @@ def main():
         run_id,
     )
 
+    candidate_profile = (
+        load_candidate_profile()
+    )
+
+    logger.info(
+        "Candidate profile loaded | schema=%s | primary_roles=%s",
+        candidate_profile.get(
+            "schema_version",
+            "unknown",
+        ),
+        len(
+            candidate_profile.get(
+                "target_roles",
+                {},
+            ).get(
+                "primary",
+                [],
+            )
+        ),
+    )
+
     create_jobs_table()
     ensure_vacancy_readiness_columns()
     ensure_requirement_columns()
     ensure_live_validation_columns()
     ensure_final_decision_columns()
+    ensure_candidate_match_columns()
 
     # --------------------------------------------------
     # General source configuration
@@ -997,6 +1032,64 @@ def main():
             "version"
         ]
 
+        # ----------------------------------------------
+        # M23.2 Candidate matching
+        #
+        # Candidate matching is deliberately separate
+        # from M21 vacancy readiness. It does not alter
+        # the vacancy-level APPLY / REVIEW / SKIP result.
+        # ----------------------------------------------
+
+        candidate_match = None
+        candidate_match_skip_reason = None
+
+        requirements = job.get(
+            "requirements"
+        )
+
+        if requirements:
+            completion = requirements.get(
+                "completion",
+                {},
+            )
+
+            completion_status = completion.get(
+                "status",
+                "unclassified",
+            )
+
+            if completion_status in {
+                "complete",
+                "review",
+            }:
+                candidate_match = (
+                    match_candidate_to_requirements(
+                        candidate_profile,
+                        requirements,
+                        country=job.get(
+                            "country"
+                        ),
+                    )
+                )
+
+            else:
+                candidate_match_skip_reason = (
+                    "requirement extraction is incomplete"
+                )
+
+        else:
+            candidate_match_skip_reason = (
+                "vacancy has no actionable extracted requirements"
+            )
+
+        job[
+            "candidate_match"
+        ] = candidate_match
+
+        job[
+            "candidate_match_skip_reason"
+        ] = candidate_match_skip_reason
+
         scored_jobs.append(
             {
                 "job": job,
@@ -1083,6 +1176,15 @@ def main():
         save_final_vacancy_decision(
             job,
             run_id,
+        )
+
+        save_candidate_match(
+            job,
+            run_id,
+            candidate_profile.get(
+                "schema_version",
+                "unknown",
+            ),
         )
 
         logger.info(
@@ -1457,6 +1559,44 @@ def main():
                     )
                 )
 
+        candidate_match = job.get(
+            "candidate_match"
+        )
+
+        if candidate_match:
+            candidate_summary = candidate_match.get(
+                "summary",
+                {},
+            )
+
+            candidate_counts = candidate_summary.get(
+                "counts",
+                {},
+            )
+
+            print(
+                "   Candidate Match: "
+                f"{candidate_summary.get('overall', 'unclassified').upper()} "
+                f"(score={candidate_summary.get('score')}, "
+                f"coverage={candidate_summary.get('coverage_percent', 0)}%)"
+            )
+
+            print(
+                "   Candidate Match Counts: "
+                f"match={candidate_counts.get('match', 0)}, "
+                f"partial={candidate_counts.get('partial', 0)}, "
+                f"gap={candidate_counts.get('gap', 0)}, "
+                f"unknown={candidate_counts.get('unknown', 0)}"
+            )
+
+        elif job.get(
+            "candidate_match_skip_reason"
+        ):
+            print(
+                "   Candidate Match: SKIPPED "
+                f"({job['candidate_match_skip_reason']})"
+            )
+
         print(
             "   Final Vacancy Decision: "
             f"{job.get('final_decision', 'unclassified').upper()}"
@@ -1525,6 +1665,74 @@ def main():
             )
 
         print()
+
+    # --------------------------------------------------
+    # M23.2 Candidate matching summary
+    # --------------------------------------------------
+
+    candidate_match_counts = {}
+    candidate_match_skipped = 0
+
+    for item in scored_jobs:
+        job = item[
+            "job"
+        ]
+
+        candidate_match = job.get(
+            "candidate_match"
+        )
+
+        if candidate_match:
+            overall = candidate_match.get(
+                "summary",
+                {},
+            ).get(
+                "overall",
+                "unclassified",
+            )
+
+            candidate_match_counts[
+                overall
+            ] = (
+                candidate_match_counts.get(
+                    overall,
+                    0,
+                )
+                + 1
+            )
+
+        else:
+            candidate_match_skipped += 1
+
+    print(
+        "=" * 60
+    )
+
+    print(
+        "Candidate Match Summary"
+    )
+
+    print(
+        "=" * 60
+    )
+
+    for category in [
+        "strong_match",
+        "partial_match",
+        "needs_review",
+        "gap_present",
+        "insufficient_requirements",
+        "unclassified",
+    ]:
+        print(
+            f"{category.upper()}: "
+            f"{candidate_match_counts.get(category, 0)}"
+        )
+
+    print(
+        f"SKIPPED: "
+        f"{candidate_match_skipped}"
+    )
 
     # --------------------------------------------------
     # M21.4.1 Final vacancy decision summary

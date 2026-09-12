@@ -1,0 +1,267 @@
+{
+  "schema_version": "m22.1",
+  "profile_status": "draft_verified_conservative",
+  "target_roles": {
+    "primary": [
+      "Linux System Administrator",
+      "Systems Administrator",
+      "Infrastructure Engineer",
+      "IT Operations Engineer",
+      "1st Line Systems Administrator"
+    ],
+    "secondary": [
+      "Cloud Infrastructure Support",
+      "Junior DevOps Engineer",
+      "Platform Operations"
+    ]
+  },
+  "work_arrangement": {
+    "remote": true,
+    "hybrid": true,
+    "onsite": true,
+    "remote_required": false,
+    "preference": "no_strict_preference"
+  },
+  "mobility": {
+    "international_roles": true,
+    "relocation": "open",
+    "country_preferences": [],
+    "country_exclusions": [],
+    "work_authorization_by_country": {},
+    "sponsorship_requirement": "unknown"
+  },
+  "education": [
+    {
+      "level": "masters",
+      "field": "Computer Engineering - Computer Architecture Systems",
+      "status": "completed"
+    },
+    {
+      "level": "bachelors",
+      "field": "Information Technology Engineering",
+      "status": "completed"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "LPIC-1",
+      "status": "reported_completed",
+      "confidence": "self_reported"
+    },
+    {
+      "name": "LPIC-2",
+      "status": "reported_completed",
+      "confidence": "self_reported"
+    }
+  ],
+  "training": [
+    {
+      "name": "CCNA",
+      "status": "studied_not_certified"
+    },
+    {
+      "name": "AWS Solutions Architect Associate",
+      "status": "training_only_not_certified"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Persian",
+      "level": "native",
+      "confidence": "self_reported"
+    },
+    {
+      "language": "English",
+      "level": "intermediate",
+      "confidence": "historical_exam_plus_self_report",
+      "evidence": "IELTS General overall 5.5 (historical)",
+      "needs_refresh": true
+    }
+  ],
+  "skills": [
+    {
+      "name": "linux",
+      "level": "strong",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "system administration",
+      "level": "strong",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "troubleshooting",
+      "level": "strong",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "windows server",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "active directory",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "group policy",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "vmware",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "esxi",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "vcenter",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "veeam",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "zabbix",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "networking",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "tcp/ip",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "dns",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "mikrotik",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "backup",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "disaster recovery",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "git",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "github",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "docker",
+      "level": "basic",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "bash",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "python",
+      "level": "basic",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "aws",
+      "level": "basic",
+      "years": null,
+      "confidence": "training_only"
+    },
+    {
+      "name": "kubernetes",
+      "level": "basic",
+      "years": null,
+      "confidence": "limited_evidence"
+    },
+    {
+      "name": "postgresql",
+      "level": "basic",
+      "years": null,
+      "confidence": "project_evidence"
+    },
+    {
+      "name": "mysql",
+      "level": "basic",
+      "years": null,
+      "confidence": "project_evidence"
+    },
+    {
+      "name": "monitoring",
+      "level": "working",
+      "years": null,
+      "confidence": "supported"
+    },
+    {
+      "name": "infrastructure",
+      "level": "strong",
+      "years": null,
+      "confidence": "supported"
+    }
+  ],
+  "experience": {
+    "total_years": null,
+    "linux_admin_years": null,
+    "infrastructure_years": null,
+    "notes": [
+      "Exact years are intentionally unset until verified from CV/employment dates.",
+      "Matcher must not infer years from skill presence."
+    ]
+  },
+  "matching_policy": {
+    "do_not_invent_experience_years": true,
+    "unknown_is_not_failure": true,
+    "training_is_not_certification": true,
+    "remote_is_not_a_gate": true,
+    "prefer_evidence_backed_matches": true
+  }
+}
